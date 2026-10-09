@@ -249,7 +249,7 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
         f'<div class="card-mrv-verification">'
         f'<div class="block-title">Verification</div>'
         f'<div class="block-text">'
-        f'Sheme : {schemes_str}<br>'
+        f'Scheme : {schemes_str}<br>'
         f'Methodology : {mrv_data.get("Verification_methodology", "N/A")}<br>'
         f'Auditor : {auditor}<br>'
         f'Automatization : {mrv_data.get("Verification_automatization", "N/A")}<br>'
@@ -971,6 +971,32 @@ st.markdown("""
         color: #dab254;
         font-weight: 600;
         font-size: 14px;
+    }
+    
+    /* Streamlit Buttons Styling - high contrast and visible in both light and dark modes */
+    div.stButton > button {
+        background: #1B4332 !important;
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        border: 1.5px solid #52B788 !important;
+        border-radius: 8px !important;
+        padding: 8px 18px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        transition: all 0.25s ease-in-out !important;
+    }
+    
+    div.stButton > button:hover {
+        background: #2D6A4F !important;
+        color: #FFFFFF !important;
+        border-color: #74C69D !important;
+        box-shadow: 0 6px 18px rgba(82, 183, 136, 0.35) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    div.stButton > button:active {
+        transform: translateY(0) !important;
+    }
     
     /* Full-screen Modal overlay styling for focused card details */
     .modal-overlay {
@@ -1038,18 +1064,20 @@ st.markdown("""
     }
     
     div[data-testid="stColumn"]:has(.clickable-card-wrapper) div.stButton > button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
         background: transparent !important;
         border: none !important;
         color: transparent !important;
-        cursor: pointer;
-        z-index: 10;
+        cursor: pointer !important;
+        z-index: 10 !important;
         margin: 0 !important;
         padding: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
     }
     
     /* Ensure card hovers work when hovering the column container */
@@ -1205,7 +1233,11 @@ else:
 
 # Sidebar filter rendering for page_3 and page_4
 if st.session_state.step in ['page_3', 'page_4']:
-    st.sidebar.markdown("<div style='color: #dab254; font-size: 20px; font-weight: bold; margin-top: 25px; border-bottom: 2px solid #dab254; padding-bottom: 5px;'>YOUR CONTEXT :</div>", unsafe_allow_html=True)
+    if st.sidebar.button("◀ Back to Filters Page", use_container_width=True):
+        st.session_state.selected_mrv_id = None
+        st.session_state.step = 'page_2'
+        st.rerun()
+    st.sidebar.markdown("<div style='color: #dab254; font-size: 20px; font-weight: bold; margin-top: 15px; border-bottom: 2px solid #dab254; padding-bottom: 5px;'>YOUR CONTEXT :</div>", unsafe_allow_html=True)
     with st.sidebar:
         draw_filter_widgets(in_sidebar=True)
 
@@ -1280,6 +1312,10 @@ if st.session_state.step == 'page_1':
     with col_layout_l:
         st.markdown("""
         <div class="schema-col-left">
+            <div class="schema-item">
+                <span class="schema-title">MRV ID ───►</span>
+                <p class="schema-desc">Unique identifier code assigned to each MRV procedure.</p>
+            </div>
             <div class="schema-item">
                 <span class="schema-title">Type of Soil Parameters ───►</span>
                 <p class="schema-desc">Soil organic carbon, pH, bulk density, etc., measured in-situ or in lab.</p>
@@ -1419,7 +1455,7 @@ if st.session_state.step == 'page_1':
 # ----------------- PAGE 2: FILTER SELECTION -----------------
 elif st.session_state.step == 'page_2':
     st.markdown("<h1>Find your soil MRV procedure adapted to your context</h1>", unsafe_allow_html=True)
-    st.markdown("This interactive application allows you to navigate in our list of MRV procedures and to select those that are the most adapted to your context :")
+    st.markdown("""This interactive application allows you to navigate in our list of MRV procedures and to select those that are the most adapted to your context. The search mode « Strict Filtering » gives the MRV procedures exactly matches with your request. “Matching Score” ranks the MRV procedures according to the percentage of matching with your request, from higher to lower score.""")
     
     st.divider()
     
@@ -1463,16 +1499,28 @@ elif st.session_state.step == 'page_2':
         
     st.divider()
     
-    col_btn_l, col_btn_c, col_btn_r = st.columns([2, 1, 2])
-    with col_btn_c:
-        if st.button("Get the MRV procedures", use_container_width=True):
+    col_btn_l, col_btn_c, col_btn_r = st.columns([1.5, 1, 1.5])
+    with col_btn_l:
+        if st.button("◀ Back to Introduction", use_container_width=True):
+            st.session_state.step = 'page_1'
+            st.rerun()
+    with col_btn_r:
+        if st.button("Get the MRV procedures ▶", use_container_width=True):
             st.session_state.step = 'page_3'
             st.rerun()
 
 # ----------------- PAGE 3 & 4: RESULTS & DETAIL VIEW -----------------
 elif st.session_state.step in ['page_3', 'page_4']:
-    st.markdown("<h1>Find your soil MRV procedure adapted to your context</h1>", unsafe_allow_html=True)
-    st.markdown("Here are the MRV procedures fitted with your requirements :")
+    col_hdr_l, col_hdr_r = st.columns([3, 1])
+    with col_hdr_l:
+        st.markdown("<h1>Find your soil MRV procedure adapted to your context</h1>", unsafe_allow_html=True)
+        st.markdown("Here are the MRV procedures fitted with your requirements :")
+    with col_hdr_r:
+        st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+        if st.button("◀ Back to Filters", key="btn_back_to_filters_top", use_container_width=True):
+            st.session_state.selected_mrv_id = None
+            st.session_state.step = 'page_2'
+            st.rerun()
     
     st.divider()
     
@@ -1494,7 +1542,7 @@ elif st.session_state.step in ['page_3', 'page_4']:
                     st.markdown(card_html_focused, unsafe_allow_html=True)
                     
                     # Close button below the card (simply resets state without browser refreshes)
-                    if st.button("Close details ✕", use_container_width=True):
+                    if st.button("◀ Back to Results (Close) ✕", use_container_width=True):
                         st.session_state.selected_mrv_id = None
                         st.session_state.step = 'page_3'
                         st.rerun()

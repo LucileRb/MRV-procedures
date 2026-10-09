@@ -1,0 +1,11 @@
+[server]
+headless = true
+enableCORS = false
+baseUrlPath = "MRV-procedures"
+
+[theme]
+primaryColor = "#52B788"
+backgroundColor = "#0E1612"
+secondaryBackgroundColor = "#15221B"
+textColor = "#E2E8F0"
+font = "sans serif"
