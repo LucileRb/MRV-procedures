@@ -997,6 +997,72 @@ st.markdown("""
     div.stButton > button:active {
         transform: translateY(0) !important;
     }
+
+    /* Selectbox Styling - force dark background with crisp white text */
+    div[data-baseweb="select"],
+    div[data-baseweb="select"] > div,
+    div[data-testid="stSelectbox"] > div > div {
+        background-color: #15221B !important;
+        border: 1.5px solid #2D6A4F !important;
+        border-radius: 8px !important;
+        color: #FFFFFF !important;
+    }
+    
+    div[data-baseweb="select"]:hover > div,
+    div[data-baseweb="select"]:focus-within > div {
+        border-color: #52B788 !important;
+        box-shadow: 0 0 8px rgba(82, 183, 136, 0.4) !important;
+    }
+    
+    /* Text inside selectbox value and placeholder */
+    div[data-baseweb="select"] * {
+        color: #FFFFFF !important;
+        background-color: transparent !important;
+    }
+    
+    div[data-baseweb="select"] svg {
+        fill: #DAB254 !important;
+    }
+    
+    /* Dropdown Popover & Menu Items */
+    div[data-baseweb="popover"],
+    div[data-baseweb="popover"] > div,
+    ul[data-baseweb="menu"] {
+        background-color: #15221B !important;
+        border: 1.5px solid #52B788 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.85) !important;
+    }
+    
+    li[data-baseweb="menu-item"] {
+        background-color: #15221B !important;
+        color: #FFFFFF !important;
+        padding: 8px 14px !important;
+        font-size: 13.5px !important;
+    }
+    
+    li[data-baseweb="menu-item"]:hover,
+    li[data-baseweb="menu-item"][aria-selected="true"] {
+        background-color: #2D6A4F !important;
+        color: #FFFFFF !important;
+    }
+    
+    li[data-baseweb="menu-item"] * {
+        color: #FFFFFF !important;
+    }
+
+    /* Checkbox & Radio Labels & Controls */
+    div[data-testid="stCheckbox"] label span p,
+    div[data-testid="stRadio"] label span p {
+        color: #E2E8F0 !important;
+        font-size: 14px !important;
+    }
+    
+    [data-testid="stWidgetLabel"] p {
+        color: #E2E8F0 !important;
+        font-weight: 600 !important;
+        font-size: 13.5px !important;
+    }
     
     /* Full-screen Modal overlay styling for focused card details */
     .modal-overlay {
@@ -1058,33 +1124,34 @@ st.markdown("""
         overflow-y: auto;
         padding-right: 10px;
     }
-    /* Clickable card wrapper with transparent overlay button styling */
-    div[data-testid="stColumn"]:has(.clickable-card-wrapper) {
-        position: relative;
+    /* Streamlit Buttons Global Styling - bright white text, rich dark green background */
+    div.stButton > button,
+    div.stButton > button p,
+    div.stButton > button span,
+    div.stButton > button div {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
     }
     
-    div[data-testid="stColumn"]:has(.clickable-card-wrapper) div.stButton > button {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        background: transparent !important;
-        border: none !important;
-        color: transparent !important;
-        cursor: pointer !important;
-        z-index: 10 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        transform: none !important;
+    div.stButton > button {
+        background: #1B4332 !important;
+        border: 1.5px solid #52B788 !important;
+        border-radius: 8px !important;
+        padding: 8px 18px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        transition: all 0.25s ease-in-out !important;
+        font-size: 14px !important;
     }
     
-    /* Ensure card hovers work when hovering the column container */
-    div[data-testid="stColumn"]:has(.clickable-card-wrapper):hover .mrv-custom-card {
-        transform: translateY(-10px) scale(1.03) rotate(0.5deg);
-        box-shadow: 0 25px 45px rgba(0,0,0,0.8), 0 0 20px rgba(218,178,84,0.3);
-        border-color: #dab254;
+    div.stButton > button:hover {
+        background: #2D6A4F !important;
+        border-color: #74C69D !important;
+        box-shadow: 0 6px 18px rgba(82, 183, 136, 0.35) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    div.stButton > button:active {
+        transform: translateY(0) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1575,8 +1642,8 @@ elif st.session_state.step in ['page_3', 'page_4']:
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # Render transparent Streamlit button overlaying the card area
-                if st.button("", key=f"btn_focus_{mrv_row['ID_MRV']}", use_container_width=True):
+                # Button to focus on card details
+                if st.button("🔍 View MRV Details", key=f"btn_focus_{mrv_row['ID_MRV']}", use_container_width=True):
                     st.session_state.selected_mrv_id = mrv_row['ID_MRV']
                     st.session_state.step = 'page_4'
                     st.rerun()
