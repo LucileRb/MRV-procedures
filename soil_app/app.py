@@ -998,14 +998,14 @@ st.markdown("""
         transform: translateY(0) !important;
     }
 
-    /* Selectbox Styling - force dark background with crisp white text */
+    /* Selectbox Styling - clean white background with deep dark text */
     div[data-baseweb="select"],
     div[data-baseweb="select"] > div,
     div[data-testid="stSelectbox"] > div > div {
-        background-color: #15221B !important;
+        background-color: #FFFFFF !important;
         border: 1.5px solid #2D6A4F !important;
         border-radius: 8px !important;
-        color: #FFFFFF !important;
+        color: #0E1612 !important;
     }
     
     div[data-baseweb="select"]:hover > div,
@@ -1014,41 +1014,45 @@ st.markdown("""
         box-shadow: 0 0 8px rgba(82, 183, 136, 0.4) !important;
     }
     
-    /* Text inside selectbox value and placeholder */
+    /* Text inside selectbox value and placeholder - dark and bold */
     div[data-baseweb="select"] * {
-        color: #FFFFFF !important;
-        background-color: transparent !important;
+        color: #0E1612 !important;
+        font-weight: 600 !important;
     }
     
     div[data-baseweb="select"] svg {
-        fill: #DAB254 !important;
+        fill: #0E1612 !important;
     }
     
     /* Dropdown Popover & Menu Items */
     div[data-baseweb="popover"],
     div[data-baseweb="popover"] > div,
     ul[data-baseweb="menu"] {
-        background-color: #15221B !important;
-        border: 1.5px solid #52B788 !important;
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #2D6A4F !important;
         border-radius: 8px !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.85) !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
     }
     
     li[data-baseweb="menu-item"] {
-        background-color: #15221B !important;
-        color: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+        color: #0E1612 !important;
         padding: 8px 14px !important;
         font-size: 13.5px !important;
     }
     
     li[data-baseweb="menu-item"]:hover,
     li[data-baseweb="menu-item"][aria-selected="true"] {
-        background-color: #2D6A4F !important;
-        color: #FFFFFF !important;
+        background-color: #E8F5E9 !important;
+        color: #1B5E20 !important;
     }
     
     li[data-baseweb="menu-item"] * {
-        color: #FFFFFF !important;
+        color: #0E1612 !important;
+    }
+    li[data-baseweb="menu-item"]:hover * {
+        color: #1B5E20 !important;
+        font-weight: 600 !important;
     }
 
     /* Checkbox & Radio Labels & Controls */
