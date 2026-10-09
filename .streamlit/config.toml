@@ -1,7 +1,7 @@
 [server]
 headless = true
 enableCORS = false
-baseUrlPath = "MRV-procedures"
+baseUrlPath = "mrv-procedures-soil-health"
 
 [theme]
 primaryColor = "#52B788"

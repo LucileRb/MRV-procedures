@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 620" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap');
+      text {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+      .card-bg {
+        fill: #0E1612;
+        stroke: #c89d3c;
+        stroke-width: 4.5;
+        rx: 18px;
+      }
+      .header-id {
+        fill: #242526;
+        rx: 4px;
+      }
+      .header-name {
+        fill: #242526;
+        rx: 4px;
+      }
+      .mrv-block {
+        fill: #15221B;
+        stroke: #c89d3c;
+        stroke-width: 2;
+        rx: 8px;
+      }
+      .mrv-divider {
+        stroke: #c89d3c;
+        stroke-width: 2;
+      }
+      .title-line {
+        stroke: rgba(255, 255, 255, 0.15);
+        stroke-width: 1;
+      }
+      .block-title {
+        fill: #FFFFFF;
+        font-size: 12.5px;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+      .block-text {
+        fill: #E2E8F0;
+        font-size: 9.5px;
+        font-weight: 400;
+      }
+      .block-label {
+        font-weight: 600;
+      }
+      .impl-bar {
+        fill: #dab254;
+        rx: 4px;
+      }
+      .impl-text {
+        fill: #0E1612;
+        font-size: 10.5px;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+      .section-box {
+        fill: #111e16;
+        stroke: rgba(255, 255, 255, 0.06);
+        stroke-width: 1;
+        rx: 6px;
+      }
+      .section-title {
+        fill: #dab254;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .section-text {
+        fill: #E2E8F0;
+        font-size: 10px;
+        font-weight: 400;
+      }
+      .link-btn {
+        fill: #242526;
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-width: 1;
+        rx: 4px;
+      }
+      .link-text {
+        fill: #dab254;
+        font-size: 9.5px;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+      .score-text {
+        fill: #FFFFFF;
+        font-size: 11px;
+        font-weight: 700;
+        text-anchor: middle;
+      }
+      .score-bg {
+        fill: #24352C;
+        rx: 3px;
+      }
+      .score-fill {
+        fill: #52B788;
+        rx: 3px;
+      }
+    </style>
+    
+    <filter id="cardShadow" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(10, 10)">
+    <!-- Main Card Frame -->
+    <rect class="card-bg" x="0" y="0" width="360" height="595" filter="url(#cardShadow)"/>
+
+    <!-- Header ID & Name -->
+    <rect class="header-id" x="15" y="15" width="80" height="26"/>
+    <text x="55" y="32.5" fill="#FFFFFF" font-size="12.5" font-weight="700" text-anchor="middle" dominant-baseline="central">MRV-01</text>
+
+    <rect class="header-name" x="165" y="15" width="180" height="26"/>
+    <text x="255" y="32.5" fill="#ef4444" font-size="12.5" font-weight="700" text-anchor="middle" dominant-baseline="central">Example Framework 🌱</text>
+
+    <!-- MRV Tri-Block -->
+    <rect class="mrv-block" x="15" y="52" width="330" height="188"/>
+    <line class="mrv-divider" x1="180" y1="52" x2="180" y2="240"/>
+    <line class="mrv-divider" x1="180" y1="130" x2="345" y2="130"/>
+
+    <!-- Monitoring Section -->
+    <text class="block-title" x="97.5" y="70">Monitoring</text>
+    <line class="title-line" x1="30" y1="76" x2="165" y2="76"/>
+    <text class="block-text" x="25" y="93">
+      <tspan class="block-label">Parameters :</tspan> organic matter
+    </text>
+    <text class="block-text" x="25" y="106">SOC, pH, moisture</text>
+    <text class="block-text" x="25" y="122">
+      <tspan class="block-label">Data :</tspan> Soil samples, Modelling
+    </text>
+    <text class="block-text" x="25" y="138">
+      <tspan class="block-label">Frequency :</tspan> N/A
+    </text>
+    <text class="block-text" x="25" y="154">
+      <tspan class="block-label">Standards use :</tspan> N/A
+    </text>
+
+    <!-- Reporting Section -->
+    <text class="block-title" x="262.5" y="70">Reporting</text>
+    <line class="title-line" x1="195" y1="76" x2="330" y2="76"/>
+    <text class="block-text" x="190" y="93">
+      <tspan class="block-label">Format :</tspan> Document
+    </text>
+    <text class="block-text" x="190" y="108">
+      <tspan class="block-label">Uncertainty :</tspan> N/A
+    </text>
+    <text class="block-text" x="190" y="123">
+      <tspan class="block-label">Threshold :</tspan> Relative Change
+    </text>
+
+    <!-- Verification Section -->
+    <text class="block-title" x="262.5" y="148">Verification</text>
+    <line class="title-line" x1="195" y1="154" x2="330" y2="154"/>
+    <text class="block-text" x="190" y="169">
+      <tspan class="block-label">Scheme :</tspan> Action-based,
+    </text>
+    <text class="block-text" x="190" y="181">Result-based</text>
+    <text class="block-text" x="190" y="195">
+      <tspan class="block-label">Methodology :</tspan> N/A
+    </text>
+    <text class="block-text" x="190" y="209">
+      <tspan class="block-label">Auditor :</tspan> External
+    </text>
+    <text class="block-text" x="190" y="223">
+      <tspan class="block-label">Automatization :</tspan> N/A
+    </text>
+    <text class="block-text" x="190" y="236">
+      <tspan class="block-label">Open-access :</tspan> Yes
+    </text>
+
+    <!-- Implementation Bar -->
+    <rect class="impl-bar" x="15" y="248" width="330" height="24"/>
+    <text class="impl-text" x="180" y="264">Implementation | Global |</text>
+
+    <!-- Where ? Section -->
+    <rect class="section-box" x="15" y="280" width="330" height="54"/>
+    <text class="section-title" x="25" y="297">Where ?</text>
+    <text class="section-text" x="25" y="313">Land use: Agriculture, Forest</text>
+    <text class="section-text" x="25" y="327">Geographical scale : Local</text>
+
+    <!-- Who ? Section -->
+    <rect class="section-box" x="15" y="342" width="330" height="42"/>
+    <text class="section-title" x="25" y="359">Who ?</text>
+    <text class="section-text" x="25" y="375">Occupation : None</text>
+
+    <!-- Why ? Section -->
+    <rect class="section-box" x="15" y="392" width="330" height="54"/>
+    <text class="section-title" x="25" y="409">Why ?</text>
+    <text class="section-text" x="25" y="425">Purpose : Voluntary carbon market</text>
+    <text class="section-text" x="25" y="439">Actions : None</text>
+
+    <!-- Links Section -->
+    <rect class="link-btn" x="15" y="454" width="330" height="25"/>
+    <text class="link-text" x="180" y="470">SOURCE (with URL link)</text>
+
+    <rect class="link-btn" x="15" y="485" width="330" height="25"/>
+    <text class="link-text" x="180" y="501">Title of our article (with URL link)</text>
+
+    <!-- Matching Score Bar -->
+    <text class="score-text" x="180" y="534">Matching Score: 100%</text>
+    <rect class="score-bg" x="15" y="542" width="330" height="6"/>
+    <rect class="score-fill" x="15" y="542" width="330" height="6"/>
+  </g>
+</svg>
