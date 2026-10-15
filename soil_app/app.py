@@ -69,6 +69,15 @@ def get_base64_image(image_path):
     except Exception:
         return ""
 
+def clean_info(val, default='No info'):
+    """Uniformly replaces nan, N/A, NA, Unknown, not specified, none with 'No info'."""
+    if val is None or pd.isna(val):
+        return default
+    s = str(val).strip()
+    if s.lower() in ('nan', 'n/a', 'na', 'unknown', 'not specified', 'none', '', 'null'):
+        return default
+    return s
+
 def calculate_hp(mrv_data):
     if isinstance(mrv_data, dict):
         mrv_data = pd.Series(mrv_data)
@@ -92,7 +101,7 @@ def translate_val(val):
         'Literature (Scopus)': 'Literature (Scopus)',
         'AI Search': 'AI Search',
         'Webscraping': 'Webscraping',
-        'Unknown': 'Unknown',
+        'Unknown': 'No info',
         'All': 'All',
         'Depends/Flexible': 'Depends/Flexible'
     }
@@ -100,8 +109,10 @@ def translate_val(val):
 
 def format_country_display(country, continent):
     """Returns comma-separated countries, or 'Continent (N countries)' when the list is long."""
-    if not isinstance(country, str) or not country.strip() or country.strip().lower() in ('nan', 'n/a', 'global', 'unknown'):
-        return country
+    if not isinstance(country, str) or not country.strip() or country.strip().lower() in ('nan', 'n/a', 'na', 'unknown', 'no info', 'none', 'null'):
+        return 'No info'
+    if country.strip().lower() == 'global':
+        return 'Global'
     # Known multi-word country names — must be tokenised before splitting on spaces
     import re
     MULTI_WORD = [
@@ -127,13 +138,13 @@ def format_country_display(country, continent):
     n_countries = len(country_list)
     # Long list → summarise as "Continent (N countries)"
     if n_countries > 4:
-        cont = continent if isinstance(continent, str) and continent.strip() not in ('', 'nan', 'N/A') else ''
+        cont = continent if isinstance(continent, str) and continent.strip().lower() not in ('', 'nan', 'n/a', 'na', 'unknown', 'no info') else ''
         cont_clean = cont.replace('_', ' & ').strip()
         if cont_clean:
             return f"{cont_clean} ({n_countries} countries)"
         return f"{n_countries} countries"
     # Short list → comma-separated
-    return ', '.join(country_list)
+    return ', '.join(country_list) if country_list else 'No info'
 
 def generate_pokemon_card_html(mrv_data, clickable=False):
     if isinstance(mrv_data, dict):
@@ -150,7 +161,7 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
     for lu_lbl, col in lu_names:
         if mrv_data.get(col) == 'Yes':
             land_uses.append(lu_lbl)
-    land_uses_str = ", ".join(land_uses) if land_uses else "None"
+    land_uses_str = ", ".join(land_uses) if land_uses else "No info"
     
     scales = []
     scale_names = [
@@ -163,19 +174,19 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
     for sc_lbl, col in scale_names:
         if mrv_data.get(col) == 'Yes':
             scales.append(sc_lbl)
-    scales_str = ", ".join(scales) if scales else "None"
+    scales_str = ", ".join(scales) if scales else "No info"
     
     occupations = []
     for occ_lbl, col in OCCUPATION_MAP.items():
         if mrv_data.get(col) == 'Yes':
             occupations.append(occ_lbl)
-    occupations_str = ", ".join(occupations) if occupations else "None"
+    occupations_str = ", ".join(occupations) if occupations else "No info"
     
     drivers = []
     for drv_lbl, col in DRIVER_MAP.items():
         if mrv_data.get(col) == 'Yes':
             drivers.append(drv_lbl)
-    drivers_str = ", ".join(drivers) if drivers else "None"
+    drivers_str = ", ".join(drivers) if drivers else "No info"
     
     params = []
     for col in mrv_data.index:
@@ -183,7 +194,7 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
             if mrv_data.get(col) == 'Yes':
                 label = col.replace('Parameter_Soil_', '').replace('Parameter_', '').replace('_', ' ')
                 params.append(label)
-    params_str = ", ".join(params) if params else "None"
+    params_str = ", ".join(params) if params else "No info"
     
     data_types = []
     for col in mrv_data.index:
@@ -191,35 +202,40 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
             if mrv_data.get(col) == 'Yes':
                 label = col.replace('Data_', '').replace('_', ' ')
                 data_types.append(label)
-    data_str = ", ".join(data_types) if data_types else "None"
+    data_str = ", ".join(data_types) if data_types else "No info"
     
     formats = []
     for col in ['Format_Document', 'Format_Online']:
         if mrv_data.get(col) == 'Yes':
             formats.append(col.replace('Format_', ''))
-    formats_str = ", ".join(formats) if formats else "None"
+    formats_str = ", ".join(formats) if formats else "No info"
     
-    threshold = mrv_data.get('Threshold', 'N/A')
+    threshold = clean_info(mrv_data.get('Threshold'))
     
     schemes = []
     for col in ['Action_based', 'Result_based']:
         if mrv_data.get(col) == 'Yes':
             schemes.append(col.replace('_based', '-based'))
-    schemes_str = ", ".join(schemes) if schemes else "None"
+    schemes_str = ", ".join(schemes) if schemes else "No info"
     
-    auditor = mrv_data.get('Auditor', 'N/A')
-    impl = mrv_data.get('Implementation', 'Project')
-    sharing = mrv_data.get('Data_Sharing', 'No')
+    auditor = clean_info(mrv_data.get('Auditor'))
+    impl = clean_info(mrv_data.get('Implementation'), 'Project')
+    sharing = clean_info(mrv_data.get('Data_Sharing'), 'No')
     
-    mrv_id = mrv_data.get('ID_MRV', 'N/A')
-    mrv_name = mrv_data.get('MRV_Name', 'Framework')
-    author = mrv_data.get('Pub_Author', 'Unknown')
-    year = mrv_data.get('Pub_Year', '2025')
-    country = mrv_data.get('Country', 'Global')
+    mrv_id = clean_info(mrv_data.get('ID_MRV'))
+    mrv_name = clean_info(mrv_data.get('MRV_Name'), 'Framework')
+    author = clean_info(mrv_data.get('Pub_Author'))
+    year = clean_info(mrv_data.get('Pub_Year'), '2025')
+    country_raw = mrv_data.get('Country', 'Global')
     continent = mrv_data.get('Continent', '')
-    country = format_country_display(country, continent)
-    purpose = mrv_data.get('Purpose', 'Not specified')
+    country = format_country_display(country_raw, continent)
+    purpose = clean_info(mrv_data.get('Purpose'))
     pub_link = mrv_data.get('Pub_Link', '#')
+    frequency = clean_info(mrv_data.get("Monitoring_frequency"))
+    std_use = clean_info(mrv_data.get("Methodology_Standard"))
+    uncertainty = clean_info(mrv_data.get("Uncertainty"))
+    methodology = clean_info(mrv_data.get("Verification_methodology"))
+    automatization = clean_info(mrv_data.get("Verification_automatization"))
     
     html = (
         f'<div class="mrv-custom-card">'
@@ -233,8 +249,8 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
         f'<div class="block-text">'
         f'Parameters : {params_str}<br>'
         f'Data : {data_str}<br>'
-        f'Frequency : {mrv_data.get("Monitoring_frequency", "N/A")}<br>'
-        f'Standards use : {mrv_data.get("Methodology_Standard", "N/A")}'
+        f'Frequency : {frequency}<br>'
+        f'Standards use : {std_use}'
         f'</div>'
         f'</div>'
         f'<div class="card-mrv-rep-ver">'
@@ -242,7 +258,7 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
         f'<div class="block-title">Reporting</div>'
         f'<div class="block-text">'
         f'Format : {formats_str}<br>'
-        f'Uncertainty: {mrv_data.get("Uncertainty", "N/A")}<br>'
+        f'Uncertainty : {uncertainty}<br>'
         f'Threshold : {threshold}'
         f'</div>'
         f'</div>'
@@ -250,9 +266,9 @@ def generate_pokemon_card_html(mrv_data, clickable=False):
         f'<div class="block-title">Verification</div>'
         f'<div class="block-text">'
         f'Scheme : {schemes_str}<br>'
-        f'Methodology : {mrv_data.get("Verification_methodology", "N/A")}<br>'
+        f'Methodology : {methodology}<br>'
         f'Auditor : {auditor}<br>'
-        f'Automatization : {mrv_data.get("Verification_automatization", "N/A")}<br>'
+        f'Automatization : {automatization}<br>'
         f'Open-access : {sharing}'
         f'</div>'
         f'</div>'
@@ -300,13 +316,13 @@ def render_mrv_details(mrv_data):
     with tab1:
         col_left, col_right = st.columns(2)
         with col_left:
-            st.write(f"**Publication / Source:** {mrv_data['Pub_Title']}")
-            st.write(f"**Author / Platform:** {mrv_data['Pub_Author']}")
-            st.write(f"**Year:** {mrv_data['Pub_Year']}")
+            st.write(f"**Publication / Source:** {clean_info(mrv_data.get('Pub_Title'))}")
+            st.write(f"**Author / Platform:** {clean_info(mrv_data.get('Pub_Author'))}")
+            st.write(f"**Year:** {clean_info(mrv_data.get('Pub_Year'), '2025')}")
         with col_right:
-            st.write(f"**Country:** {mrv_data.get('Country', 'N/A')}")
-            st.write(f"**Continent:** {mrv_data.get('Continent', 'N/A')}")
-            if mrv_data['Pub_Link']:
+            st.write(f"**Country:** {clean_info(mrv_data.get('Country'))}")
+            st.write(f"**Continent:** {clean_info(mrv_data.get('Continent'))}")
+            if mrv_data.get('Pub_Link'):
                 st.markdown(f"[🔗 Access Original Source]({mrv_data['Pub_Link']})")
             else:
                 st.write("*Source link unavailable*")
@@ -330,8 +346,8 @@ def render_mrv_details(mrv_data):
 
         with col_right:
             st.markdown("<div class='section-header'>Objectives & Drivers</div>", unsafe_allow_html=True)
-            st.write(f"**Market purpose:** {mrv_data['Purpose']}")
-            st.write(f"**Implementation status:** {mrv_data['Implementation']}")
+            st.write(f"**Market purpose:** {clean_info(mrv_data.get('Purpose'))}")
+            st.write(f"**Implementation status:** {clean_info(mrv_data.get('Implementation'))}")
             
             active_drivers = []
             for c in mrv_data.index:
@@ -342,7 +358,7 @@ def render_mrv_details(mrv_data):
                 for d in active_drivers:
                     st.markdown(f"- {d.capitalize()}")
             else:
-                st.write("*No specific driver listed*")
+                st.write("*No info*")
                 
     with tab3:
         col_left, col_right = st.columns(2)
@@ -356,7 +372,7 @@ def render_mrv_details(mrv_data):
                 for p in active_params:
                     st.markdown(f"- {p.capitalize()}")
             else:
-                st.write("*No standard parameter specified*")
+                st.write("*No info*")
                 
         with col_right:
             st.markdown("<div class='section-header'>Used Data Types</div>", unsafe_allow_html=True)
@@ -367,36 +383,41 @@ def render_mrv_details(mrv_data):
             st.markdown(f"- On-site scanner imagery: {mrv_data.get('Data_on_site_images', 'No')}")
             
             st.markdown("<div class='section-header'>Sampling Plan</div>", unsafe_allow_html=True)
-            st.write(f"**Monitoring frequency:** {mrv_data['Monitoring_frequency']}")
-            st.write(f"**Average plot area:** {mrv_data.get('Plot_Area', 'N/A')} {mrv_data.get('Plot_Area_Unit', '')}")
-            st.write(f"**Standardized methodology:** {mrv_data.get('Methodology_Standard', 'No')}")
+            st.write(f"**Monitoring frequency:** {clean_info(mrv_data.get('Monitoring_frequency'))}")
+            plot_area = clean_info(mrv_data.get('Plot_Area'))
+            plot_unit = clean_info(mrv_data.get('Plot_Area_Unit'), default='')
+            if plot_area == 'No info':
+                st.write("**Average plot area:** No info")
+            else:
+                st.write(f"**Average plot area:** {plot_area} {plot_unit}".strip())
+            st.write(f"**Standardized methodology:** {clean_info(mrv_data.get('Methodology_Standard'))}")
 
     with tab4:
         col_left, col_right = st.columns(2)
         with col_left:
             st.markdown("<div class='section-header'>Reporting & Uncertainty</div>", unsafe_allow_html=True)
             st.write(f"**Report format:** Document: {mrv_data.get('Format_Document', 'No')} | Online: {mrv_data.get('Format_Online', 'No')}")
-            st.write(f"**Uncertainty calculation:** {mrv_data['Uncertainty']}")
-            st.write(f"**Threshold method:** {mrv_data['Threshold']}")
+            st.write(f"**Uncertainty calculation:** {clean_info(mrv_data.get('Uncertainty'))}")
+            st.write(f"**Threshold method:** {clean_info(mrv_data.get('Threshold'))}")
             
         with col_right:
             st.markdown("<div class='section-header'>Verification & Governance</div>", unsafe_allow_html=True)
             st.write(f"**Action-based scheme:** {mrv_data.get('Action_based', 'No')}")
             st.write(f"**Result-based scheme:** {mrv_data.get('Result_based', 'No')}")
-            st.write(f"**Auditor:** {mrv_data['Auditor']}")
-            st.write(f"**Data sharing:** {mrv_data.get('Data_Sharing', 'No')}")
+            st.write(f"**Auditor:** {clean_info(mrv_data.get('Auditor'))}")
+            st.write(f"**Data sharing:** {clean_info(mrv_data.get('Data_Sharing'))}")
 
 def generate_modal_html(mrv_data, card_html):
-    mrv_id = mrv_data.get('ID_MRV', 'N/A')
-    mrv_name = mrv_data.get('MRV_Name', 'Framework')
-    pub_title = mrv_data.get('Pub_Title', 'N/A')
-    pub_author = mrv_data.get('Pub_Author', 'Unknown')
-    pub_year = mrv_data.get('Pub_Year', '2025')
+    mrv_id = clean_info(mrv_data.get('ID_MRV'))
+    mrv_name = clean_info(mrv_data.get('MRV_Name'), 'Framework')
+    pub_title = clean_info(mrv_data.get('Pub_Title'))
+    pub_author = clean_info(mrv_data.get('Pub_Author'))
+    pub_year = clean_info(mrv_data.get('Pub_Year'), '2025')
     pub_link = mrv_data.get('Pub_Link', '#')
     country_raw = mrv_data.get('Country', 'Global')
-    continent = mrv_data.get('Continent', 'N/A')
+    continent = mrv_data.get('Continent', '')
     country = format_country_display(country_raw, continent)
-    purpose = mrv_data.get('Purpose', 'Not specified').replace('_', ' ')
+    purpose = clean_info(mrv_data.get('Purpose')).replace('_', ' ')
     
     # Active land uses
     lu_list = []
@@ -421,14 +442,14 @@ def generate_modal_html(mrv_data, card_html):
     for drv_lbl, col in DRIVER_MAP.items():
         if mrv_data.get(col) == 'Yes':
             drivers.append(drv_lbl)
-    drivers_str = ", ".join(drivers) if drivers else "None"
+    drivers_str = ", ".join(drivers) if drivers else "No info"
     
     # Active occupations
     occupations = []
     for occ_lbl, col in OCCUPATION_MAP.items():
         if mrv_data.get(col) == 'Yes':
             occupations.append(occ_lbl)
-    occupations_str = ", ".join(occupations) if occupations else "None"
+    occupations_str = ", ".join(occupations) if occupations else "No info"
     
     # Monitoring parameters
     params = []
@@ -437,7 +458,7 @@ def generate_modal_html(mrv_data, card_html):
             if mrv_data.get(col) == 'Yes':
                 label = col.replace('Parameter_Soil_', '').replace('Parameter_', '').replace('_', ' ')
                 params.append(label)
-    params_str = ", ".join(params) if params else "None"
+    params_str = ", ".join(params) if params else "No info"
     
     # Data types
     data_types = []
@@ -446,21 +467,27 @@ def generate_modal_html(mrv_data, card_html):
             if mrv_data.get(col) == 'Yes':
                 label = col.replace('Data_', '').replace('_', ' ')
                 data_types.append(label)
-    data_str = ", ".join(data_types) if data_types else "None"
+    data_str = ", ".join(data_types) if data_types else "No info"
     
     # Formats
     formats = []
     for col in ['Format_Document', 'Format_Online']:
         if mrv_data.get(col) == 'Yes':
             formats.append(col.replace('Format_', ''))
-    formats_str = ", ".join(formats) if formats else "None"
+    formats_str = ", ".join(formats) if formats else "No info"
     
     # Schemes
     schemes = []
     for col in ['Action_based', 'Result_based']:
         if mrv_data.get(col) == 'Yes':
             schemes.append(col.replace('_based', '-based'))
-    schemes_str = ", ".join(schemes) if schemes else "None"
+    schemes_str = ", ".join(schemes) if schemes else "No info"
+    
+    frequency = clean_info(mrv_data.get("Monitoring_frequency"))
+    std_use = clean_info(mrv_data.get("Methodology_Standard"))
+    uncertainty = clean_info(mrv_data.get("Uncertainty"))
+    threshold_val = clean_info(mrv_data.get("Threshold"))
+    auditor_val = clean_info(mrv_data.get("Auditor"))
     
     html = f"""
     <div class="modal-overlay">
@@ -508,17 +535,17 @@ def generate_modal_html(mrv_data, card_html):
                         <ul style="list-style-type: none; padding-left: 0; font-size: 13px; line-height: 1.6;">
                             <li><b>Parameters:</b> {params_str}</li>
                             <li><b>Data Types:</b> {data_str}</li>
-                            <li><b>Frequency:</b> {mrv_data.get("Monitoring_frequency", "N/A")}</li>
-                            <li><b>Standards Use:</b> {mrv_data.get("Methodology_Standard", "N/A")}</li>
+                            <li><b>Frequency:</b> {frequency}</li>
+                            <li><b>Standards Use:</b> {std_use}</li>
                         </ul>
                         
                         <h4 style="color: #52B788; margin-top: 15px; margin-bottom: 5px;">📊 Reporting & Verification</h4>
                         <ul style="list-style-type: none; padding-left: 0; font-size: 13px; line-height: 1.6;">
                             <li><b>Reporting Format:</b> {formats_str}</li>
-                            <li><b>Uncertainty Computation:</b> {mrv_data.get("Uncertainty", "N/A")}</li>
-                            <li><b>Threshold Values:</b> {mrv_data.get("Threshold", "N/A")}</li>
+                            <li><b>Uncertainty Computation:</b> {uncertainty}</li>
+                            <li><b>Threshold Values:</b> {threshold_val}</li>
                             <li><b>Verification Scheme:</b> {schemes_str}</li>
-                            <li><b>Auditor Type:</b> {mrv_data.get("Auditor", "N/A")}</li>
+                            <li><b>Auditor Type:</b> {auditor_val}</li>
                         </ul>
                     </div>
                 </div>
@@ -606,7 +633,7 @@ def load_and_clean_data():
         combined[col] = combined[col].apply(lambda x: 'Yes' if x == 'yes' else 'No')
         
     combined['Purpose'] = combined['Purpose'].astype(str).str.strip()
-    combined['Purpose'] = combined['Purpose'].replace({'nan': 'Unknown', '': 'Unknown', 'NA': 'Unknown'})
+    combined['Purpose'] = combined['Purpose'].replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
     
     combined['Monitoring_frequency'] = combined['Monitoring_frequency'].astype(str).str.strip()
     freq_map = {
@@ -615,29 +642,36 @@ def load_and_clean_data():
         '5_10_years': '5 to 10 years',
         '10_15_years': '10 to 15 years',
         'More_15_years': 'More than 15 years',
-        'nan': 'Unknown',
-        'NA': 'Unknown',
-        '': 'Unknown',
+        'nan': 'No info',
+        'NA': 'No info',
+        '': 'No info',
+        'Unknown': 'No info',
+        'None': 'No info',
         'Depends': 'Depends/Flexible'
     }
     combined['Monitoring_frequency'] = combined['Monitoring_frequency'].replace(freq_map)
-    combined['Monitoring_frequency'] = combined['Monitoring_frequency'].fillna('Unknown')
+    combined['Monitoring_frequency'] = combined['Monitoring_frequency'].fillna('No info')
     
     combined['Uncertainty'] = combined['Uncertainty'].astype(str).str.strip()
-    combined['Uncertainty'] = combined['Uncertainty'].replace({'nan': 'Unknown', '': 'Unknown', 'NA': 'Unknown'})
+    combined['Uncertainty'] = combined['Uncertainty'].replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
     
     combined['Threshold'] = combined['Threshold'].astype(str).str.strip()
-    combined['Threshold'] = combined['Threshold'].replace({'nan': 'Unknown', '': 'Unknown', 'NA': 'Unknown'})
+    combined['Threshold'] = combined['Threshold'].replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
     
     combined['Auditor'] = combined['Auditor'].astype(str).str.strip()
-    combined['Auditor'] = combined['Auditor'].replace({'nan': 'Unknown', '': 'Unknown', 'NA': 'Unknown'})
+    combined['Auditor'] = combined['Auditor'].replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
     
     combined['Implementation'] = combined['Implementation'].astype(str).str.strip()
-    combined['Implementation'] = combined['Implementation'].replace({'nan': 'Unknown', '': 'Unknown', 'NA': 'Unknown'})
+    combined['Implementation'] = combined['Implementation'].replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
+    
+    if 'Country' in combined.columns:
+        combined['Country'] = combined['Country'].astype(str).str.strip().replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
+    if 'Continent' in combined.columns:
+        combined['Continent'] = combined['Continent'].astype(str).str.strip().replace({'nan': 'No info', '': 'No info', 'NA': 'No info', 'Unknown': 'No info', 'None': 'No info'}).fillna('No info')
     
     combined['MRV_Name'] = combined['MRV_Name'].fillna('').astype(str).str.strip()
     combined['MRV_Name'] = combined.apply(
-        lambda r: r['ID_MRV'] if not r['MRV_Name'] or r['MRV_Name'].lower() == 'na' else r['MRV_Name'], 
+        lambda r: r['ID_MRV'] if not r['MRV_Name'] or r['MRV_Name'].lower() in ('na', 'nan', 'unknown', 'none', '') else r['MRV_Name'], 
         axis=1
     )
     
@@ -648,25 +682,25 @@ def load_and_clean_data():
     
     for idx, r in combined.iterrows():
         t = r.get('Title')
-        if pd.notna(t) and str(t).strip() != '' and str(t).strip().lower() != 'nan':
+        if pd.notna(t) and str(t).strip() != '' and str(t).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
             title_val = str(t).strip()
         else:
             title_val = r['MRV_Name'] if r['Source'] == 'Webscraping' else 'Source URL'
         pub_title.append(title_val)
         
         a = r.get('First_Author')
-        if pd.notna(a) and str(a).strip() != '' and str(a).strip().lower() != 'nan':
+        if pd.notna(a) and str(a).strip() != '' and str(a).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
             author_val = str(a).strip()
         else:
             comp = r.get('company')
-            if pd.notna(comp) and str(comp).strip() != '' and str(comp).strip().lower() != 'nan':
+            if pd.notna(comp) and str(comp).strip() != '' and str(comp).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
                 author_val = str(comp).strip().capitalize()
             else:
                 tool = r.get('AI_Tool')
-                if pd.notna(tool) and str(tool).strip() != '' and str(tool).strip().lower() != 'nan':
+                if pd.notna(tool) and str(tool).strip() != '' and str(tool).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
                     author_val = str(tool).strip()
                 else:
-                    author_val = 'Unknown'
+                    author_val = 'No info'
         pub_author.append(author_val)
         
         y = r.get('Year')
@@ -687,12 +721,12 @@ def load_and_clean_data():
         url_col = r.get('url')
         url_col_cap = r.get('URL')
         
-        if pd.notna(d) and str(d).strip() != '' and str(d).strip().lower() != 'nan':
+        if pd.notna(d) and str(d).strip() != '' and str(d).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
             doi_val = str(d).strip()
             link_val = doi_val if doi_val.startswith('http') else f"https://doi.org/{doi_val}"
-        elif pd.notna(url_col) and str(url_col).strip() != '' and str(url_col).strip().lower() != 'nan':
+        elif pd.notna(url_col) and str(url_col).strip() != '' and str(url_col).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
             link_val = str(url_col).strip()
-        elif pd.notna(url_col_cap) and str(url_col_cap).strip() != '' and str(url_col_cap).strip().lower() != 'nan':
+        elif pd.notna(url_col_cap) and str(url_col_cap).strip() != '' and str(url_col_cap).strip().lower() not in ('nan', 'n/a', 'na', 'unknown', 'none'):
             link_val = str(url_col_cap).strip()
         else:
             link_val = ''
@@ -972,31 +1006,7 @@ st.markdown("""
         font-weight: 600;
         font-size: 14px;
     }
-    
-    /* Streamlit Buttons Styling - high contrast and visible in both light and dark modes */
-    div.stButton > button {
-        background: #1B4332 !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        font-size: 14px !important;
-        border: 1.5px solid #52B788 !important;
-        border-radius: 8px !important;
-        padding: 8px 18px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-        transition: all 0.25s ease-in-out !important;
-    }
-    
-    div.stButton > button:hover {
-        background: #2D6A4F !important;
-        color: #FFFFFF !important;
-        border-color: #74C69D !important;
-        box-shadow: 0 6px 18px rgba(82, 183, 136, 0.35) !important;
-        transform: translateY(-2px) !important;
-    }
-    
-    div.stButton > button:active {
-        transform: translateY(0) !important;
-    }
+
 
     /* Selectbox Styling - clean white background with deep dark text */
     div[data-baseweb="select"],
@@ -1128,34 +1138,83 @@ st.markdown("""
         overflow-y: auto;
         padding-right: 10px;
     }
-    /* Streamlit Buttons Global Styling - bright white text, rich dark green background */
+    /* Streamlit Buttons Global Styling - high contrast, visible in both light & dark modes */
+    button[data-testid="baseButton-secondary"],
+    button[data-testid="baseButton-primary"],
+    [data-testid="stBaseButton-secondary"],
+    [data-testid="stBaseButton-primary"],
+    .stButton > button,
     div.stButton > button,
-    div.stButton > button p,
-    div.stButton > button span,
-    div.stButton > button div {
+    div[data-testid="stSidebar"] button,
+    button[kind="secondary"],
+    button[kind="primary"] {
+        background-color: #1E6B42 !important;
+        background: #1E6B42 !important;
         color: #FFFFFF !important;
-        font-weight: 600 !important;
-    }
-    
-    div.stButton > button {
-        background: #1B4332 !important;
-        border: 1.5px solid #52B788 !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        border: 2px solid #52B788 !important;
         border-radius: 8px !important;
         padding: 8px 18px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-        transition: all 0.25s ease-in-out !important;
-        font-size: 14px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+        transition: all 0.2s ease-in-out !important;
+        cursor: pointer !important;
     }
     
-    div.stButton > button:hover {
-        background: #2D6A4F !important;
+    button[data-testid="baseButton-secondary"] *,
+    button[data-testid="baseButton-primary"] *,
+    [data-testid="stBaseButton-secondary"] *,
+    [data-testid="stBaseButton-primary"] *,
+    .stButton > button *,
+    div.stButton > button *,
+    div[data-testid="stSidebar"] button *,
+    button[kind="secondary"] *,
+    button[kind="primary"] * {
+        color: #FFFFFF !important;
+        fill: #FFFFFF !important;
+        font-weight: 700 !important;
+    }
+    
+    button[data-testid="baseButton-secondary"]:hover,
+    button[data-testid="baseButton-primary"]:hover,
+    [data-testid="stBaseButton-secondary"]:hover,
+    [data-testid="stBaseButton-primary"]:hover,
+    .stButton > button:hover,
+    div.stButton > button:hover,
+    div[data-testid="stSidebar"] button:hover,
+    button[kind="secondary"]:hover,
+    button[kind="primary"]:hover {
+        background-color: #2D8A56 !important;
+        background: #2D8A56 !important;
         border-color: #74C69D !important;
-        box-shadow: 0 6px 18px rgba(82, 183, 136, 0.35) !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 6px 18px rgba(82, 183, 136, 0.45) !important;
         transform: translateY(-2px) !important;
     }
     
-    div.stButton > button:active {
+    button[data-testid="baseButton-secondary"]:hover *,
+    button[data-testid="baseButton-primary"]:hover *,
+    [data-testid="stBaseButton-secondary"]:hover *,
+    [data-testid="stBaseButton-primary"]:hover *,
+    .stButton > button:hover *,
+    div.stButton > button:hover *,
+    div[data-testid="stSidebar"] button:hover *,
+    button[kind="secondary"]:hover *,
+    button[kind="primary"]:hover * {
+        color: #FFFFFF !important;
+        fill: #FFFFFF !important;
+    }
+    
+    button[data-testid="baseButton-secondary"]:active,
+    button[data-testid="baseButton-primary"]:active,
+    [data-testid="stBaseButton-secondary"]:active,
+    [data-testid="stBaseButton-primary"]:active,
+    .stButton > button:active,
+    div.stButton > button:active,
+    div[data-testid="stSidebar"] button:active {
         transform: translateY(0) !important;
+        background-color: #155D36 !important;
+        background: #155D36 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1224,7 +1283,24 @@ if LOGO_PATH:
         st.sidebar.image(sidebar_cropped, use_column_width=True)
 st.sidebar.markdown("<div style='text-align: center; font-size: 11px; color: #94A3B8; margin-top: 5px; font-style: italic;'>Photos credits : Camille Imbert</div>", unsafe_allow_html=True)
 
-
+# Sidebar Navigation Menu
+st.sidebar.markdown("<div style='margin-top: 15px; margin-bottom: 5px; font-size: 12px; font-weight: bold; color: #dab254; letter-spacing: 0.5px;'>NAVIGATION</div>", unsafe_allow_html=True)
+col_nav_1, col_nav_2 = st.sidebar.columns(2)
+with col_nav_1:
+    if st.button("🏠 Home", key="side_nav_home", use_container_width=True):
+        st.session_state.selected_mrv_id = None
+        st.session_state.step = 'page_1'
+        st.rerun()
+with col_nav_2:
+    if st.button("🎯 Filters", key="side_nav_filters", use_container_width=True):
+        st.session_state.selected_mrv_id = None
+        st.session_state.step = 'page_2'
+        st.rerun()
+if st.sidebar.button("📚 All 96 Procedures (Catalog)", key="side_nav_catalog", use_container_width=True):
+    st.session_state.selected_mrv_id = None
+    st.session_state.step = 'page_all'
+    st.rerun()
+st.sidebar.markdown("<div style='margin-bottom: 12px; border-bottom: 1px solid #24352C;'></div>", unsafe_allow_html=True)
 
 # Helper function to render filters
 def draw_filter_widgets(in_sidebar=False):
@@ -1249,7 +1325,7 @@ def draw_filter_widgets(in_sidebar=False):
     container.selectbox("Stakeholder Occupations", occupations, key="filter_occupation")
     
     container.markdown("### WHY ?")
-    purposes = ['All'] + sorted([p for p in combined_df['Purpose'].unique() if pd.notna(p) and p != 'Unknown'])
+    purposes = ['All'] + sorted([p for p in combined_df['Purpose'].unique() if pd.notna(p) and p not in ('Unknown', 'No info', 'nan', '', 'NA', 'None')])
     container.selectbox("Purpose", purposes, key="filter_purpose")
     
     drivers = ['All'] + sorted(list(DRIVER_MAP.keys()))
@@ -1302,15 +1378,18 @@ else:
         df_results['Match_Score'] = 100
     df_results = df_results.sort_values(by=['Match_Score', 'ID_MRV'], ascending=[False, True])
 
-# Sidebar filter rendering for page_3 and page_4
+# Sidebar filter rendering for page_3, page_4 and page_all
 if st.session_state.step in ['page_3', 'page_4']:
-    if st.sidebar.button("◀ Back to Filters Page", use_container_width=True):
+    if st.sidebar.button("◀ Back to Filters Page", key="side_back_filters", use_container_width=True):
         st.session_state.selected_mrv_id = None
         st.session_state.step = 'page_2'
         st.rerun()
-    st.sidebar.markdown("<div style='color: #dab254; font-size: 20px; font-weight: bold; margin-top: 15px; border-bottom: 2px solid #dab254; padding-bottom: 5px;'>YOUR CONTEXT :</div>", unsafe_allow_html=True)
+    st.sidebar.markdown("<div style='color: #dab254; font-size: 18px; font-weight: bold; margin-top: 15px; border-bottom: 2px solid #dab254; padding-bottom: 5px;'>YOUR CONTEXT :</div>", unsafe_allow_html=True)
     with st.sidebar:
         draw_filter_widgets(in_sidebar=True)
+elif st.session_state.step == 'page_all':
+    st.sidebar.markdown("<div style='color: #dab254; font-size: 16px; font-weight: bold; margin-top: 15px; border-bottom: 1px solid #24352C; padding-bottom: 5px;'>CATALOG</div>", unsafe_allow_html=True)
+    st.sidebar.info("📚 You are browsing the complete catalog of all 96 MRV procedures.")
 
 # ----------------- PAGE 1: WELCOMING PAGE -----------------
 if st.session_state.step == 'page_1':
@@ -1324,10 +1403,14 @@ if st.session_state.step == 'page_1':
     More info about our data collection methodology : *Title of the scientific article and URL link to add*
     """)
     
-    col_btn_l, col_btn_c, col_btn_r = st.columns([2, 1, 2])
-    with col_btn_c:
-        if st.button("Let's start", use_container_width=True):
+    col_btn_l, col_btn_r = st.columns(2)
+    with col_btn_l:
+        if st.button("🎯 Filter MRV Procedures ▶", key="btn_p1_filter", use_container_width=True):
             st.session_state.step = 'page_2'
+            st.rerun()
+    with col_btn_r:
+        if st.button("📚 Browse All 96 Procedures (Catalog) ▶", key="btn_p1_catalog", use_container_width=True):
+            st.session_state.step = 'page_all'
             st.rerun()
             
     st.divider()
@@ -1562,7 +1645,7 @@ elif st.session_state.step == 'page_2':
         
     with col_filters_r:
         st.markdown("### WHY ?")
-        purposes = ['All'] + sorted([p for p in combined_df['Purpose'].unique() if pd.notna(p) and p != 'Unknown'])
+        purposes = ['All'] + sorted([p for p in combined_df['Purpose'].unique() if pd.notna(p) and p not in ('Unknown', 'No info', 'nan', '', 'NA', 'None')])
         st.selectbox("Purpose", purposes, key="filter_purpose")
         
         drivers = ['All'] + sorted(list(DRIVER_MAP.keys()))
@@ -1570,22 +1653,32 @@ elif st.session_state.step == 'page_2':
         
     st.divider()
     
-    col_btn_l, col_btn_c, col_btn_r = st.columns([1.5, 1, 1.5])
+    col_btn_l, col_btn_c, col_btn_r = st.columns([1.2, 1.4, 1.4])
     with col_btn_l:
-        if st.button("◀ Back to Introduction", use_container_width=True):
+        if st.button("◀ Back to Introduction", key="btn_p2_back", use_container_width=True):
             st.session_state.step = 'page_1'
             st.rerun()
+    with col_btn_c:
+        if st.button("📚 View All 96 Procedures (No Filter)", key="btn_p2_all", use_container_width=True):
+            st.session_state.step = 'page_all'
+            st.rerun()
     with col_btn_r:
-        if st.button("Get the MRV procedures ▶", use_container_width=True):
+        if st.button("Get Filtered Results ▶", key="btn_p2_results", use_container_width=True):
             st.session_state.step = 'page_3'
             st.rerun()
 
 # ----------------- PAGE 3 & 4: RESULTS & DETAIL VIEW -----------------
 elif st.session_state.step in ['page_3', 'page_4']:
-    col_hdr_l, col_hdr_r = st.columns([3, 1])
+    col_hdr_l, col_hdr_m, col_hdr_r = st.columns([2.4, 1.2, 1.2])
     with col_hdr_l:
         st.markdown("<h1>Find your soil MRV procedure adapted to your context</h1>", unsafe_allow_html=True)
         st.markdown("Here are the MRV procedures fitted with your requirements :")
+    with col_hdr_m:
+        st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+        if st.button("📚 Full Catalog (All 96)", key="btn_p3_all", use_container_width=True):
+            st.session_state.selected_mrv_id = None
+            st.session_state.step = 'page_all'
+            st.rerun()
     with col_hdr_r:
         st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
         if st.button("◀ Back to Filters", key="btn_back_to_filters_top", use_container_width=True):
@@ -1623,11 +1716,20 @@ elif st.session_state.step in ['page_3', 'page_4']:
                 st.markdown("</div>", unsafe_allow_html=True)
                 st.divider()
 
-        # Display top cards in a 3-column grid
-        # Limit to top 15 results for performance, let user browse via scroll
-        top_n = min(15, len(df_results))
+        # Display matching cards in a 3-column grid
+        total_matches = len(df_results)
+        col_res_info, col_res_ctrl = st.columns([2.2, 1.2])
+        with col_res_info:
+            st.markdown(f"**Found {total_matches} matching MRV procedure{'s' if total_matches != 1 else ''}.**")
+        with col_res_ctrl:
+            show_all_cards = st.checkbox(f"Show all matching cards ({total_matches})", value=True, key="cb_show_all_results")
+        
+        displayed_count = total_matches if show_all_cards else min(15, total_matches)
+        if not show_all_cards and total_matches > 15:
+            st.caption(f"Displaying top 15 results. Check the box above to view all {total_matches} procedures.")
+
         cols = st.columns(3)
-        for idx in range(top_n):
+        for idx in range(displayed_count):
             mrv_row = df_results.iloc[idx]
             col_idx = idx % 3
             with cols[col_idx]:
@@ -1652,4 +1754,86 @@ elif st.session_state.step in ['page_3', 'page_4']:
                     st.session_state.step = 'page_4'
                     st.rerun()
                     
+                st.markdown("<div style='margin-bottom: 75px;'></div>", unsafe_allow_html=True)
+
+# ----------------- PAGE ALL: COMPLETE CATALOG OF ALL 96 MRV PROCEDURES -----------------
+elif st.session_state.step == 'page_all':
+    col_all_hdr_l, col_all_hdr_m, col_all_hdr_r = st.columns([2.4, 1.2, 1.2])
+    with col_all_hdr_l:
+        st.markdown("<h1>📚 Complete Catalog of All MRV Procedures</h1>", unsafe_allow_html=True)
+        st.markdown("Browse and explore all 96 soil MRV procedures in the database. You can search by keywords or sort the collection.")
+    with col_all_hdr_m:
+        st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+        if st.button("🏠 Home", key="btn_cat_home", use_container_width=True):
+            st.session_state.selected_mrv_id = None
+            st.session_state.step = 'page_1'
+            st.rerun()
+    with col_all_hdr_r:
+        st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+        if st.button("🎯 Filter Tool ▶", key="btn_cat_filters", use_container_width=True):
+            st.session_state.selected_mrv_id = None
+            st.session_state.step = 'page_2'
+            st.rerun()
+    
+    st.divider()
+
+    # Detail view if a card is selected
+    if st.session_state.selected_mrv_id:
+        focused_rows = combined_df[combined_df['ID_MRV'] == st.session_state.selected_mrv_id]
+        if not focused_rows.empty:
+            focused_mrv = focused_rows.iloc[0]
+            st.markdown("<div style='border: 2px solid #dab254; background-color: #14221A; border-radius: 12px; padding: 25px; margin-bottom: 35px;'>", unsafe_allow_html=True)
+            st.markdown(f"<h2>Focus on {focused_mrv['MRV_Name']} ({focused_mrv['ID_MRV']}) :</h2>", unsafe_allow_html=True)
+            
+            col_det_l, col_det_r = st.columns([1.2, 2.5])
+            with col_det_l:
+                card_html_focused = generate_pokemon_card_html(focused_mrv)
+                st.markdown(card_html_focused, unsafe_allow_html=True)
+                if st.button("◀ Close Details View ✕", key="btn_close_catalog_detail", use_container_width=True):
+                    st.session_state.selected_mrv_id = None
+                    st.rerun()
+            with col_det_r:
+                render_mrv_details(focused_mrv)
+            st.markdown("</div>", unsafe_allow_html=True)
+            st.divider()
+
+    # Search and sort controls
+    col_srch_1, col_srch_2 = st.columns([2.5, 1])
+    with col_srch_1:
+        search_query = st.text_input("🔍 Quick search", placeholder="Search by ID, name, author, country, purpose, land use...", key="catalog_search")
+    with col_srch_2:
+        sort_by = st.selectbox("Sort by", ["ID (A-Z)", "ID (Z-A)", "Name (A-Z)", "Year (Newest)", "Year (Oldest)"], key="catalog_sort")
+
+    catalog_df = combined_df.copy()
+    if search_query:
+        q = search_query.strip().lower()
+        mask = catalog_df.apply(lambda row: any(q in str(val).lower() for val in row.values), axis=1)
+        catalog_df = catalog_df[mask]
+
+    if sort_by == "ID (A-Z)":
+        catalog_df = catalog_df.sort_values(by='ID_MRV', ascending=True)
+    elif sort_by == "ID (Z-A)":
+        catalog_df = catalog_df.sort_values(by='ID_MRV', ascending=False)
+    elif sort_by == "Name (A-Z)":
+        catalog_df = catalog_df.sort_values(by='MRV_Name', ascending=True)
+    elif sort_by == "Year (Newest)":
+        catalog_df = catalog_df.sort_values(by='Pub_Year', ascending=False)
+    elif sort_by == "Year (Oldest)":
+        catalog_df = catalog_df.sort_values(by='Pub_Year', ascending=True)
+
+    st.markdown(f"<div style='font-size: 13.5px; color: #94A3B8; margin-bottom: 25px;'>Showing <b>{len(catalog_df)}</b> of <b>{len(combined_df)}</b> MRV procedures</div>", unsafe_allow_html=True)
+
+    if catalog_df.empty:
+        st.info("No MRV procedures found matching your search. Try different keywords.")
+    else:
+        cols = st.columns(3)
+        for idx in range(len(catalog_df)):
+            mrv_row = catalog_df.iloc[idx]
+            col_idx = idx % 3
+            with cols[col_idx]:
+                card_html = generate_pokemon_card_html(mrv_row)
+                st.markdown(f'<div class="clickable-card-wrapper">{card_html}</div>', unsafe_allow_html=True)
+                if st.button("🔍 View MRV Details", key=f"btn_cat_{mrv_row['ID_MRV']}", use_container_width=True):
+                    st.session_state.selected_mrv_id = mrv_row['ID_MRV']
+                    st.rerun()
                 st.markdown("<div style='margin-bottom: 75px;'></div>", unsafe_allow_html=True)
