@@ -1,0 +1,4176 @@
+---
+title: ""
+author: ""
+date: ""
+output: 
+  word_document:
+    reference_docx: "Copernicus_Word_template.docx"
+always_allow_html: true
+bibliography: references.bib
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Monitoring, Reporting and Verification procedures for soil health: Current landscape, stakeholder dynamics and future pathways**
+
+Authors: Camille Imbert^1^, Antonio Bispo^2^, Sophia Götzinger^3^, Peter
+Hoebe^4^, Taru Sandén^3^, Sambit Shome^1^, Lucile Rabeau^5^ and Kilian
+Walz^6^
+
+Affiliations:
+
+^1^ Leibniz-Centre for Agricultural Landscape Research (ZALF),
+Eberswalder Str. 84, D-15384 Müncheberg, Germany
+
+^2^ INRAE Info&Sols, 2163, avenue de la Pomme de Pin, CS 40001 Ardon,
+45075 Orléans cedex 2, France
+
+^3^ Austrian Agency for Health and Food Safety -- AGES, Institute for
+Sustainable Plant Production, Department for Soil Health and Plant
+Nutrition, Spargelfeldstraße 191, A-1220 Wien, Austria
+
+^4^ Earthwatch Europe, 102-104 St Aldates, Oxford, OX1 1BT, United
+Kingdom
+
+^5^ Independent researcher, 24 cité des fleurs, 75017 Paris, France
+
+^6^ Commonland Foundation, Kraanspoor 26, 1033 SE Amsterdam, Netherlands
+\
+
+Correspondence to: Camille Imbert camille.imbert@zalf.de
+
+Keywords: Monitoring Reporting Verification (MRV), Soil health, Carbon
+market, Literature review, Web scrapping, Artificial Intelligence
+browser, Transparency, Monitoring accuracy
+
+
+# Abstract
+
+To counteract green washing, the effects of the activities that lead to
+an intended outcome should be quantified and monitored in a
+scientifically robust way and results should be transparently reported
+and verified. With this objective, Monitoring, Reporting and
+Verification (MRV) procedures were developed and studied in the context
+of soil carbon credits. However, no broader overview, including other
+aspects of soils, exists to date. The objective of this study was to
+fill this gap of knowledge by gathering, describing and classifying the
+MRV procedures including soil parameters, across the world. As the term
+MRV seems to be sparsely used by scientists, we combined three
+methodologies to collect information about MRV procedures: the classical
+use of scientific article database, web scraping and Artificial
+Intelligence browsers. We found 96 MRV procedures and partial
+information was available. Most of the available MRV procedures were
+applied on a local scale, in agricultural areas, responding to the
+methodological requirements of voluntary carbon markets standards, which
+illustrates the hegemony of carbon markets in the soil MRV context.
+Results were mainly gathered in a classical report and result-based
+verified. We classified the MRV procedures into six groups. Group 1 was
+only characterized by the lack of information and thus reflected the
+main limitation of our study. The five other groups addressed different
+stakeholders. Four of them targeted stakeholders of the agricultural
+sector and the last one project developers for peatlands and wetland
+restoration. The two largest groups demonstrated different strategies:
+more accurate monitoring and verification methodologies or cheaper ones.
+We also highlighted the lack of transparency from companies offering MRV
+procedures. In complement, we developed a decision tool to help future
+users of MRV procedures to navigate our dataset and select the most
+adequate MRV procedure, adapted to their context. The next steps are 1)
+to strengthen the collaboration between scientists and MRV providers and
+to 2) understand how to transition from carbon-focused MRV procedures to
+more holistic, soil health-focused MRV procedures.
+
+# Short summary
+
+We classified 96 Monitoring, Reporting and Verification (MRV) procedures
+including soil parameters. They were applied on a local scale, in
+agriculture, focusing on soil carbon, using a classical report and
+result-based verification. The six groups differed by available
+information, targeted stakeholders, monitoring and verification
+strategies. We also developed a decision tool. Next steps are to
+strengthen scientists-MRV providers collaboration and to transition to
+soil health MRV procedures.
+
+# 1. Introduction
+
+Numerous measures to preserve or restore soil health are applied by
+stakeholders such as adopting agro-ecological practices, de-sealing or
+planting trees (Altieri et al., 2015; Bárcena et al., 2014; Vieillard et
+al., 2024). Healthy soils correspond to soils that are in good chemical,
+biological, and physical conditions, and which can therefore provide
+ecosystem services vital to humans and the environment, such as a safe,
+nutritious and sufficient food, biomass, clean water, nutrient cycling,
+carbon storage, and a habitat for biodiversity (Directive 2025/2360,
+2025, Vasquez et al., 2025). To create an incentive for land managers to
+preserve and restore soil health, few instruments are currently
+available. On a global level, voluntary carbon markets have been
+evolving as one of the major market-based instruments allowing to
+generate and trade credits as certified units that help to finance the
+adoption of more sustainable agricultural practices (Batjes et al.,
+2024, Regulation EU 2024/3012, 2024). A carbon credit is a certificate
+that represents one ton of CO2-equivalent and is the common trading unit
+on carbon markets
+([**https://www.offsetguide.org/understanding-carbon-offsets/what-is-a-carbon-offset/**](https://www.offsetguide.org/understanding-carbon-offsets/what-is-a-carbon-offset/)).
+However, in several cases, carbon offsetting projects were deemed to
+under deliver on the expected climate mitigation outcomes leading to
+numerous situations for which actions to preserve the environment (like
+the mitigation of climate change) did not attain what the stakeholder
+had claimed (Trouwloon et al., 2023). These scandals led to allegations
+of green washing and discredited the effectiveness of carbon credits as
+means to achieve climate mitigation (Probst et al., 2024; Schreefel et
+al., 2023; Trencher et al., 2024). A prominent example is the
+non-commensurate use of carbon credits to achieve greenhouse gas
+reductions beyond offsetting solely residual emissions as is prescribed
+in voluntary best-practice guidance (Trouwloon et al., 2023).
+
+To counteract green washing, the effects of the activities that lead to
+an intended outcome should be quantified and monitored in a
+scientifically robust way and results should be transparently reported
+and verified. This is the main purpose of Monitoring, Reporting and
+Verification (MRV) procedures (Smith et al., 2020). They are transparent
+and accurate frameworks giving indications in the way to assess the
+impact of an action on an object. Regarding soils, the main objective of
+the MRV procedures is to demonstrate the effect of land management
+(mainly, e.g. moving to agro-ecological practices or reforestation), on
+soil parameters (such as organic matter content or biodiversity).
+Moreover, MRV procedures not centered on soils but on other topics such
+as forest conservation can include the assessment of soil parameters.
+
+The term MRV seems to be sparsely known by soil stakeholders except to
+those active on the carbon markets (Batjes et al. 2024). In the soil
+scientific community, this term has been promoted by the two recent EU
+projects BENCHMARKS and MARVIC (<https://soilhealthbenchmarks.eu/,>
+<https://www.project-marvic.eu/> ). Until now, scientists mainly
+described carbon-focused MRV procedures and no classification targeting
+a larger spectrum of purposes exists (Batjes et al. 2024).
+
+Thus, there is a need to go beyond carbon and identify all the MRV
+procedures including soil parameters. Indeed, MRV procedures can be
+applied in all the contexts dealing with soils. The main involved
+stakeholders are land managers as farmers, foresters or public
+administration but also scientists, NGOs and companies are concerned
+because they encourage practices enhancing soil health. Within soil
+monitoring, biological, physical and chemical soil parameters can be
+assessed via sampling, proximal (site images) or remote sensing,
+modelling or several of these methodologies combined (Batjes et al.,
+2024). Land management information, collected with questionnaires and
+provided by land managers, can also be used as proxy for soil parameters
+(Batjes et al., 2024). Result uncertainty is computed with probabilistic
+methods (Markov chain Monte Carlo and Bayesian inference), a sensitivity
+analysis or basic quantile distribution (with the representation and/or
+consideration of the quantiles in the result interpretation (Ceschia et
+al., 2025). Data are compared to reference values to determine if the
+implemented action is beneficial to soil health. Matson et al., 2024
+describes four methodologies for computing these reference values 1)
+fixed value i.e. a static value based on the literrature, 2) reference
+value i.e.a static value from a reference site, mainly natural areas, 3)
+data distribution i.e. based on regional data, or 4) relative change
+i.e. a comparison to the data previously collected on the same site.
+Results are gathered in a document or entered on an online platform
+(Andries et al. 2021). The verification could take two forms:
+result-based i.e. doubling soil measurements with the same or a
+different methodology than for the monitoring step, or action-based i.e.
+the implementation of the actions is verified during a site visit, a
+second soil sampling, by remote sensing or with a phone application
+(Andries et al., 2021, Batjes et al., 2024). The auditor can be part of
+the organization implementing the soil monitoring or act as an
+independent entity.
+
+\
+In this study, we reviewed and classified the adoption of MRV procedures
+for assessing soil health and, assessed whether they are used beyond the
+context of carbon markets. We also identified the involved stakeholders,
+as well as the soil management practices. We proposed a decision support
+tool to help future users to select the right MRV procedure,
+corresponding to their context.
+
+As we suspected that few scientific articles would be written on the
+topic of soil MRV procedures, we decided to combine three review
+methods: the traditional literature review using a database of
+scientific articles and the recent ones web scraping and AI browsers
+(Perplexity and Elicit). While traditional literature review has been
+the common method for any academic researcher, web scraping allowed for
+accessing grey literature from websites in a more systematic manner
+(Sayles et al., 2022). Most recently, Artificial Intelligence has
+emerged providing a wide array of search capabilities and in particular,
+browsers as Perplexity and Elicit trained for the scientists.
+
+Our findings are very relevant for future stakeholders that wish to
+develop or simply implement MRV procedures for assessing their soil
+health status and will enable to identify existing approaches or build
+upon them, with a view to adapting existing practices to their needs and
+context.
+
+# 2. Materials and methods
+
+## 2.1. Data search
+
+As MRV procedures on soils seem to be not well studied, we decided to
+use a very broad search string: **Monitor\* AND Report\* AND Verif\* AND
+MRV AND soil\***.
+
+We used it for the three methods we combined to scientific articles and
+websites presenting MRV procedures: a search on the database of
+scientific articles Scopus, webscraping and the use of Artificial
+Intelligence browsers Elicit
+([**https://elicit.com/**](https://elicit.com/)) and Perplexity
+([**https://www.perplexity.ai/**](https://www.perplexity.ai/)). The
+search was done in Scopus in March 2025 and includes article titles,
+abstracts and keywords. It resulted in 18 articles (primary studies,
+reviews and book chapters). We recorded the name of the first author,
+the title, the publication year, the DOI and the type of document i.e.if
+it was a primary study, an editorial article or a review. Then, we
+developed a web scraping script using Python 3.9.7 and Selenium web
+driver (Appendix 2,
+[**https://www.selenium.dev/documentation/webdriver/**](https://www.selenium.dev/documentation/webdriver/)).
+We ran the script to scrap the first 20 pages on Google Search Engine
+Results Page (SERP). We manually handled reCAPTCHA images. As results
+provided by Google varied according to the country location, the date
+and the IP address, we decided to run the script during Autumn 2025,
+from different countries and different computers in Europe (See Code and
+data availability). We recorded the URL link, webpage title and URL
+domain in a database for further analysis. We used the Artificial
+Intelligence browsers Perplexity and Elicit in December 2025 with the
+following prompt: "*I would like to investigate existing Monitoring,
+Reporting and Verification Systems for soil parameters. Please find the
+documents for this contextual focus and give a table that I can copy,
+listing these documents, with for each of them, a URL link to download
+them."* We recorded the document title and the URL link in a dataset for
+further analysis.
+
+## 2.2. Data extraction
+
+### 2.2.1. Inclusion rules
+
+To be included in the study, the collected articles and websites should
+at least, indicate one of the required information for each step of the
+MRV procedure i.e. one information for monitoring, one for reporting and
+one for verification. For example, if only information about monitoring
+was given, such as the assessed soil parameters, and no information
+about reporting nor verification, the document was excluded from the
+analysis. Moreover, the MRV procedure was required to include at least
+one soil parameter. For example, MRV procedures about greenhouse gas
+emissions in forest, focusing on parameters related to the vegetation,
+without considering a single soil parameter, were excluded.
+
+### 2.2.2. Duplicate management
+
+The same document or the same MRV procedure could be collected several
+times. For example, several scientific articles could include the same
+MRV procedure, or a website could appear several times. We considered
+any new mention of an already mentioned MRV procedure as duplicate.
+Thus, we avoided counting twice the same MRV procedure.
+
+### 2.2.3. Data collection
+
+We considered the land uses and land covers were the MRV procedures are
+applied, the geographical scale ( i.e. local such as a field, a farm or
+a forest area, regional corresponding to several sites or farms,
+national, continental and global scale). We categorized occupations of
+stakeholders implementing the MRV procedures as farmers, foresters and
+forester associations, public administrators, educational and research
+institutions, NGOs, agroindustry, forestry companies, consultants and
+others (Chowdhury et al., 2023; Eggers et al., 2020; Pachón Maldonado et
+al., 2024; Strauss et al., 2023; Vanino et al., 2023). We indicated the
+purpose of the MRV procedure i.e.the reason why it was developed : 1)
+voluntary carbon market i.e. a carbon market in which members are not
+legally compelled to reduce their emissions but do so voluntarily, 2)
+compliance carbon markets also known as mandatory markets, governed by
+national, regional, or provincial law and 3) certification i.e.a
+procedure to attribute a label (Batjes et al., 2024; Ceschia et al.,
+2025). We recorded the actions that were implemented.
+
+Monitoring methodologies were divided in : 1) information about land
+management, 2) spatial images, 3) on-site images with photos, 4) soil
+samples and 5) modelling (Batjes et al., 2024). In the case of soil
+samples, we collected information about the sampling design: 1) the plot
+area and 2) the monitoring frequency i.e. duration between two
+monitoring sessions (less than every 5 years, between 5 and 10 years,
+between 10 and 15 years or more than 15 years as in Batjes et al. 2024).
+Soil parameters required in each MRV procedures were listed. We also
+recorded if sampling and/or analytical methods comply to existing
+standards (e.g. ISO). We described the format of the report (classical
+document or online platform, Andries et al. 2021) and the statistical
+methodology employed to compute the uncertainty of the results: 1)
+probabilistic methods corresponding to Markov chain Monte Carlo (MCMC)
+and Bayesian inference, 2) sensitivity analysis, i.e.the effect of the
+explanatory variables on the uncertainty of the results and 3) quantile
+distribution, with the representation and/or consideration of the
+quantiles in the result interpretation (Ceschia et al., 2025). We
+recorded the methodology used to compute the reference values : 1) fixed
+value, 2) reference value, 3) data distribution, or 4) relative change
+(Matson et al. 2024) Regarding verification, five information were
+listed : the scheme i.e. action-based or result-based (Batjes et al.
+2024), the methodology i.e. soil sampling, satellite data, phone
+application or site inspection, its automatization, the auditor
+independance and the data access (Batjes et al., 2024). Finally, we
+recorded if the MRV procedure was already implemented or under
+development and the country where the MRV procedure was implemented or
+tested.
+
+## 2.3. Data analysis
+
+```{r Data curation - Libraries, echo=FALSE, include=FALSE}
+library(cluster) 
+library(cowplot)
+library(DiagrammeR)
+library(dplyr)
+library(FactoMineR)
+library(Factoshiny)
+library(factoextra)
+library(flextable)
+library(ggmap)
+library(ggh4x)
+library(ggplot2)
+library(ggsignif)
+library(grid)
+library(gridExtra)
+library(kableExtra)
+library(knitr)
+library(leaflet)
+library(magick)
+library(naniar)
+library(nnet)
+library(patchwork)
+library(plyr)
+library(png)
+library(DiagrammeR)
+library(reshape2)
+library(rnaturalearth)
+library(sf)  
+library(scales)
+library(tidygeocoder)
+library(tidyr)
+library(tidyverse)
+library(vegan)
+library(vtree)
+library(V8)
+```
+
+### 2.3.1. Management of missing information
+
+Once the data collection was completed, we noticed a large part of
+missing information. As missing information could bias the results, in
+particular with categorical variables, we decided to keep only variables
+that presented more than 70% MRV procedures with information in the
+analysis.
+
+### 2.3.2. Description and typology of MRV procedures
+
+We pooled the data collected from the three search methods. We used the
+software R 4.3.0 for data analysis building the figures. We designed
+with the package ggplot2 (Wickham et al., 2016) bar plots for each
+variable and a co-occurrence matrix between stakeholder' and MRV
+procedure' s characteristics.
+
+We implemented multiple component analysis (MCA, function MCA, package R
+FactomineR, Lê et al., 2008) and a Hierarchical Clustering on Principle
+Components (HCPC, function HCPC, package FactoMineR) to identify the
+groups of MRV procedures and the particular elements characterizing
+them. We computed a v-test and its p-value (Husson et al., 2017). We
+focused our analysis on the categories with 1) v-test\>2 and 2) a
+p-value\<0.05 (Husson et al., 2017).
+
+### 2.3.3. Building the decision tool
+
+We built a user-friendly interface to access our dataset, with Python
+1.29 with the package Streamlit (<https://streamlit.io>) . The outputs
+are the MRV procedures with a playing card format, fitted to the context
+of the user. All the codes and datasets needed to run the decision tool
+are available (See Code and data availability).
+
+# 3. Results
+
+```{r Dataset Scopus, echo=FALSE, include=FALSE}
+db_articles0<-read.table("/MRV_articles.txt", header = T, sep = "\t")
+
+db_articles<-subset(db_articles0, In_Scope=="Yes")
+db_articles<-db_articles[, c("In_Scope",                                
+"ID_MRV","MRV_Name",
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Urban",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",
+"Scale_Local","Scale_Regional",
+"Scale_National",
+"Scale_Continental",
+"Scale_Global", 
+"Purpose",
+"Driver_Afforestation_Reforestation",
+"Driver_Agricultural_practices",    
+"Driver_Biochar","Driver_Forest_management",
+"Driver_Conservation",
+"Driver_Deforestation",
+"Driver_Restoration",                          
+"Driver_Weathering",
+"Driver_Grazing",                              
+"Driver_Irrigation",
+"Driver_Land_conversion",                      
+"Driver_Rewetting", 
+"Driver_Fire_management",                      
+"Occupation_Farmers",
+"Occupation_Foresters_Forester_Associations",  
+"Occupation_Public_Administrators",
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs",
+"Occupation_Agroindustry",
+"Occupation_Forestry_Companies", 
+"Occupation_Consultancy",
+"Occupation_Project_developer",                
+"Occupation_Other_companies",
+"Occupation_Software_developers",              
+"Cost_MRV", 
+"Cost_Unit",                                    
+"Parameter_Soil_Microorganisms",
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Oxygen_content",                     
+"Parameter_Clay_mineralogy",
+"Parameter_Soil_organic_matter_SOC",            
+"Parameter_CEC","Parameter_Soil_moisture",
+"Parameter_Soil_temperature",       
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity",          
+"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability",               
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",       
+"Parameter_Pollutant_concentration",
+"Parameter_Soil_depth",                       
+"Parameter_GHG",
+"Parameter_Peat_depth",                        
+"Parameter_Soil_color",
+"Parameter_Soil_type",                         
+"Parameter_Subsidence",
+"Parameter_CaCO3",                             
+"Parameter_Electrical_conductivity",
+"Parameter_Water_holding_capacity",            
+"Parameter_Infiltration_rate",
+"Parameter_Others",                  
+"Parameter_Others_Precision",
+"Data_Land_Management",              
+"Data_Spatial_images", 
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images", 
+"Plot_Area",                                                                
+"Monitoring_frequency",
+"Methodology_Standard",
+"Methodology_Other",                            
+"Format_Document",
+"Format_Online",
+"Uncertainty",                                 
+"Threshold",                                   
+"Action_based",
+"Result_based",                                
+"Verification_Methodology_satellite_data","Verification_Methodology_field_inspection",
+"Verification_Automatization",
+"Verification_Manual",
+"Auditor",                                     
+"Data_Sharing", 
+"Implementation",                              
+"Country",
+"Continent",                                   
+"Source"                                      
+)]
+```
+
+```{r Dataset Webscraping, echo=FALSE, include=FALSE}
+db_webscraping0<-read.table("/MRV_webscraping.txt", header = T, sep = "\t")
+
+db_webscraping<-subset(db_webscraping0, In_Scope=="Yes")
+db_webscraping<-db_webscraping[, c("In_Scope",                              
+"ID_MRV",
+"MRV_Name",
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Urban",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",
+"Scale_Local","Scale_Regional",
+"Scale_National",
+"Scale_Continental",
+"Scale_Global", 
+"Purpose",
+"Driver_Afforestation_Reforestation",
+"Driver_Agricultural_practices",    
+"Driver_Biochar",
+"Driver_Forest_management",
+"Driver_Conservation",                 
+"Driver_Deforestation","Driver_Restoration",                          
+"Driver_Weathering","Driver_Grazing",                              
+"Driver_Irrigation","Driver_Land_conversion",                      
+"Driver_Rewetting", "Driver_Fire_management",                      
+"Occupation_Farmers","Occupation_Foresters_Forester_Associations",  
+"Occupation_Public_Administrators","Occupation_Educational_Institutions_Research",
+"Occupation_NGOs",
+"Occupation_Agroindustry",
+"Occupation_Forestry_Companies",       
+"Occupation_Consultancy",
+"Occupation_Project_developer",                
+"Occupation_Other_companies",
+"Occupation_Software_developers",              
+"Cost_MRV", 
+"Cost_Unit",                                    
+"Parameter_Soil_Microorganisms",
+"Parameter_Soil_Fauna",                     
+"Parameter_Soil_pH",
+"Parameter_Oxygen_content",                     
+"Parameter_Clay_mineralogy",
+"Parameter_Soil_organic_matter_SOC",            
+"Parameter_CEC","Parameter_Soil_moisture",
+"Parameter_Soil_temperature",       
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity",         
+"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability",               
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",      
+"Parameter_Pollutant_concentration",
+"Parameter_Soil_depth",                       
+"Parameter_GHG",
+"Parameter_Peat_depth",                        
+"Parameter_Soil_color",
+"Parameter_Soil_type",                         
+"Parameter_Subsidence",
+"Parameter_CaCO3",                             
+"Parameter_Electrical_conductivity",
+"Parameter_Water_holding_capacity",            
+"Parameter_Infiltration_rate",
+"Parameter_Others",                  
+"Parameter_Others_Precision",
+"Data_Land_Management",
+"Data_Spatial_images", 
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images", 
+"Plot_Area",                                                                
+"Monitoring_frequency",
+"Methodology_Standard",
+"Methodology_Other",                            
+"Format_Document",
+"Format_Online",
+"Uncertainty",                                 
+"Threshold",                                   
+"Action_based",
+"Result_based",                                
+"Verification_Methodology_satellite_data",
+"Verification_Methodology_field_inspection",
+"Verification_Automatization",
+"Verification_Manual",                          
+"Auditor",                                     
+"Data_Sharing", 
+"Implementation",                              
+"Country",
+"Continent",                                   
+"Source"                                      
+)]
+```
+
+```{r Dataset AI, echo=FALSE, include=FALSE}
+db_AI0<-read.table("MRV_AI.txt", header = T, sep = "\t")
+
+db_AI<-subset(db_AI0, In_Scope=="Yes")
+db_AI<-db_AI[, c("In_Scope",
+"ID_MRV",
+"MRV_Name",
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Urban",                  
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",
+"Scale_Local",
+"Scale_Regional",
+"Scale_National",
+"Scale_Continental",
+"Scale_Global", 
+"Purpose",
+"Driver_Afforestation_Reforestation",
+"Driver_Agricultural_practices",    
+"Driver_Biochar",
+"Driver_Forest_management",
+"Driver_Conservation",                 
+"Driver_Deforestation",
+"Driver_Restoration",                          
+"Driver_Weathering",
+"Driver_Grazing",                              
+"Driver_Irrigation",
+"Driver_Land_conversion",                      
+"Driver_Rewetting", 
+"Driver_Fire_management",                      
+"Occupation_Farmers",
+"Occupation_Foresters_Forester_Associations",  
+"Occupation_Public_Administrators",
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs",
+"Occupation_Agroindustry",
+"Occupation_Forestry_Companies",       
+"Occupation_Consultancy",
+"Occupation_Project_developer",                
+"Occupation_Other_companies",
+"Occupation_Software_developers",              
+"Cost_MRV", 
+"Cost_Unit",                                    
+"Parameter_Soil_Microorganisms",
+"Parameter_Soil_Fauna",                         
+"Parameter_Soil_pH",
+"Parameter_Oxygen_content",                     
+"Parameter_Clay_mineralogy",
+"Parameter_Soil_organic_matter_SOC",            
+"Parameter_CEC",
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature",       
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity",          
+"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability",               
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",       
+"Parameter_Pollutant_concentration",
+"Parameter_Soil_depth",                       
+"Parameter_GHG",
+"Parameter_Peat_depth",                        
+"Parameter_Soil_color",
+"Parameter_Soil_type",                         
+"Parameter_Subsidence",
+"Parameter_CaCO3",                             
+"Parameter_Electrical_conductivity",
+"Parameter_Water_holding_capacity",            
+"Parameter_Infiltration_rate",
+"Parameter_Others",                  
+"Parameter_Others_Precision",
+"Data_Land_Management",              
+"Data_Spatial_images", 
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images", 
+"Plot_Area",                                                                
+"Monitoring_frequency",
+"Methodology_Standard",
+"Methodology_Other",                            
+"Format_Document",
+"Format_Online",
+"Uncertainty",                                 
+"Threshold",                                   
+"Action_based",
+"Result_based",                                
+"Verification_Methodology_satellite_data",
+"Verification_Methodology_field_inspection",
+"Verification_Automatization",
+"Verification_Manual",                          
+"Auditor",                                     
+"Data_Sharing", 
+"Implementation",                              
+"Country",
+"Continent",                                   
+"Source"                                      
+)]
+```
+
+```{r Dataset total, echo=FALSE, include=FALSE}
+db_publications<-rbind(db_articles,db_webscraping,db_AI)
+db_publications[] <- lapply(db_publications, function(x) {
+  x <- as.character(x)
+  x[is.na(x)] <- "Missing_information"
+  factor(x)
+})
+
+db_publications$Format_Document[db_publications$Format_Document=="NA "]<-"Missing_information"
+db_publications$Format_Document<-droplevels(db_publications$Format_Document)
+db_publications<- droplevels(db_publications)
+```
+
+```{r number MRV procedures, echo=FALSE, include=FALSE}
+#nrow(db_publications)
+```
+
+All sources pooled, nine scientific articles and 32 websites were
+selected (of 28 articles collected and 1211 websites screened, see Code
+and data availability). In total, we found 96 MRV procedures. Only
+little information was provided in the documents we collected (Appendix
+2). We removed from the analysis, variables with information missing for
+more than 30% of the MRV procedures : 1) regarding the monitoring,
+sampling frequency, standard methodologies, cost and plot area, 2)
+regarding the reporting, uncertainty measurement and threshold
+methodology, 3) considering the verification, methodology,
+automatization, auditor type and data sharing.
+
+MRV procedures mainly took place in America, Oceania and Europe. Only
+few countries were covered in Africa and Asia (Fig.1).
+
+```{r, Map occurrence All, echo=FALSE, include=TRUE, fig.width=8, fig.height=4, dpi=300, out.width="100%", warning=FALSE, , message=FALSE}
+
+df_long <- db_publications%>%  
+tidyr::separate_rows(Country, sep = "_")
+df_long <- df_long %>%  mutate(Country = trimws(Country))
+country_counts <- df_long %>%  dplyr::count(Country)
+world <- ne_countries(returnclass = "sf")
+
+country_counts <- country_counts %>%  mutate(Country = case_when(    Country == "USA" ~ "United States of America",    Country == "UK"  ~ "United Kingdom",    TRUE ~ Country  ))
+
+world_data <- world %>%
+left_join(country_counts, by = c("name" = "Country"))
+
+world_data$n[is.na(world_data$n)] <- 0
+
+g_map<- ggplot(world_data) +  
+  geom_sf(aes(fill = n)) +  
+  scale_fill_viridis_c() +  # gradient one color
+  labs(fill = "Number of MRV procedures") +  
+  theme_minimal()+
+  scale_fill_gradient(low = "white", high = "#CC3333", labels = label_number(accuracy = 1))+
+  theme(
+    legend.key.height = unit(0.5, "cm"),
+    legend.key.width  = unit(0.3, "cm"),
+    legend.text = element_text(size = 8),
+    legend.title = element_text(size = 9)
+  )+
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  theme(text = element_text(family = "save"))
+
+g_map
+
+ggsave(
+  filename = "Figure_1_Map.png", 
+  plot = g_map, 
+  width = 10,
+  height = 10,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+**Figure 1. Map of the number of MRV procedures taking place in each
+country**
+
+More than 80% of the MRV procedures were already implemented, leaving
+the remaining 20% as purely conceptual procedures (Appendix 3).
+
+## 3.1. Data description
+
+Seventy-nine MRV procedures took place in agricultural areas (Fig. 2
+a.). The other land uses and land covers were forests (22), peatlands or
+wetlands (9) and degraded lands (1, Fig. 2 a.).
+
+MRV procedures took place mainly at local scale (62 MRV procedures) and
+then at regional scale (45) and national scale (18, Fig. 6). Only two
+MRV procedures was applied at continental or at global scale.
+
+A large diversity of occupations were involved in the MRV procedures.
+The majority targeted farmers (59 MRV procedures) and then consultants
+(40). At a lesser extend, MRV procedures also included other occupations
+as public administrators (25), agroindustry (19), NGO (16), academia
+(15), project developers (12), foresters (11), forest companies (3),
+software developers (1) and other companies (5, Fig. 2 d.).
+
+Five purposes were found: voluntary and compliance carbon markets,
+certification and sustainability measures (Fig. 2 c.).
+
+The main purpose of the MRV procedure was by far, voluntary carbon
+market with 84 MRV procedures with 84 MRV procedures.
+
+The main actions were related to the change in agricultural practices
+(59 MRV procedures). They could be specified as mineral weathering,
+irrigation, grazing practices and biochar application. We found other
+very rare actions (less than five MRV procedures) as: afforestation and
+reforestation, restoration measures, deforestation, rewetting of
+peatlands and wetlands, forest management, fire management and land
+conversion (Fig. 2 e.).
+
+```{r Stakeholder-Land-Use,echo=FALSE, include=FALSE}
+
+# Land use and cover
+db_publications$Land_use_Agriculture[db_publications$Land_use_Agriculture=="Yes "]<-"Yes"
+db_publications$Land_use_Agriculture<-droplevels(db_publications$Land_use_Agriculture)
+
+
+# Reshape data from wide to long format
+db_landuse <- db_publications %>%
+pivot_longer(cols = c( 
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland"
+), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_landuse$Response <- factor(db_landuse$Response, levels = c( "No","Yes"))
+db_landuse$Variable <- factor(db_landuse$Variable, levels = c(
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland"))
+
+# Summarize counts by variable and response
+summary_counts <- db_landuse %>%
+  group_by(Variable, Response) %>%
+  dplyr::summarise(Count = n(), .groups = 'drop')%>%
+  complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+```
+
+```{r Figure-Stakeholder-Land-Use,echo=FALSE, fig.width=6, dpi=600}
+g_landuse<- ggplot(summary_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+geom_bar(stat = "identity", fill ="#FFD300", col="#CC9D00", width=0.5)+
+labs(
+  y = "Number of MRV procedures",
+  # x = "Land use and cover",
+  title="Land use and cover"
+  ) +
+theme_minimal() +
+theme(
+  aspect.ratio = 0.7,
+  axis.text = element_text(size=14), 
+  axis.title = element_text(size=14),
+  axis.title.y = element_blank(),
+  # plot.background = element_rect(fill = "transparent", color = NA)
+  plot.title = element_text(size = 12, face = "bold", hjust = 0,
+                               margin = margin(b = 8))
+  )+
+  geom_text(aes(label = Count), hjust=-0.5, size=4)+
+  scale_y_continuous(
+    limits = c(0,100),
+    breaks = seq(0,100, by=20),
+    expand = expansion(mult = c(0, 0)))+ 
+  scale_x_discrete(labels = c(
+    "Land_use_Agriculture"="Agriculture",
+    "Land_use_Forest"="Forest",
+    "Land_use_Degraded_land"="Degraded land",
+    "Land_use_Peatland_Wetland"="Peatland and wetlands"))+
+  coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r Stakeholder-Scale, echo=FALSE}
+# Reshape data from wide to long format
+db_scale <- db_publications %>%
+pivot_longer(cols = c( 
+"Scale_Local",
+"Scale_Regional",
+"Scale_National",
+"Scale_Continental",
+"Scale_Global"
+), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_scale$Response <- factor(db_scale$Response, levels = c( "No", "Yes"))
+db_scale$Variable <- factor(db_scale$Variable, levels = c(
+"Scale_Local",
+"Scale_Regional",
+"Scale_National",
+"Scale_Continental",
+"Scale_Global"))
+
+# Summarize counts by variable and response
+summary_counts <- db_scale %>%
+group_by(Variable, Response) %>%
+dplyr::summarise(Count = n(), .groups = 'drop')%>%
+complete(Variable, Response, fill = list(Count = 0))
+
+summaryla_counts2<-subset(summary_counts, Response=="Yes")
+summaryla_counts2$Variable <- factor(summaryla_counts2$Variable, levels = c("Scale_Global", "Scale_Continental","Scale_National", "Scale_Regional", "Scale_Local"))
+```
+
+```{r Figure-Stakeholder-Scale,echo=FALSE, fig.width=6, dpi=600}
+# Plot grouped bar chart
+g_scale<- ggplot(summaryla_counts2, aes(x = Variable, y = Count)) +
+geom_bar(stat = "identity", position = position_dodge(), fill ="#FFD300", col="#CC9D00", width=0.5)+
+labs(
+  y = "Number of MRV procedures",
+  # x ="Geographical scale",
+  title="Geographical scale"
+  ) +
+theme_minimal() +
+theme(
+  aspect.ratio=0.7,
+  axis.text = element_text(size=14),
+  axis.title = element_text(size=14),
+  axis.title.y = element_blank(),
+  plot.title = element_text(size = 12, face = "bold", hjust = 0,
+                               margin = margin(b = 8)),
+  # plot.background = element_rect(fill = "transparent", color = NA)
+  )+
+  # axis.title.x = element_text(size=15), 
+  # axis.title.y = element_text(size=15))+
+  geom_text(aes(label = Count), hjust=-0.5, size=4)+
+  scale_y_continuous(
+    limits = c(0, 100),
+    breaks = seq(0,100, by=20),
+    expand = expansion(mult = c(0, 0)))+
+  scale_x_discrete(labels = c(
+    "Scale_Local"="Local",
+    "Scale_Regional"="Regional",
+    "Scale_National"="National",
+    "Scale_Continental"="Continental",
+    "Scale_Global"="Global"))+
+  coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r Stakeholders-Occupation, echo=FALSE}
+# Reshape data from wide to long format
+db_occupation <- db_publications %>%
+  pivot_longer(cols = c( 
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",
+"Occupation_Software_developers",
+"Occupation_Foresters_Forester_Associations",
+"Occupation_Forestry_Companies"), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_occupation$Response <- factor(db_occupation$Response, levels = c( "No", "Yes"))
+db_occupation$Variable <- factor(db_occupation$Variable, levels = c(
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",
+"Occupation_Software_developers",
+"Occupation_Foresters_Forester_Associations",
+"Occupation_Forestry_Companies"))
+
+# Summarize counts by variable and response
+summary_counts <- db_occupation %>%
+group_by(Variable, Response) %>%
+dplyr::summarise(Count = n(), .groups = 'drop')%>%
+complete(Variable, Response, fill = list(Count = 0))
+
+summaryla_counts2<-subset(summary_counts, Response=="Yes")
+```
+
+```{r Figure-Stakeholder-Occupation,echo=FALSE, fig.width=6, dpi=600}
+# Plot grouped bar chart
+g_occupation<- ggplot(summaryla_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+########### CHANGED FROM HERE - LZ
+geom_bar(stat = "identity", fill ="#FFD300", col="#CC9D00", width=0.5)+
+labs(
+  y = "Number of MRV procedures",
+  x = NULL,
+  title="Occupation"
+  ) +
+theme_minimal() +
+theme(
+  axis.text = element_text(size =14), 
+  axis.title = element_text(size=14),
+  axis.title.y=element_blank(),
+  plot.title = element_text(size = 12, face = "bold", hjust = 0,
+                               margin = margin(b = 8)),
+# plot.background = element_rect(fill = "transparent", color = NA)
+)+
+geom_text(aes(label = Count), hjust=-0.5, size=4)+
+scale_y_continuous(
+  limits = c(0, 100),
+  breaks = seq(0,100, by=20),
+  expand = expansion(mult = c(0, 0))
+  )+ 
+scale_x_discrete(labels = c(
+"Occupation_Farmers"="Farmer", 
+"Occupation_Public_Administrators"="Public administrator",    
+"Occupation_Educational_Institutions_Research"="Academia",
+"Occupation_NGOs"="NGO", 
+"Occupation_Agroindustry"="Agroindustry",
+"Occupation_Consultancy"="Consultancy",
+"Occupation_Project_developer"="Project developer",
+"Occupation_Other_companies"="Other companies",   
+"Occupation_Software_developers"="Software developer",
+"Occupation_Foresters_Forester_Associations"="Forester",
+"Occupation_Forestry_Companies"="Forestry company"))+
+coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r Monitoring-Purposes, echo=FALSE}
+db_Purpose<-table(db_publications$Purpose)  
+db_Purpose2<-as.data.frame(db_Purpose) 
+names(db_Purpose2)<-c("Purpose", "Number") 
+```
+
+```{r Figure-Monitoring-Purposes, echo=FALSE, fig.width=6.2,dpi=600}
+g_Purpose<-ggplot(
+  db_Purpose2, aes(x = reorder(Purpose, Number), y = Number, fill = Purpose)) +
+  geom_bar(
+  ########### CHANGED FROM HERE - LZ
+  stat = "identity", fill ="#FFD300", col="#CC9D00", width=0.5)+
+  theme_minimal() +
+  theme(
+    aspect.ratio=0.7,
+    axis.text = element_text(size=14),
+    axis.title = element_text(size=14),
+  axis.title.y=element_blank(),
+  plot.title = element_text(size = 12, face = "bold", hjust = 0,
+                               margin = margin(b = 8)),
+  # plot.background = element_rect(fill = "transparent", color = NA)
+  )+
+  geom_text(aes(label = Number), hjust=-0.5, size=4)+
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = seq(0,100, by=20),
+                     expand = expansion(mult = c(0, 0)))+ 
+  labs(
+    y = "Number of MRV procedures",
+    # x = "Purpose",
+    title="Purpose"
+    ) +
+  scale_x_discrete(labels = c(
+"Certification"="Certification",
+"Compliance_carbon_market"="Compliance carbon market",
+"Decision_making"="Decision making",
+"Sustainability"="Sustainability measures",
+"Voluntary_carbon_market"="Voluntary carbon market"))+
+coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r Stakeholders-Actions, echo=FALSE}
+# Reshape data from wide to long format
+db_drivers <- db_publications %>%
+pivot_longer(cols = c( 
+"Driver_Afforestation_Reforestation",          
+"Driver_Agricultural_practices",
+"Driver_Biochar",
+"Driver_Forest_management",                    
+"Driver_Conservation",
+"Driver_Deforestation",
+"Driver_Restoration",                          
+"Driver_Weathering",
+"Driver_Grazing",
+"Driver_Irrigation",                           
+"Driver_Land_conversion",
+"Driver_Rewetting",
+"Driver_Fire_management" 
+), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_drivers$Response <- factor(db_drivers$Response, levels = c( "No", "Yes"))
+db_drivers$Variable <- factor(db_drivers$Variable, levels = c("Driver_Afforestation_Reforestation",          
+"Driver_Agricultural_practices",
+"Driver_Biochar",
+"Driver_Forest_management",                    
+"Driver_Conservation",
+"Driver_Deforestation",
+"Driver_Restoration",                          
+"Driver_Weathering",
+"Driver_Grazing",
+"Driver_Irrigation",                           
+"Driver_Land_conversion",
+"Driver_Rewetting",
+"Driver_Fire_management"))
+
+# Summarize counts by variable and response
+summary_counts <- db_drivers %>%
+  group_by(Variable, Response) %>%
+  dplyr::summarise(Count = n(), .groups = 'drop')%>%
+  complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+```
+
+```{r Figure-Stakeholders-Actions, echo=FALSE, fig.width=6, dpi=600}
+# Plot grouped bar chart
+g_drivers<- ggplot(summary_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+geom_bar(stat = "identity", fill ="#FFD300", col="#CC9D00", width=0.5)+
+  labs(
+    y = "Number of MRV procedures",
+    x = NULL,
+    title="Actions"
+    ) +
+  theme_minimal() +
+  theme(
+    axis.text=element_text(size=14), 
+    axis.title = element_text(size=14),
+    axis.title.y=element_blank(),
+    plot.title = element_text(size = 12, face = "bold", hjust = 0,
+                               margin = margin(b = 8)),
+        # plot.background = element_rect(fill = "transparent", color = NA)
+        )+
+  geom_text(aes(label = Count),hjust=-0.5, size = 4)+
+  scale_y_continuous(
+    limits = c(0,100),
+    breaks = seq(0,100, by=20),
+    expand = expansion(mult = c(0, 0))
+    )+ 
+  scale_x_discrete(labels = c(
+    "Driver_Afforestation_Reforestation"="Af-Reforestation",          
+    "Driver_Agricultural_practices"="Agricultural practices",
+    "Driver_Biochar"="Biochar",
+    "Driver_Forest_management"="Forest management",                    
+    "Driver_Conservation"="Conservation measures",
+    "Driver_Deforestation"="Deforestation",
+    "Driver_Restoration"= "Restoration measures",                          
+    "Driver_Weathering"="Weathering",
+    "Driver_Grazing"= "Grazing",
+    "Driver_Irrigation"="Irrigation",                           
+    "Driver_Land_conversion"="Land conversion",
+    "Driver_Rewetting"="Rewetting",
+    "Driver_Fire_management"="Fire management"
+    ))+ 
+  coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r,all-figures-Stakeholders, echo=FALSE, include = T, fig.width=12, fig.height=10, dpi=300, out.width="100%", out.height="100%", warning=FALSE, message=FALSE}
+
+common_theme <- theme(
+  plot.title = element_text(margin = margin(b = 8)),
+  plot.tag = element_text(size = 11, face = "bold"),
+  plot.tag.position = c(0, 0.99) , # top-left, consistent for all
+  axis.line = element_line(color = "gray", linewidth = 0.4),
+
+)
+
+g1 <- g_landuse +common_theme
+g2 <- g_scale +common_theme
+g3 <- g_Purpose + common_theme
+
+g4 <- g_occupation + common_theme
+g5 <- g_drivers + common_theme
+
+left_col <- (g1 / g2 / g3) + 
+  plot_layout(guides = "collect", heights = c(1, 1, 1))
+
+right_col <- (g4 / g5) + 
+  plot_layout(guides = "collect", heights = c(1, 1))
+
+complete_plot <- (left_col | plot_spacer() | right_col) + 
+  plot_layout(widths = c(1, 0.1, 1)) +
+  plot_annotation(tag_levels = "a", tag_suffix = ".")
+
+# complete_plot
+
+ggsave(
+  filename = "Figure_2_description_stakeholders.png", 
+  plot = complete_plot, 
+  width = 12,
+  height = 10,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+
+
+knitr::include_graphics("Figure_2_description_stakeholders.png")
+```
+
+**Figure 2. Frequency of MRV procedures according to stakeholders'
+characteristics: land uses and land covers (a.), geographical scales
+(b.), occupation (c.), purpose (d.) and the implemented actions (e.)**
+
+Regarding monitoring, a total of 22 soil parameters were identified in
+the MRV procedures (Fig. 3 a.). Physical, chemical and biological
+parameters were assessed. The most frequent was soil organic matter and
+carbon, monitored in almost all of them (93 MRV procedures, Fig. 3 a.).
+In average, two parameters were assessed by MRV procedure. The minimum
+number was one parameter, and the maximum was nine for the procedure MRV
+WE020 (measurements include pH, soil organic matter and carbon, texture,
+bulk density, nutrient availability, green house gases, soil type,
+calcium carbonates, electrical conductivity and water holding capacity,
+see Code and data availability).
+
+The most frequent monitoring methodology was modelling with 75 MRV
+procedures. Soil samples, spatial images and management information are
+also used in more than 50 MRV procedures. We also found a MRV procedure
+(MRV WE011) based on site images taken with a smart phone (see Code and
+data availability).
+
+```{r Figure Monitoring - Parameters, echo=FALSE, dpi=300,out.width="100%"}
+
+# Parameters
+
+# Reshape data from wide to long format
+db_parameters <- db_publications %>%
+pivot_longer(cols = c( 
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+#"Parameter_Oxygen_content",
+#"Parameter_Clay_mineralogy", 
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity",
+#"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+#"Parameter_Pollutant_concentration", 
+"Parameter_Soil_depth",
+"Parameter_GHG","Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate"), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_parameters$Response <- factor(db_parameters$Response, levels = c( "No", "Yes"))
+db_parameters$Variable <- factor(db_parameters$Variable, levels = c("Parameter_Soil_Microorganisms",                                           "Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+#"Parameter_Oxygen_content",
+#"Parameter_Clay_mineralogy", 
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC",                     
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+#"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+#"Parameter_Pollutant_concentration", 
+"Parameter_Soil_depth",                
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color", 
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate"))
+
+# Summarize counts by variable and response
+summary_counts <- db_parameters %>%
+  group_by(Variable, Response) %>%
+  dplyr::summarise(Count = n(), .groups = 'drop')%>%
+  complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+
+# Plot grouped bar chart
+g_parameters<- ggplot(summary_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+geom_bar(stat = "identity", position = position_dodge(), fill ="lightcoral", col="#eb5252" )+
+labs(y = "Number of MRV procedures", 
+     x = NULL,
+     title="Parameters") +
+theme_minimal() +
+theme(
+  axis.text = element_text(size=14), 
+  axis.title = element_text(size=14), 
+  plot.title = element_text(size = 14, face = "bold", hjust = 0, margin = margin(b = 8)))+
+geom_text(aes(label = Count), hjust=-0.5)+
+scale_y_continuous(
+  limits = c(0, 100),
+  breaks = seq(0,100, by=20),
+  expand = expansion(mult = c(0, 0)))+ 
+scale_x_discrete(labels = c(
+"Parameter_Soil_Microorganisms"= "Microorganisms", 
+"Parameter_Soil_Fauna"="Soil fauna",
+"Parameter_Soil_pH"="pH",
+#"Parameter_Oxygen_content"="Oxygen content",
+#"Parameter_Clay_mineralogy"="Clay mineralogy",
+"Parameter_Soil_organic_matter_SOC"="Soil organic matter and carbon",
+"Parameter_CEC"="CEC",
+"Parameter_Soil_moisture"="Moisture",
+"Parameter_Soil_temperature"="Temperature", "Parameter_Particle_size_distribution_Texture"="Texture",
+"Parameter_Soil_porosity"= "Porosity", 
+#"Parameter_Soil_diffusivity" = "Diffusivity",
+"Parameter_Aggregate_stability"= "Aggregate stability", "Parameter_Soil_compaction_Bulk_density"="Bulk density",
+"Parameter_Nutrient_availability"="Nutrients",
+#"Parameter_Pollutant_concentration"="Pollutants", 
+"Parameter_Soil_depth"="Soil depth",                
+"Parameter_GHG"="Green house gas",
+"Parameter_Peat_depth"="Peat depth", 
+"Parameter_Soil_color"="Soil color", 
+"Parameter_Soil_type"= "Soil type",
+"Parameter_Subsidence"="Subsidence",
+"Parameter_CaCO3"="CaCO3",            
+"Parameter_Electrical_conductivity"="Electrical conductivity",           
+"Parameter_Water_holding_capacity"="Water holding capacity",
+"Parameter_Infiltration_rate"="Infiltration rate"))+
+coord_flip(clip="off") +
+theme(text = element_text(family = "Arial"))
+```
+
+```{r Mean number of assessed parameters, echo=FALSE, dpi=300}
+
+db_publications$Parameter_Soil_Microorganisms_2<-0
+db_publications$Parameter_Soil_Microorganisms_2[db_publications$Parameter_Soil_Microorganisms=="Yes"]<-1
+
+db_publications$Parameter_Soil_Fauna_2<-0
+db_publications$Parameter_Soil_Fauna_2[db_publications$Parameter_Soil_Fauna=="Yes"]<-1
+
+db_publications$Parameter_Soil_pH_2<-0
+db_publications$Parameter_Soil_pH_2[db_publications$Parameter_Soil_pH=="Yes"]<-1
+
+db_publications$Parameter_Oxygen_content_2<-0
+db_publications$Parameter_Oxygen_content_2[db_publications$Parameter_Oxygen_content=="Yes"]<-1
+
+db_publications$Parameter_Clay_mineralogy_2<-0
+db_publications$Parameter_Clay_mineralogy_2[db_publications$Parameter_Clay_mineralogy=="Yes"]<-1
+
+db_publications$Parameter_Soil_organic_matter_SOC_2<-0
+db_publications$Parameter_Soil_organic_matter_SOC_2[db_publications$Parameter_Soil_organic_matter_SOC=="Yes"]<-1
+
+db_publications$Parameter_CEC_2<-0
+db_publications$Parameter_CEC_2[db_publications$Parameter_CEC=="Yes"]<-1 
+
+db_publications$Parameter_Soil_moisture_2<-0
+db_publications$Parameter_Soil_moisture_2[db_publications$Parameter_Soil_moisture=="Yes"]<-1
+
+db_publications$Parameter_Soil_temperature_2<-0
+db_publications$Parameter_Soil_temperature_2[db_publications$Parameter_Soil_temperature=="Yes"]<-1 
+
+db_publications$Parameter_Particle_size_distribution_Texture_2<-0
+db_publications$Parameter_Particle_size_distribution_Texture_2[db_publications$Parameter_Particle_size_distribution_Texture=="Yes"]<-1
+
+db_publications$Parameter_Soil_porosity_2<-0
+db_publications$Parameter_Soil_porosity_2[db_publications$Parameter_Soil_porosity=="Yes"]<-1
+
+db_publications$Parameter_Soil_diffusivity_2<-0
+db_publications$Parameter_Soil_diffusivity_2[db_publications$Parameter_Soil_diffusivity=="Yes"]<-1
+
+db_publications$Parameter_Aggregate_stability_2<-0
+db_publications$Parameter_Aggregate_stability_2[db_publications$Parameter_Aggregate_stability=="Yes"]<-1
+
+db_publications$Parameter_Soil_compaction_Bulk_density_2<-0
+db_publications$Parameter_Soil_compaction_Bulk_density_2[db_publications$Parameter_Soil_compaction_Bulk_density=="Yes"]<-1
+
+db_publications$Parameter_Nutrient_availability_2<-0
+db_publications$Parameter_Nutrient_availability_2[db_publications$Parameter_Nutrient_availability=="Yes"]<-1
+
+db_publications$Parameter_Pollutant_concentration_2<-0
+db_publications$Parameter_Pollutant_concentration_2[db_publications$Parameter_Pollutant_concentration=="Yes"]<-1
+
+db_publications$Parameter_Soil_depth_2<-0
+db_publications$Parameter_Soil_depth_2[db_publications$Parameter_Soil_depth=="Yes"]<-1     
+
+db_publications$Parameter_GHG_2<-0
+db_publications$Parameter_GHG_2[db_publications$Parameter_GHG=="Yes"]<-1
+
+db_publications$Parameter_Peat_depth_2<-0
+db_publications$Parameter_Peat_depth_2[db_publications$Parameter_Peat_depth=="Yes"]<-1
+
+db_publications$Parameter_Soil_color_2<-0
+db_publications$Parameter_Soil_color_2[db_publications$Parameter_Soil_color=="Yes"]<-1
+
+db_publications$Parameter_Soil_type_2<-0
+db_publications$Parameter_Soil_type_2[db_publications$Parameter_Soil_type=="Yes"]<-1
+
+db_publications$Parameter_Subsidence_2<-0
+db_publications$Parameter_Subsidence_2[db_publications$Parameter_Subsidence=="Yes"]<- 1
+
+db_publications$Parameter_CaCO3_2<-0
+db_publications$Parameter_CaCO3_2[db_publications$Parameter_CaCO3=="Yes"]<-1
+
+db_publications$Parameter_Electrical_conductivity_2<-0
+db_publications$Parameter_Electrical_conductivity_2[db_publications$Parameter_Electrical_conductivity=="Yes"]<-1   
+
+db_publications$Parameter_Water_holding_capacity_2<-0
+db_publications$Parameter_Water_holding_capacity_2[db_publications$Parameter_Water_holding_capacity=="Yes"]<-1
+
+db_publications$Parameter_Infiltration_rate_2<-0
+db_publications$Parameter_Infiltration_rate_2[db_publications$Parameter_Infiltration_rate=="Yes"]<-1
+
+db_publications$N_parameters<-0
+db_publications$N_parameters<-
+db_publications$Parameter_Soil_Microorganisms_2+
+db_publications$Parameter_Soil_Fauna_2+
+db_publications$Parameter_Soil_pH_2+
+db_publications$Parameter_Oxygen_content_2+
+db_publications$Parameter_Clay_mineralogy_2+
+db_publications$Parameter_Soil_organic_matter_SOC_2+
+db_publications$Parameter_CEC_2+
+db_publications$Parameter_Soil_moisture_2+
+db_publications$Parameter_Soil_temperature_2+
+db_publications$Parameter_Particle_size_distribution_Texture_2+
+db_publications$Parameter_Soil_porosity_2+
+db_publications$Parameter_Soil_diffusivity_2+
+db_publications$Parameter_Aggregate_stability_2+
+db_publications$Parameter_Soil_compaction_Bulk_density_2+
+db_publications$Parameter_Nutrient_availability_2+
+db_publications$Parameter_Pollutant_concentration_2+
+db_publications$Parameter_Soil_depth_2+
+db_publications$Parameter_GHG_2+
+db_publications$Parameter_Peat_depth_2+
+db_publications$Parameter_Soil_color_2+
+db_publications$Parameter_Soil_type_2+
+db_publications$Parameter_Subsidence_2+
+db_publications$Parameter_CaCO3_2+
+db_publications$Parameter_Electrical_conductivity_2+
+db_publications$Parameter_Water_holding_capacity_2+
+db_publications$Parameter_Infiltration_rate_2
+
+#mean(db_publications$N_parameters)
+#min(db_publications$N_parameters)
+#max(db_publications$N_parameters)
+```
+
+```{r Figure Monitoring - Data methodology, echo=FALSE, dpi=300}
+# Reshape data from wide to long format
+db_data <- db_publications%>%
+pivot_longer(cols = c( 
+"Data_Land_Management", 
+"Data_Spatial_images", 
+"Data_Soil_samples", 
+"Data_Modelling", 
+"Data_on_site_images"), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_data$Response <- factor(db_data$Response, levels = c( "No", "Yes"))
+db_data$Variable <- factor(db_data$Variable, levels = c("Data_Land_Management", 
+"Data_Spatial_images", 
+"Data_Soil_samples", 
+"Data_Modelling", 
+"Data_on_site_images"))
+
+# Summarize counts by variable and response
+summary_counts <- db_data %>%
+  group_by(Variable, Response) %>%
+  dplyr::summarise(Count = n(), .groups = 'drop')%>%
+  complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+
+# Plot grouped bar chart
+g_data<- ggplot(summary_counts2, aes(x = reorder (Variable, Count), y = Count)) +
+geom_bar(stat = "identity", position = position_dodge(), fill ="lightcoral", col="#eb5252",width=0.5 )+
+labs(
+  y = "Number of MRV procedures", 
+  x = NULL,
+  title="Data collection") +
+theme_minimal() +
+theme(
+  axis.text = element_text(size=14), 
+  axis.title = element_text(size=14), 
+  plot.title= element_text(size = 14, face = "bold", hjust = 0, margin = margin(b = 8)))+
+geom_text(aes(label = Count), position = position_dodge(width = 0.9), hjust=-0.5, size=4)+
+scale_y_continuous(
+  limits = c(0, 100),
+    breaks = seq(0,100, by=20),
+    expand = expansion(mult = c(0, 0)))+ 
+scale_x_discrete(labels = c(
+"Data_Land_Management"= "Management information", 
+"Data_Spatial_images"="Spatial images", 
+"Data_Soil_samples"="Soil samples", 
+"Data_Modelling"="Modelling",
+"Data_on_site_images" = "Site images"))+  
+coord_flip(clip="off")+
+  theme(text = element_text(family = "Arial"))
+```
+
+```{r, All figures Monitoring,echo=FALSE, include = T, dpi=300, out.width="100%"}
+common_theme <- theme(
+  plot.title = element_text(margin = margin(b = 8)),
+  plot.tag = element_text(size = 11, face = "bold"),
+  plot.tag.position = c(0, 0.99) , # top-left, consistent for all
+  axis.line = element_line(color = "gray", linewidth = 0.4))
+
+g_parameters<-g_parameters+common_theme
+g_data<-g_data+common_theme
+
+combined_plot_monitoring <- (g_parameters / g_data) +
+     plot_layout(heights = c(1, 0.4)) + 
+     plot_annotation(tag_levels = "a", tag_suffix = ".")
+
+ggsave(
+  filename = "Figure_3_description_monitoring.png", 
+  plot = combined_plot_monitoring, 
+  width = 12,
+  height = 10,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+
+knitr::include_graphics("Figure_3_description_monitoring.png")
+```
+
+**Figure 3. Number of MRV procedures according to the included soil
+parameters (a.) and the type of data used for monitoring (b.)**
+
+Results were for 52 MRV procedures gathered in a classical report. An
+online platform was used for 29 MRV of them (Fig. 4 a.).The verification
+was mainly based on the results (61 MRV procedures) and on the
+implementation of the actions for 20 MRV procedures (Fig. 4 b.).
+
+```{r Figure Reporting - Format, echo=FALSE, fig.width=6, fig.height=4, dpi=300}
+# Reshape data from wide to long format
+db_format <- db_publications %>%
+pivot_longer(cols = c(
+"Format_Document", 
+"Format_Online"), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_format$Response <- factor(db_format$Response, levels = c( "No", "Yes"))
+db_format$Variable <- factor(db_format$Variable, levels = c("Format_Document", 
+"Format_Online"))
+
+# Summarize counts by variable and response
+summary_counts <- db_format %>%
+  group_by(Variable, Response) %>%
+  dplyr::summarise(Count = n(), .groups = 'drop')%>%
+  complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+
+# Plot grouped bar chart
+g_format<- ggplot(summary_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+geom_bar(stat = "identity", position = position_dodge(), 
+         fill ="aquamarine3", 
+         col="#017371",width=0.5 )+
+labs(
+  y = "Number of MRV procedures", 
+  x = NULL,
+  title = "Reporting format") +
+theme_minimal() +
+theme(
+  axis.text= element_text(size=14), 
+  plot.title = element_text(size=14,face = "bold", hjust = 0, margin = margin(b = 8)), 
+  axis.title.x = element_text(size=14))+
+geom_text(aes(label = Count), hjust=-0.5, size=4)+
+scale_y_continuous(
+  limits = c(0, 100),
+  breaks = seq(0,100, by=20),
+  expand = expansion(mult = c(0, 0)))+
+scale_x_discrete(labels = c(
+"Format_Document"="Classical report", 
+"Format_Online"="Online plateform"))+
+coord_flip(clip="off")
+```
+
+```{r Figure Verification - Scheme, echo=FALSE, fig.width=6, fig.height=4, dpi=300,out.width="100%"}
+# Verification scheme
+
+# Reshape data from wide to long format
+db_VS <- db_publications %>%
+  pivot_longer(cols = c("Action_based", "Result_based"), names_to = "Variable", values_to = "Response")
+
+# Set factor with desired order
+db_VS$Response <- factor(db_VS$Response, levels = c( "No", "Yes"))
+db_VS$Variable <- factor(db_VS$Variable, levels = c("Action_based", "Result_based"))
+
+# Summarize counts by variable and response
+summary_counts <- db_VS %>%
+group_by(Variable, Response) %>%
+dplyr::summarise(Count = n(), .groups = 'drop')%>%
+complete(Variable, Response, fill = list(Count = 0))
+
+summary_counts2<-subset(summary_counts, Response=="Yes")
+
+# Plot grouped bar chart
+g_VS<- ggplot(summary_counts2, aes(x = reorder(Variable, Count), y = Count)) +
+geom_bar(stat = "identity", 
+         fill ="aquamarine3", 
+         col="#017371", 
+         width=0.5)+
+labs(
+  y = "Number of MRV procedures", 
+  x = NULL,
+  title="Verification scheme") +
+theme_minimal() +
+theme(
+  axis.text = element_text(size=14), 
+  plot.title= element_text(size=14, face = "bold", hjust = 0, margin = margin(b = 8)))+ 
+geom_text(aes(label = Count), hjust=-0.5, size=4)+
+scale_y_continuous(limits = c(0, 100),
+                   breaks = seq(0,100, by=20),
+                   expand =expansion(mult = c(0, 0)))+ 
+scale_x_discrete(labels = c(
+"Action_based"="Action based", 
+"Result_based"="Result based"))+ 
+coord_flip(clip="off")
+```
+
+```{r, all figures Reporting and verification,echo=FALSE, include = T, fig.width=10, fig.height=5, dpi=300, out.width="100%"}
+
+common_theme <- theme(
+  plot.title = element_text(margin = margin(b = 8)),
+  plot.tag = element_text(size = 11, face = "bold"),
+  plot.tag.position = c(0, 0.99) , # top-left, consistent for all
+  axis.line = element_line(color = "gray", linewidth = 0.4),
+)
+
+
+g_format<-g_format+common_theme
+g_VS<-g_VS+common_theme
+
+
+combined_plot_rep_ver <- (g_format/g_VS)+
+  plot_layout(guides="collect")+
+  plot_annotation(tag_levels = "a", tag_suffix = ".")
+
+ggsave(
+  filename = "Figure_4_reporting_verification.png", 
+  plot = combined_plot_rep_ver, 
+  width = 10,
+  height = 5,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+
+knitr::include_graphics("Figure_4_reporting_verification.png")
+```
+
+**Figure 4. Number of MRV procedures according to the reporting format
+(a.) and the verification scheme (b.)**
+
+## 3.2. Co-occurrence between stakeholders' and MRV procedures' characteristics
+
+We looked more precisely at the link between the characteristics of the
+stakeholders and the MRV procedures, by focusing on the main
+co-occurrences between stakeholders' and MRV procedures' characteristics
+(i.e. more than 25 MRV procedures, Fig. 5).
+
+In agricultural areas, organic matter and carbon was the only soil
+parameter included in more than 25 MRV procedures. All monitoring
+methodologies were very frequent, except on-site images. Both ways of
+result reporting were used in more than 25 MRV procedures. Verification
+was result-based for more than 25 MRV procedures.
+
+At both local and regional scale, we noticed the same pattern for the
+monitoring i.e. focused on soil organic matter and carbon, using a
+diversity of methodologies. Results were gathered in a classical report
+and the verification was result-based. For more than 25 MRV procedures,
+consultants monitored soil organic matter and carbon with modelling,
+using result-based verification.
+
+Concerning farmers, they also focused on soil organic matter and carbon,
+without any preference for the methodology (except site images). Results
+were gathered in a classical report and the verification was
+result-based. As expected, regarding the voluntary carbon market, more
+than 25 MRV procedures included soil organic matter and carbon. More
+than 50 were based on soil sampling and modelling and more than 25 on
+land management information or spatial images. Logically, when this
+implemented action was the change in agricultural practices, MRV
+procedures' characteristics were the same as for farmers.
+
+At a larger picture, a lot of combination stakeholders x MRV procedures
+did not exist or were not communicated yet.
+
+```{r, Co-occurence heat map dataset, echo=FALSE, include=T, fig.width=18, fig.height=10, dpi=300, out.width="100%"}
+
+db_co <- model.matrix(~ Land_use_Agriculture+Land_use_Forest+          
+Land_use_Degraded_land+Land_use_Peatland_Wetland+                  
+Scale_Local+Scale_Regional+Scale_National+
+Scale_Continental+ Scale_Global+Purpose+Driver_Afforestation_Reforestation+ Driver_Agricultural_practices+Driver_Biochar+Driver_Forest_management+Driver_Conservation+Driver_Deforestation+Driver_Restoration+Driver_Weathering+Driver_Grazing+Driver_Irrigation+Driver_Weathering+Driver_Land_conversion+Driver_Rewetting+Driver_Fire_management+Occupation_Farmers+Occupation_Foresters_Forester_Associations+Occupation_Public_Administrators+Occupation_Educational_Institutions_Research+Occupation_NGOs+Occupation_Agroindustry+Occupation_Forestry_Companies+Occupation_Consultancy+Occupation_Project_developer+Occupation_Other_companies+Parameter_Soil_Microorganisms+Parameter_Soil_Fauna+Parameter_Soil_pH+Parameter_Soil_organic_matter_SOC+Parameter_CEC+Parameter_Soil_moisture+Parameter_Soil_temperature+Parameter_Particle_size_distribution_Texture+Parameter_Soil_porosity+Parameter_Aggregate_stability+Parameter_Soil_compaction_Bulk_density+Parameter_Nutrient_availability+Parameter_Soil_depth+Parameter_GHG+Parameter_Peat_depth+Parameter_Soil_color+Parameter_Soil_type+Parameter_Subsidence+Parameter_CaCO3+Parameter_Electrical_conductivity+Parameter_Water_holding_capacity+Parameter_Infiltration_rate+Data_Land_Management+Data_Spatial_images+Data_Soil_samples+Data_Modelling+Data_on_site_images+Format_Document+Format_Online+Action_based+Result_based - 1, data = db_publications)
+
+co_mat <- t(db_co) %*% db_co
+
+co_df <- melt(co_mat)
+
+co_df2<- subset(co_df, 
+Var1=="Parameter_Soil_MicroorganismsYes"| 
+Var1=="Parameter_Soil_FaunaYes"|                              
+Var1=="Parameter_Soil_pHYes" |                                
+Var1=="Parameter_Soil_organic_matter_SOCYes"|                 
+Var1=="Parameter_CECYes" |                                    
+Var1=="Parameter_Soil_moistureYes"  |                         
+Var1=="Parameter_Soil_temperatureYes"   |                     
+Var1=="Parameter_Particle_size_distribution_TextureYes" |     
+Var1=="Parameter_Soil_porosityYes"  |                         
+Var1=="Parameter_Aggregate_stabilityYes"  |                   
+Var1=="Parameter_Soil_compaction_Bulk_densityYes"  |          
+Var1=="Parameter_Nutrient_availabilityYes"  |                 
+Var1=="Parameter_Soil_depthYes" |                             
+Var1=="Parameter_GHGYes" |                                    
+Var1=="Parameter_Peat_depthYes"  |                            
+Var1=="Parameter_Soil_colorYes" |                             
+Var1=="Parameter_Soil_typeYes" |                              
+Var1=="Parameter_SubsidenceYes" |                             
+Var1=="Parameter_CaCO3Yes" |                                  
+Var1=="Parameter_Electrical_conductivityYes"  |               
+Var1=="Parameter_Water_holding_capacityYes"|                  
+Var1=="Parameter_Infiltration_rateYes"|                       
+Var1=="Data_Land_ManagementYes" |                             
+Var1== "Data_Spatial_imagesYes" |                              
+Var1=="Data_Soil_samplesYes"  |                               
+Var1=="Data_ModellingYes" |                                   
+Var1== "Data_on_site_imagesYes" |                              
+Var1== "Format_DocumentYes"|                                   
+Var1== "Format_OnlineYes"  |                                   
+Var1=="Action_basedYes"|                                      
+Var1=="Result_basedYes")                    
+
+co_df3<- subset(co_df2, 
+Var2== "Land_use_AgricultureYes" |                              
+Var2=="Land_use_ForestYes" |                                  
+Var2=="Land_use_Degraded_landYes" |                           
+Var2=="Land_use_Peatland_WetlandYes" |                        
+Var2=="Scale_LocalYes"   |                                    
+Var2=="Scale_RegionalYes"  |                                  
+Var2=="Scale_NationalYes" |                                   
+Var2=="Scale_ContinentalYes" |                                
+Var2=="Scale_GlobalYes" |                                     
+Var2=="PurposeCompliance_carbon_market" |                     
+Var2=="PurposeDecision_making"|                               
+Var2=="PurposeSustainability"|                                
+Var2=="PurposeVoluntary_carbon_market" |                      
+Var2=="Driver_Afforestation_ReforestationYes"|                
+Var2=="Driver_Agricultural_practicesYes" |                    
+Var2=="Driver_BiocharYes"  | 
+Var2=="Driver_WeatheringYes"|
+Var2=="Driver_Forest_managementYes"  |                        
+Var2=="Driver_ConservationYes" |                              
+Var2=="Driver_DeforestationYes"  |                            
+Var2=="Driver_RestorationYes" |                               
+Var2=="Driver_GrazingYes" |                                   
+Var2=="Driver_IrrigationYes" |                                
+Var2=="Driver_Land_conversionYes" |                           
+Var2=="Driver_RewettingYes" |                                 
+Var2=="Driver_Fire_managementYes" |                           
+Var2=="Occupation_FarmersYes" |                               
+Var2=="Occupation_Foresters_Forester_AssociationsYes" |       
+Var2=="Occupation_Public_AdministratorsYes" |                 
+Var2=="Occupation_Educational_Institutions_ResearchYes"|      
+Var2=="Occupation_NGOsYes" |                                  
+Var2=="Occupation_AgroindustryYes"|                           
+Var2=="Occupation_Forestry_CompaniesYes"|                     
+Var2=="Occupation_ConsultancyYes" |                          
+Var2== "Occupation_Other_companiesYes" |                       
+Var2=="Occupation_Software_developersYes")
+
+co_df3$Occurence_group[c(co_df3$value==0)]<-"No MRV procedure"
+co_df3$Occurence_group[c(co_df3$value>0&co_df3$value<11)]<-"1-10"
+co_df3$Occurence_group[c(co_df3$value>10&co_df3$value<26)]<-"11-25"
+co_df3$Occurence_group[c(co_df3$value>25&co_df3$value<51)]<-"26-50"
+co_df3$Occurence_group[c(co_df3$value>50&co_df3$value<76)]<-"51-75"
+co_df3$Occurence_group[c(co_df3$value>75&co_df3$value<101)]<-"76-100"
+
+# Characteristics
+co_df3$Characteristics_Stakeholders<-NA
+co_df3$Characteristics_MRV<-NA
+
+co_df3$Characteristics_Stakeholders[co_df3$Var2=="Land_use_AgricultureYes"|co_df3$Var2=="Land_use_ForestYes"|co_df3$Var2=="Land_use_Degraded_landYes"|co_df3$Var2== "Land_use_Peatland_WetlandYes"] <- "Land use"
+
+co_df3$Characteristics_Stakeholders[co_df3$Var2=="Scale_LocalYes"|    co_df3$Var2=="Scale_RegionalYes"|co_df3$Var2=="Scale_NationalYes"|co_df3$Var2=="Scale_ContinentalYes"|co_df3$Var2=="Scale_GlobalYes"]<-"Scale"
+
+co_df3$Characteristics_Stakeholders[co_df3$Var2=="PurposeCompliance_carbon_market"|co_df3$Var2=="PurposeDecision_making"|co_df3$Var2=="PurposeSustainability"|co_df3$Var2=="PurposeVoluntary_carbon_market"]<-"Purpose"
+
+ co_df3$Characteristics_Stakeholders[co_df3$Var2== "Driver_Afforestation_ReforestationYes"|co_df3$Var2=="Driver_Agricultural_practicesYes"| co_df3$Var2=="Driver_BiocharYes"|co_df3$Var2=="Driver_Forest_managementYes"|co_df3$Var2=="Driver_ConservationYes"| co_df3$Var2=="Driver_DeforestationYes"|co_df3$Var2=="Driver_RestorationYes"|co_df3$Var2=="Driver_WeatheringYes"|co_df3$Var2=="Driver_GrazingYes"|co_df3$Var2=="Driver_IrrigationYes"|co_df3$Var2=="Driver_Land_conversionYes"|co_df3$Var2=="Driver_RewettingYes"|co_df3$Var2=="Driver_Fire_managementYes"]<-"Action"
+co_df3$Characteristics_Stakeholders[co_df3$Var2=="Occupation_FarmersYes"|
+co_df3$Var2=="Occupation_Foresters_Forester_AssociationsYes"|co_df3$Var2=="Occupation_Public_AdministratorsYes"|co_df3$Var2=="Occupation_Educational_Institutions_ResearchYes"|co_df3$Var2=="Occupation_NGOsYes"|co_df3$Var2=="Occupation_AgroindustryYes"|co_df3$Var2=="Occupation_Forestry_CompaniesYes"|co_df3$Var2=="Occupation_ConsultancyYes"|co_df3$Var2=="Occupation_Project_developerYes"|co_df3$Var2=="Occupation_Other_companiesYes"]<- "Occupation"
+
+co_df3$Characteristics_Stakeholders<-factor(co_df3$Characteristics_Stakeholders, levels=c(
+  "Land use",
+  "Scale",
+  "Occupation",
+  "Purpose",
+  "Action"))
+
+# MRV
+co_df3$Characteristics_MRV[co_df3$Var1=="Data_Land_ManagementYes"|co_df3$Var1=="Data_Spatial_imagesYes"|co_df3$Var1=="Data_Soil_samplesYes"|co_df3$Var1=="Data_ModellingYes"|co_df3$Var1=="Data_on_site_imagesYes"]<-"Monitoring methodology"
+
+co_df3$Characteristics_MRV[co_df3$Var1=="Parameter_Soil_MicroorganismsYes"|      co_df3$Var1=="Parameter_Soil_FaunaYes"|co_df3$Var1=="Parameter_Soil_pHYes"|co_df3$Var1=="Parameter_Soil_organic_matter_SOCYes"|co_df3$Var1=="Parameter_CECYes"|co_df3$Var1=="Parameter_Soil_moistureYes"|co_df3$Var1=="Parameter_Soil_temperatureYes"|co_df3$Var1=="Parameter_Particle_size_distribution_TextureYes"|co_df3$Var1=="Parameter_Soil_porosityYes"|co_df3$Var1=="Parameter_Aggregate_stabilityYes"|co_df3$Var1=="Parameter_Soil_compaction_Bulk_densityYes"|co_df3$Var1=="Parameter_Nutrient_availabilityYes"|co_df3$Var1=="Parameter_Soil_depthYes"|co_df3$Var1=="Parameter_GHGYes"|co_df3$Var1=="Parameter_Peat_depthYes"|co_df3$Var1=="Parameter_Soil_colorYes"|co_df3$Var1=="Parameter_Soil_typeYes"|co_df3$Var1=="Parameter_SubsidenceYes"|co_df3$Var1=="Parameter_CaCO3Yes"|co_df3$Var1=="Parameter_Electrical_conductivityYes"|co_df3$Var1=="Parameter_Water_holding_capacityYes"|co_df3$Var1=="Parameter_Infiltration_rateYes"]<- "Monitoring parameter"
+
+co_df3$Characteristics_MRV[co_df3$Var1=="Format_DocumentYes"|co_df3$Var1== "Format_OnlineYes"]<-"Reporting"
+
+co_df3$Characteristics_MRV[co_df3$Var1=="Action_basedYes"|co_df3$Var1== "Result_basedYes"]<-"Verification"
+
+co_df3$Characteristics_MRV<-factor(co_df3$Characteristics_MRV, levels=c(
+"Monitoring parameter",
+"Monitoring methodology",
+"Reporting",
+"Verification"))
+
+# Ordering Categories
+co_df3$Var1<-droplevels(co_df3$Var1)
+
+co_df3$Var1<-factor(co_df3$Var1, levels = c(
+"Parameter_Soil_MicroorganismsYes",
+"Parameter_Soil_FaunaYes",
+"Parameter_Soil_pHYes",                           
+"Parameter_Soil_organic_matter_SOCYes",
+"Parameter_CECYes",
+"Parameter_Soil_moistureYes",                     
+"Parameter_Soil_temperatureYes",
+"Parameter_Particle_size_distribution_TextureYes",
+"Parameter_Soil_porosityYes",
+"Parameter_Aggregate_stabilityYes",
+"Parameter_Soil_compaction_Bulk_densityYes",
+"Parameter_Nutrient_availabilityYes",             
+"Parameter_Soil_depthYes",
+"Parameter_GHGYes",
+"Parameter_Peat_depthYes",                        
+"Parameter_Soil_colorYes",
+"Parameter_Soil_typeYes",
+"Parameter_SubsidenceYes",                        
+"Parameter_CaCO3Yes",
+"Parameter_Electrical_conductivityYes",
+"Parameter_Water_holding_capacityYes",            
+"Parameter_Infiltration_rateYes",
+"Data_Land_ManagementYes",
+"Data_Spatial_imagesYes",                         
+"Data_Soil_samplesYes",
+"Data_ModellingYes",
+"Data_on_site_imagesYes",                         
+"Format_DocumentYes",
+"Format_OnlineYes",
+"Action_basedYes", 
+"Result_basedYes"
+)) 
+
+co_df3$Var2<-droplevels(co_df3$Var2)
+co_df3$Var2<-factor(co_df3$Var2, levels = c(
+"Land_use_AgricultureYes",
+"Land_use_ForestYes",
+"Land_use_Degraded_landYes",                      
+"Land_use_Peatland_WetlandYes",
+"Scale_LocalYes",
+"Scale_RegionalYes",                              
+"Scale_NationalYes",
+"Scale_ContinentalYes",                            
+"Scale_GlobalYes",                               
+"PurposeCompliance_carbon_market",                 
+"PurposeDecision_making",                          
+"PurposeSustainability",                          
+"PurposeVoluntary_carbon_market",                  
+"Driver_Afforestation_ReforestationYes",           
+"Driver_Agricultural_practicesYes",               
+"Driver_BiocharYes",                               
+"Driver_Forest_managementYes",                     
+"Driver_ConservationYes",                         
+"Driver_DeforestationYes",                         
+"Driver_RestorationYes",                           
+"Driver_WeatheringYes",                           
+"Driver_GrazingYes",                               
+"Driver_IrrigationYes",                            
+"Driver_Land_conversionYes",                      
+"Driver_RewettingYes",                             
+"Driver_Fire_managementYes",                       
+"Occupation_FarmersYes",                          
+"Occupation_Foresters_Forester_AssociationsYes",   
+"Occupation_Public_AdministratorsYes",             
+"Occupation_Educational_Institutions_ResearchYes",
+"Occupation_NGOsYes",                             
+"Occupation_AgroindustryYes",                      
+"Occupation_Forestry_CompaniesYes",               
+"Occupation_ConsultancyYes",                       
+"Occupation_Other_companiesYes"))
+```
+
+```{r, Co-occurence heat map figure, echo=FALSE, include=T, fig.width=18, fig.height=10, dpi=300, out.width="100%"}
+g_co<-ggplot(co_df3, aes(x = Var1, y = Var2, fill = Occurence_group)) +
+  geom_tile() +
+  scale_fill_manual(values = c(
+    "No MRV procedure"="lightgrey",
+    "1-10" = "#fef0d9",
+    "11-25" = "#fdcc8a",
+    "26-50" = "#fc8d59",
+    "51-75" = "#e34a33",
+    "76-100" = "#b30000"))+
+  theme_minimal() +
+  scale_y_discrete(labels = c(
+"Land_use_AgricultureYes"="Agriculture",
+"Land_use_ForestYes"="Forest",                                 
+"Land_use_Degraded_landYes" ="Degraded Land",                            
+"Land_use_Peatland_WetlandYes"="Peatlands and Wetlands",
+
+"Scale_LocalYes"="Local scale",
+"Scale_RegionalYes"="Regional scale",                                    
+"Scale_NationalYes"="National scale",                                       
+"Scale_ContinentalYes"="Continental scale", 
+"Scale_GlobalYes"="Global scale",   
+
+"PurposeCompliance_carbon_market"="Compliance carbon market",               
+"PurposeDecision_making"="Decision making",                               
+"PurposeSustainability"="Sustainability measures",                          
+"PurposeVoluntary_carbon_market"="Voluntary carbon market",
+
+"Driver_Afforestation_ReforestationYes"="Af-Reforestation",  
+"Driver_Agricultural_practicesYes"="Agricultural practices",                
+"Driver_BiocharYes"="Biochar", 
+"Driver_WeatheringYes"="Weathering", 
+"Driver_Forest_managementYes"="Forest management",                          
+"Driver_ConservationYes"="Conservation measures",                           
+"Driver_DeforestationYes"="Deforestation",                              
+"Driver_RestorationYes"="Restoration",                                      
+"Driver_GrazingYes"="Grazing",                                              
+"Driver_IrrigationYes"="Irrigation",                                        
+"Driver_Land_conversionYes"="Land conversion",                            
+"Driver_RewettingYes"="Rewetting",                                          
+"Driver_Fire_managementYes"="Fire management",                              
+"Occupation_FarmersYes"="Farmers",                                
+"Occupation_Foresters_Forester_AssociationsYes"="Foresters",                
+"Occupation_Public_AdministratorsYes"="Public administrator",               
+"Occupation_Educational_Institutions_ResearchYes"="Academia",     
+"Occupation_NGOsYes"="NGO",                                                 
+"Occupation_AgroindustryYes"="Agroindustry",                               
+"Occupation_Forestry_CompaniesYes"="Forestry company",                    
+"Occupation_ConsultancyYes"="Consultancy",                            
+"Occupation_Project_developerYes"="Project developer",                      
+"Occupation_Other_companiesYes"="Other companies",                         
+"Occupation_Software_developersYes"="Software developers"))+
+
+scale_x_discrete(labels = c(
+"Parameter_Soil_MicroorganismsYes"="Microorganisms", 
+"Parameter_Soil_FaunaYes"="Soil fauna",                             
+"Parameter_Soil_pHYes"="pH",                                  
+"Parameter_Soil_organic_matter_SOCYes"="Organic matter and carbon",         
+"Parameter_CECYes"="CEC",                                     
+"Parameter_Soil_moistureYes"="Moisture",                            
+"Parameter_Soil_temperatureYes"="Temperature",                         
+"Parameter_Particle_size_distribution_TextureYes"="Texture",      
+"Parameter_Soil_porosityYes"="Porosity",                            
+"Parameter_Aggregate_stabilityYes"="Aggregate stability",                   
+"Parameter_Soil_compaction_Bulk_densityYes"="Bulk density",            
+"Parameter_Nutrient_availabilityYes"="Nutrients",                           
+"Parameter_Soil_depthYes"="Soil depth",                              
+"Parameter_GHGYes"="Greenhouse gas",                                      
+"Parameter_Peat_depthYes"="Peat depth",                               
+"Parameter_Soil_colorYes"="Soil color",                              
+"Parameter_Soil_typeYes"="Soil type",                                
+"Parameter_SubsidenceYes"="Subsidence",                               
+"Parameter_CaCO3Yes"=expression(CaCO[3]),                                   
+"Parameter_Electrical_conductivityYes"="Electrical conductivity",           
+"Parameter_Water_holding_capacityYes"="Water holding capacity",      
+"Parameter_Infiltration_rateYes"="Infiltration rate",          
+"Data_Land_ManagementYes"="Land management information",                    
+"Data_Spatial_imagesYes"="Spatial images",   
+"Data_Soil_samplesYes"="Soil samples",                  
+"Data_ModellingYes"="Modelling",                                            
+"Data_on_site_imagesYes"="Site images",                               
+"Format_DocumentYes"="Classical report",                                   
+"Format_OnlineYes"="Online platform",                                      
+"Action_basedYes"= "Action-based verification",                             
+"Result_basedYes"="Result-based verification"))+  
+theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 14),
+    axis.text.y = element_text(size = 12),
+    axis.title = element_text(size=12, face = "bold"),
+    legend.text = element_text(size = 12)
+    )+
+  labs(
+    y = "Stakeholders",
+    x = "MRV procedures",
+    fill="Number of MRV procedures") + 
+  facet_nested(
+    rows = vars(Characteristics_Stakeholders),
+    cols = vars(Characteristics_MRV),
+    scales = "free",
+    space = "free",  
+    switch = "both") +
+  theme(strip.placement = "outside",
+  strip.text = element_text(size = 12, face = "bold"),
+  strip.background = element_rect(fill = "grey80"))
+
+g_co
+
+ggsave(
+  filename = "Figure_5_cooccurrence.png", 
+  plot = g_co, 
+  width = 18,
+  height = 10,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+
+```
+
+**Figure 5. Co-occurrence between the characteristics of stakeholders
+and MRV procedures**
+
+## 3.3. Typology of stakeholders and MRV procedures
+
+We classified the MRV procedures into six groups and highlighted their
+particular characteristics (Fig. 6).
+
+Group 1, including two MRV procedures, was only characterized by missing
+information for stakeholder occupation (Fig. 6 a.). Group 2 included ten
+MRV procedures. It stood out from the other groups by covering local
+(all the MRV procedures), national (7),continental (2) and global (2)
+scales and five occupation types that are public administrators (7),
+academia (7), NGOs (7), agroindustry (7) and consultancy (8, Fig. 6 a.).
+This group was focused on the change in agricultural practices (9 MRV
+procedures, Fig. 6 a.). Another particularity was that, for a part of
+the MRV procedures, pH (8 MRV procedures), cationic exchange capacity
+(CEC, 3) soil moisture (6), water holding capacity (2), soil type (2),
+soil depth (4), nutrients (7), porosity (2), texture (3) and temperature
+(2) were monitored (Fig. 6 b.).
+
+Group 3 was also very small with three MRV procedures (Fig.6). Its
+particularity was the absence of information regarding the geographical
+scale the MRV procedures took place and the presence of a MRV procedure
+assessing the impact of the change in grazing rate (Fig. 6 a.).
+
+The largest group was the fourth with 56 MRV procedures (Fig. 6). It was
+characterized by a high specificity : the particularities were the
+implementation at local scale (for 42 MRV procedures) and nor at
+national, continental neither at global scale (almost all the MRV
+procedures are not implemented at those scales, Fig. 6 a.). Another
+particularity was that these MRV procedures did not take place in
+peatlands or wetlands (55 MRV procedures). This group stand out by
+targeting farmers (45 MRV procedures) and not consultancy (42).
+Regarding implemented actions it was also focused on the change in
+agricultural practices (44). The absence of rarer actions were also
+group 4's particularities. Regarding monitoring, a particularity was
+that almost all the MRV procedures did not include pH (56), moisture
+(54), soil depth (53) nor nutrient (55, Fig. 6 b.). Different
+methodologies appeared as group 4's particularities : soil sampling,
+spatial images and land management information (Fig. 6 b.). The use of
+online platform (for 22 MRV procedures) and not a classical report (22)
+to display the results was also a particularities of the group (Fig. 6
+c.). The last one was that the verification was result-based (43) and
+not action-based (37, Fig. 6 c.).
+
+Group 5 included only six MRV procedures (Fig. 6). Most of them focused
+on peatlands and wetlands (5 MRV procedures) and excluded agricultural
+areas (4), targeting project developers (4) for land restoration (3) and
+not change in agricultural practices (4, Fig. 6 a.). Another
+particularity was the monitoring of rare soil parameters that are
+subsidence (2) and soil depth (4, Fig. 6 b.). This group was also
+defined by missing information regarding monitoring methodology (Fig. 6
+b.) and verification scheme (Fig. 6 c.).
+
+The sixth group, with 19 MRV procedure was the second largest group. One
+of its particularities is to include 13 MRV procedures not taking place
+at local scale (Fig. 6 a.). It is also targeting consultancy (for all
+the MRV procedures) and not farmers (17), academia (all), NGOs (all) nor
+the agroindustry (18, Fig 6 a.). The implemented actions are not known
+for all of them (Fig. 6 a.). Regarding monitoring, bulk density was
+never assessed and the methodology was always modelling (Fig. 6 b.). The
+absence of soil sampling nor land management information was also a
+particularity of the group (Fig. 6 b.). It was also characterized by the
+absence of information regarding reporting format for 18 MRV procedures
+(Fig. 6 c.). Regarding verification, it was action-based (9) and not
+result-based (10).
+
+```{r  MCA and HCPC, echo=FALSE,include=FALSE, fig.width=6, fig.height=4, dpi=300,out.width="100%"}
+
+rownames(db_publications)<-db_publications$ID_MRV
+MCArestot <-MCA(db_publications[,c(
+  
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Purpose",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Oxygen_content",
+"Parameter_Clay_mineralogy", 
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Soil_diffusivity",
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Pollutant_concentration", 
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based")], graph = T)
+
+res.hcpctot <- HCPC(MCArestot, graph = FALSE)
+
+# Extract HCPC category results
+cat_listtot <- res.hcpctot$desc.var$category
+
+# Build data frame and remove rownames
+df_cattot <- do.call(rbind, lapply(seq_along(cat_listtot), function(i) {
+data.frame(
+       cluster = i,
+        category = rownames(cat_listtot[[i]]),
+         cat_listtot[[i]],
+       row.names = NULL
+     )
+ }))
+
+# Keep only categories with v.test > 2
+df_sigtot <- df_cattot[df_cattot$v.test > 2, ]
+
+# Order by cluster and v.test (descending)
+df_sigtot <- df_sigtot[order(df_sigtot$cluster, -df_sigtot$v.test), ]
+
+# Reset rownames (clean output)
+rownames(df_sigtot) <- NULL
+ 
+# Final table
+#df_sigtot[, c("cluster", "category","p.value","v.test")]
+
+df_sigtot2<-subset(df_sigtot, p.value<0.051&v.test>2)
+
+
+
+#ft
+
+db_C1<-subset(df_sigtot2, cluster==1)
+db_C1<-db_C1[, c("cluster","category","p.value","v.test")]
+
+db_C2<-subset(df_sigtot2, cluster==2)
+db_C2<-db_C2[, c("cluster","category","p.value","v.test")]
+
+db_C3<-subset(df_sigtot2, cluster==3)
+db_C3<-db_C3[, c("cluster","category","p.value","v.test")]
+
+db_C4<-subset(df_sigtot2, cluster==4)
+db_C4<-db_C4[, c("cluster","category","p.value","v.test")]
+
+db_C5<-subset(df_sigtot2, cluster==5)
+db_C5<-db_C5[, c("cluster","category","p.value","v.test")]
+
+db_C6<-subset(df_sigtot2, cluster==6)
+db_C6<-db_C6[, c("cluster","category","p.value","v.test")]
+
+names(df_sigtot2)<-c("Group", "Variable modality", "Percentage of individuals\n belonging to the group\n within the modality","Percentage of individuals\n with the modality\n within the cluster", "Percentage of individuals\n with the modality\n within all MRV procedures", "p-value of\n the v-test", "Value of\n the v-test")
+
+Results_HCPC<-flextable(df_sigtot2) |>
+  theme_vanilla() |>
+  fontsize(size = 9, part = "all") |>
+  padding(padding = 2) |>
+  autofit() |>
+  fit_to_width(max_width = 6.5)
+```
+
+```{r  Particularities, echo=FALSE,include=T, fig.width=6, fig.height=4, dpi=300,out.width="100%"}
+
+df_Particularity<-rbind(db_C1,db_C2,db_C3,db_C4,db_C5,db_C6)
+df_Particularity$Particularity<-"Particularity"
+df_Particularity$Cluster<-df_Particularity$cluster 
+df_Particularity$Variable<-sub("=.*", "", df_Particularity$category)
+
+df_Particularity$Value<-sub(".*_", "", df_Particularity$category)
+df_Particularity$Value[df_Particularity$Value=="information"]<-"Missing_information"
+df_Particularity$Value[df_Particularity$Value=="making" ]<-"Decision_making"
+```
+
+```{r Dataset - Clusters groups MRV, echo=FALSE,include=T,fig.width=6, fig.height=4, dpi=300,out.width="100%"}
+clusters <- data.frame(
+  ID_MRV = rownames(res.hcpctot$data.clust),
+  Cluster = res.hcpctot$data.clust$clust
+)
+db_publications2<-merge(db_publications, clusters, by = "ID_MRV")
+db_publications2$Certification<-"No"
+db_publications2$Compliance_carbon_market<-"No"
+db_publications2$Decision_making<-"No"
+db_publications2$Sustainability<-"No"
+db_publications2$Voluntary_carbon_market<-"No"
+
+db_publications2$Certification[db_publications2$Purpose=="Certification"]<-"Yes"
+db_publications2$Compliance_carbon_market[db_publications2$Purpose=="Compliance_carbon_market"]<-"Yes"
+db_publications2$Decision_making[db_publications2$Purpose=="Decision_making"]<-"Yes"
+db_publications2$Sustainability[db_publications2$Purpose=="Sustainability"]<-"Yes"
+db_publications2$Voluntary_carbon_market[db_publications2$Purpose=="Voluntary_carbon_market"]<-"Yes"
+
+db_publications3<-db_publications2[, c(
+  
+"ID_MRV",
+
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based",
+
+# Cluster
+"Cluster")] 
+
+db1<-subset(db_publications3, Cluster=="1")
+db2<-subset(db_publications3, Cluster=="2")
+db3<-subset(db_publications3, Cluster=="3")
+db4<-subset(db_publications3, Cluster=="4")
+db5<-subset(db_publications3, Cluster=="5")
+db6<-subset(db_publications3, Cluster=="6")
+
+# Group 1
+df_long1 <-db1 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", "Scale_Regional", "Scale_National","Scale_Continental", "Scale_Global",
+
+# Landuse
+"Land_use_Agriculture", "Land_use_Forest", "Land_use_Degraded_land", "Land_use_Peatland_Wetland",   
+  
+# Occupation
+"Occupation_Farmers", "Occupation_Public_Administrators", "Occupation_Educational_Institutions_Research", "Occupation_NGOs", 
+"Occupation_Agroindustry", "Occupation_Consultancy", "Occupation_Project_developer", "Occupation_Other_companies", "Occupation_Software_developers",
+
+# Purposes
+"Certification", "Compliance_carbon_market", "Decision_making", "Sustainability", "Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices","Driver_Conservation", "Driver_Restoration", "Driver_Weathering", "Driver_Grazing", "Driver_Irrigation",
+"Driver_Land_conversion", "Driver_Afforestation_Reforestation", "Driver_Forest_management", "Driver_Deforestation", "Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", "Parameter_Soil_Fauna", "Parameter_Soil_pH", "Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", "Parameter_Soil_moisture", "Parameter_Soil_temperature", "Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", "Parameter_Aggregate_stability",  "Parameter_Soil_compaction_Bulk_density", "Parameter_Nutrient_availability",
+"Parameter_Soil_depth", "Parameter_GHG", "Parameter_Peat_depth", "Parameter_Soil_color", "Parameter_Soil_type", "Parameter_Subsidence",
+"Parameter_CaCO3","Parameter_Electrical_conductivity","Parameter_Water_holding_capacity", "Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management","Data_Spatial_images","Data_Soil_samples","Data_Modelling","Data_on_site_images",
+
+# Reporting format
+"Format_Document","Format_Online",
+
+# Verification scheme
+"Action_based", "Result_based"),
+names_to = "Variable",
+values_to = "Value")
+df_long1$Cluster<-"1"
+
+
+# Group 2
+df_long2 <-db2 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based"),
+    names_to = "Variable",
+    values_to = "Value")
+
+df_long2$Cluster<-"2"
+
+# Group 3
+df_long3 <-db3 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based"),
+    names_to = "Variable",
+    values_to = "Value") 
+
+df_long3$Cluster<-"3"
+
+# Group 4
+df_long4 <-db4 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based"),
+    names_to = "Variable",
+    values_to = "Value")
+
+df_long4$Cluster<-"4"
+
+# Group 5
+df_long5 <-db5 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based"),
+    names_to = "Variable",
+    values_to = "Value")
+
+df_long5$Cluster<-"5"
+
+# Group 6
+df_long6 <-db6 %>%
+  pivot_longer(
+    cols = c(
+# Scale
+"Scale_Local", 
+"Scale_Regional",
+"Scale_National",                               
+"Scale_Continental",
+"Scale_Global",
+
+# Landuse
+"Land_use_Agriculture",
+"Land_use_Forest",
+"Land_use_Degraded_land",
+"Land_use_Peatland_Wetland",    
+  
+# Occupation
+"Occupation_Farmers", 
+"Occupation_Public_Administrators",    
+"Occupation_Educational_Institutions_Research",
+"Occupation_NGOs", 
+"Occupation_Agroindustry",
+"Occupation_Consultancy",
+"Occupation_Project_developer",
+"Occupation_Other_companies",   
+"Occupation_Software_developers",
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_Microorganisms", 
+"Parameter_Soil_Fauna",
+"Parameter_Soil_pH",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_CEC", 
+"Parameter_Soil_moisture",
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",
+"Parameter_GHG",
+"Parameter_Peat_depth", 
+"Parameter_Soil_color",
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_CaCO3",            
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+"Format_Document",
+"Format_Online",
+
+# Verification scheme
+"Action_based",                
+"Result_based"),
+    names_to = "Variable",
+    values_to = "Value"
+  )
+
+df_long6$Cluster<-"6"
+```
+
+```{r Total dataset -  Clusters MRV, echo=FALSE,include=T,fig.width=6, fig.height=4}
+# Total Dataset
+df_longtot<-rbind(df_long1,df_long2,df_long3,df_long4,df_long5,df_long6)
+
+# Assessing Percentage
+df_long_count<- df_longtot%>%
+dplyr::count(Cluster, Variable, Value)
+df_long_count$Ntot<-NA
+df_long_count$Ntot[df_long_count$Cluster=="1"]<-nrow(db1)
+df_long_count$Ntot[df_long_count$Cluster=="2"]<-nrow(db2)
+df_long_count$Ntot[df_long_count$Cluster=="3"]<-nrow(db3)
+df_long_count$Ntot[df_long_count$Cluster=="4"]<-nrow(db4)
+df_long_count$Ntot[df_long_count$Cluster=="5"]<-nrow(db5)
+df_long_count$Ntot[df_long_count$Cluster=="6"]<-nrow(db6)
+df_long_count$Percentage<-df_long_count$n*100/df_long_count$Ntot
+
+df_long_count$Value<-as.factor(df_long_count$Value)
+#df_long_count$Value[df_long_count$Value=="Management_practices"|df_long_count$Value=="no"|df_long_count$Value=="No "]<-"No"
+#df_long_count$Value[df_long_count$Value=="Yes"|df_long_count$Value=="yes"]<-"Yes"
+df_long_count$Value[df_long_count$Value=="NA"]<-"Missing_information"
+
+# Adding Variable names 
+df_long_count$Characteristics<-NA
+
+# Scale
+df_long_count$Characteristics[df_long_count$Variable=="Scale_Local"|df_long_count$Variable== 
+"Scale_Regional"|df_long_count$Variable=="Scale_National"|df_long_count$Variable=="Scale_Continental"|df_long_count$Variable=="Scale_Global"]<-"Scale"
+
+# Landuse
+df_long_count$Characteristics[df_long_count$Variable=="Land_use_Agriculture"|df_long_count$Variable=="Land_use_Forest"|df_long_count$Variable=="Land_use_Degraded_land"|df_long_count$Variable=="Land_use_Peatland_Wetland"]<-"Land_use"
+
+# Occupation
+df_long_count$Characteristics[df_long_count$Variable=="Occupation_Farmers"|df_long_count$Variable== 
+"Occupation_Public_Administrators"|df_long_count$Variable=="Occupation_Educational_Institutions_Research"|df_long_count$Variable==                             
+"Occupation_NGOs"|df_long_count$Variable=="Occupation_Agroindustry"|df_long_count$Variable=="Occupation_Consultancy"|df_long_count$Variable=="Occupation_Project_developer"|df_long_count$Variable=="Occupation_Other_companies"|df_long_count$Variable=="Occupation_Software_developers"]<-"Occupation"
+
+# Purposes
+df_long_count$Characteristics[df_long_count$Variable=="Certification"|df_long_count$Variable== 
+"Compliance_carbon_market"|df_long_count$Variable=="Decision_making"|df_long_count$Variable=="Sustainability"|df_long_count$Variable=="Voluntary_carbon_market"]<-"Purposes"
+
+# Actions
+df_long_count$Characteristics[df_long_count$Variable=="Driver_Agricultural_practices"|df_long_count$Variable== 
+"Driver_Conservation"|df_long_count$Variable=="Driver_Restoration"|df_long_count$Variable==                             
+"Driver_Weathering"|df_long_count$Variable=="Driver_Grazing"|df_long_count$Variable=="Driver_Irrigation"|df_long_count$Variable=="Driver_Land_conversion"|df_long_count$Variable=="Driver_Afforestation_Reforestation"|df_long_count$Variable=="Driver_Forest_management"|df_long_count$Variable=="Driver_Deforestation"|df_long_count$Variable=="Driver_Fire_management"]<-"Actions"
+
+# Parameters
+df_long_count$Characteristics[df_long_count$Variable=="Parameter_Soil_Microorganisms"|df_long_count$Variable== 
+"Parameter_Soil_Fauna"|df_long_count$Variable=="Parameter_Soil_pH"|df_long_count$Variable==   "Parameter_Oxygen_content"|df_long_count$Variable=="Parameter_Clay_mineralogy"|df_long_count$Variable=="Parameter_Soil_organic_matter_SOC"|df_long_count$Variable=="Parameter_CEC"|df_long_count$Variable=="Parameter_Soil_moisture"|df_long_count$Variable=="Parameter_Soil_temperature"|df_long_count$Variable=="Parameter_Particle_size_distribution_Texture"|df_long_count$Variable=="Parameter_Soil_porosity"|df_long_count$Variable=="Parameter_Aggregate_stability"|df_long_count$Variable=="Parameter_Soil_compaction_Bulk_density"|df_long_count$Variable=="Parameter_Nutrient_availability"|df_long_count$Variable=="Parameter_Soil_depth"|df_long_count$Variable=="Parameter_GHG"|df_long_count$Variable=="Parameter_Peat_depth"|df_long_count$Variable=="Parameter_Soil_color"|df_long_count$Variable=="Parameter_Soil_type"|df_long_count$Variable=="Parameter_Subsidence"|df_long_count$Variable=="Parameter_CaCO3"|df_long_count$Variable=="Parameter_Electrical_conductivity"|df_long_count$Variable=="Parameter_Water_holding_capacity"|df_long_count$Variable=="Parameter_Infiltration_rate"]<-"Parameters"
+
+# Monitoring methodology
+df_long_count$Characteristics[df_long_count$Variable=="Data_Land_Management"|df_long_count$Variable== 
+"Data_Spatial_images"|df_long_count$Variable=="Data_Soil_samples"|df_long_count$Variable==                             
+"Data_Modelling"|df_long_count$Variable=="Data_on_site_images"]<-"Monitoring_data"
+
+# Reporting format
+df_long_count$Characteristics[df_long_count$Variable=="Format_Document"|df_long_count$Variable== 
+"Format_Online"]<-"Reporting_format"
+
+# Verification scheme
+df_long_count$Characteristics[df_long_count$Variable=="Action_based"|df_long_count$Variable== "Result_based"]<-"Verification_scheme"
+
+# Merge with Particularity
+df_long_count<-merge(
+  df_long_count,
+  df_Particularity,
+  by = c("Cluster", "Variable", "Value"), 
+  all.x = TRUE)
+```
+
+```{r Ordering categories- Clusters, echo=FALSE,include=T, fig.width=20, fig.height=25,out.width="100%"}
+# Ordering categories
+df_long_count$Variable<-as.factor(df_long_count$Variable)
+df_long_count$Variable<- factor(df_long_count$Variable,
+levels = c(
+"Scale_Global",
+"Scale_Continental",
+"Scale_National", 
+"Scale_Regional",
+"Scale_Local",
+
+# Land use
+"Land_use_Peatland_Wetland",
+"Land_use_Degraded_land",
+"Land_use_Forest",
+"Land_use_Agriculture",
+
+# Occupation
+"Occupation_Software_developers",
+"Occupation_Other_companies", 
+"Occupation_Project_developer",
+"Occupation_Consultancy",
+"Occupation_Agroindustry",
+"Occupation_NGOs",
+"Occupation_Educational_Institutions_Research",
+"Occupation_Public_Administrators",
+"Occupation_Farmers", 
+
+# Purposes
+"Certification",
+"Compliance_carbon_market",
+"Decision_making",
+"Sustainability",
+"Voluntary_carbon_market",
+
+# Drivers
+"Driver_Agricultural_practices",                
+"Driver_Conservation",
+"Driver_Restoration",
+"Driver_Weathering",                    
+"Driver_Grazing",
+"Driver_Irrigation",
+"Driver_Land_conversion",
+"Driver_Afforestation_Reforestation",
+"Driver_Forest_management",
+"Driver_Deforestation",
+"Driver_Fire_management",
+
+# Parameters
+"Parameter_Soil_temperature", 
+"Parameter_Particle_size_distribution_Texture",
+"Parameter_Soil_porosity", 
+"Parameter_Aggregate_stability", 
+"Parameter_Soil_compaction_Bulk_density",
+"Parameter_Nutrient_availability",
+"Parameter_Soil_depth",                
+"Parameter_Peat_depth", 
+"Parameter_Soil_color", 
+"Parameter_Soil_type",
+"Parameter_Subsidence",
+"Parameter_Electrical_conductivity",           
+"Parameter_Water_holding_capacity",
+"Parameter_Infiltration_rate",
+
+"Parameter_CaCO3",
+"Parameter_GHG",
+"Parameter_Soil_moisture",
+"Parameter_CEC",
+"Parameter_Soil_organic_matter_SOC",
+"Parameter_Soil_pH",
+
+"Parameter_Soil_Fauna",
+"Parameter_Soil_Microorganisms", 
+
+# Monitoring methodology
+"Data_Land_Management",
+"Data_Spatial_images",                         
+"Data_Soil_samples",
+"Data_Modelling",
+"Data_on_site_images",
+
+# Reporting format
+
+"Format_Online",
+"Format_Document",
+
+# Verification scheme
+"Result_based",
+"Action_based"))
+
+df_long_count$Characteristics<-as.factor(df_long_count$Characteristics)
+df_long_count$Characteristics <- factor(
+  df_long_count$Characteristics,
+  levels = c("Scale", "Land_use" , "Occupation", "Actions", "Purposes", "Parameters", "Monitoring_data","Reporting_format","Verification_scheme"))
+
+# Drop levels
+df_long_count$Variable<-as.factor(df_long_count$Variable)
+df_long_count<- droplevels(df_long_count)
+```
+
+```{r Figure Clusters - Stakeholders, echo=FALSE,include=T, fig.width=20, dpi=300, fig.height=18,out.width="100%", warning=FALSE}
+df_long_count_Stakeholders<-subset(df_long_count,Characteristics=="Scale"|Characteristics=="Land_use"|Characteristics=="Occupation"|Characteristics=="Actions"|Characteristics=="Purposes")
+
+# Figure
+g_Clusters_Stakeholders<-ggplot(df_long_count_Stakeholders,
+       aes(x = Variable, y = Percentage, fill = Value, colour=Particularity, linewidth = Particularity)) +
+  scale_color_manual(values = c("Particularity" = "blue")) +
+  scale_linewidth_manual(values = c("Particularity" = 2))+
+  
+  geom_col(width = 0.5) +
+  
+  ggh4x::facet_nested(
+    rows = vars(Characteristics),
+    cols = vars(Cluster),
+    scales = "free_y",
+    strip = strip_themed(
+    background_x = elem_list_rect(fill = "#f0ebe2"),
+    text_x = elem_list_text(face = "bold")),
+    switch = "y",
+    space = "free_y",
+    
+     labeller = labeller(
+    Characteristics = c(
+      "Actions" = "Actions",
+      "Land_use" = "Land use",
+      "Monitoring_data"="Data",
+      "Occupation"="Occupation",
+      "Parameters"="Parameters",
+      "Purposes"="Purposes",
+      "Reporting_format"="Format",
+      "Scale"="Scale",
+      "Verification_scheme"="Scheme"),
+    Cluster = c(
+      "1" = "Group 1 (N=2)",
+      "2" = "Group 2 (N=10)",
+      "3" = "Group 3 (N=3)",
+      "4" = "Group 4 (N=56)",
+      "5" = "Group 5 (N=6)",
+      "6" = "Group 6 (N=19)")))+
+  
+  theme(strip.placement = "outside", 
+        strip.switch.pad.grid = unit(0.1, "cm"),
+        legend.position = "bottom",
+        axis.text.x  = element_text(size = 14),  # x labels
+        axis.text.y  = element_text(size = 14),  # y labels
+        axis.title.x = element_text(size = 14),  # x-axis title
+        axis.title.y = element_text(size = 14),# y-axis title
+        strip.text = element_text(size = 14), # facets
+        legend.text = element_text(size = 14),   # legend labels
+        legend.title = element_text(size = 14))+  # legend title  
+  coord_flip()+
+  geom_text(aes(label = n), hjust = 0.6, vjust = 0.25,position = position_stack(vjust = 0.5), color = "black", size = 5,fontface="bold") +
+ scale_x_discrete(
+  labels = c(
+"Scale_Local"="Local", 
+"Scale_Regional"="Regional",
+"Scale_National"="National",                               
+"Scale_Continental"="Continental",
+"Scale_Global"="Global",
+
+# Landuse
+"Land_use_Agriculture"="Agriculture",
+"Land_use_Forest"="Forest",
+"Land_use_Degraded_land"="Degraded land",
+"Land_use_Peatland_Wetland"="Peatland and wetlands",    
+  
+# Occupation
+"Occupation_Farmers"="Farmers", 
+"Occupation_Public_Administrators"="Public administrators",    
+"Occupation_Educational_Institutions_Research"="Academia",
+"Occupation_NGOs"="NGOs", 
+"Occupation_Agroindustry"="Agroindustry",
+"Occupation_Consultancy"="Consultancy",
+"Occupation_Project_developer"="Project developer",
+"Occupation_Other_companies"="Other companies",   
+"Occupation_Software_developers"="Software developers",
+
+# Purposes
+"Certification"="Certification",
+"Compliance_carbon_market"="Compliance carbon market",
+"Decision_making"="Decision making",
+"Sustainability"="Sustainability",
+"Voluntary_carbon_market"="Voluntary carbon market",
+
+# Drivers
+"Driver_Agricultural_practices"="Agricultural practices",                
+"Driver_Conservation"="Conservation measures",
+"Driver_Restoration"="Restoration measures",
+"Driver_Weathering"="Weathering",                    
+"Driver_Grazing"="Grazing",
+"Driver_Irrigation"="Irrigation",
+"Driver_Land_conversion"="Land conversion",
+"Driver_Afforestation_Reforestation"="Af-Reforestation",
+"Driver_Forest_management"="Forest management",
+"Driver_Deforestation"="Deforestation",
+"Driver_Fire_management"="Fire management"))+
+  
+scale_fill_manual(
+  values = c(
+    "Yes" = "#CC9D00",
+    "No" = "#FFD300", 
+    "Missing_information" = "light grey"),
+  labels= c(
+  "Yes" = "Presence",
+  "No" = "Absence",
+  "Missing_information" = "Missing information")) 
+g_Clusters_Stakeholders
+
+
+ggsave(
+  filename = "Figure_6a_typology_stakeholders.png", 
+  plot = g_Clusters_Stakeholders, 
+  width = 18,
+  height = 20,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+a.  Stakeholder'characteristics
+
+```{r Figure Clusters - Monitoring, echo=FALSE,include=T, fig.width=18, fig.height=20,dpi=300,out.width="100%", warning=FALSE}
+
+df_long_count_Monitoring<-subset(df_long_count,Characteristics=="Parameters" |Characteristics=="Monitoring_data")
+
+# Figure
+g_Clusters_Monitoring<-ggplot(df_long_count_Monitoring,
+       aes(x = Variable, y = Percentage, fill = Value, colour=Particularity, linewidth = Particularity)) +
+  scale_color_manual(values = c("Particularity" = "blue")) +
+  scale_linewidth_manual(values = c("Particularity" = 2))+
+  
+  geom_col(width = 0.5) +
+  
+  ggh4x::facet_nested(
+    rows = vars(Characteristics),
+    cols = vars(Cluster),
+    scales = "free_y",
+    strip = strip_themed(
+    background_x = elem_list_rect(fill = "#f0ebe2"),
+    text_x = elem_list_text(face = "bold")),
+    switch = "y",
+    space = "free_y",
+    
+     labeller = labeller(
+    Characteristics = c(
+      "Actions" = "Actions",
+      "Land_use" = "Land use",
+      "Monitoring_data"="Data",
+      "Occupation"="Occupation",
+      "Parameters"="Parameters",
+      "Purposes"="Purposes",
+      "Reporting_format"="Format",
+      "Scale"="Scale",
+      "Verification_scheme"="Scheme"),
+    Cluster = c(
+      "1" = "Group 1 (N=2)",
+      "2" = "Group 2 (N=10)",
+      "3" = "Group 3 (N=3)",
+      "4" = "Group 4 (N=56)",
+      "5" = "Group 5 (N=6)",
+      "6" = "Group 6 (N=19)")))+
+  
+  theme(strip.placement = "outside", 
+        strip.switch.pad.grid = unit(0.1, "cm"),
+        legend.position = "bottom",
+        axis.text.x  = element_text(size = 14),  # x labels
+        axis.text.y  = element_text(size = 14),  # y labels
+        axis.title.x = element_text(size = 14),  # x-axis title
+        axis.title.y = element_text(size = 14),# y-axis title
+        strip.text = element_text(size = 14), # facets
+        legend.text = element_text(size = 14),   # legend labels
+        legend.title = element_text(size = 14))+  # legend title 
+  
+  coord_flip()+
+  
+  geom_text(aes(label = n), hjust = 0.6, vjust = 0.25,position = position_stack(vjust = 0.5), color = "black", size = 5,fontface="bold") +
+ scale_x_discrete(
+  labels = c(
+# Parameters
+"Parameter_Soil_Microorganisms"= "Microorganisms", 
+"Parameter_Soil_Fauna"="Soil fauna",
+"Parameter_Soil_pH"="pH",
+"Parameter_Soil_organic_matter_SOC"="Soil organic matter and carbon",
+"Parameter_CEC"="CEC",
+"Parameter_Soil_moisture"="Moisture",
+"Parameter_Soil_temperature"="Temperature", 
+"Parameter_Particle_size_distribution_Texture"="Texture",
+"Parameter_Soil_porosity"= "Porosity", 
+"Parameter_Aggregate_stability"= "Aggregate stability", 
+"Parameter_Soil_compaction_Bulk_density"="Bulk density",
+"Parameter_Nutrient_availability"="Nutrients",
+"Parameter_Soil_depth"="Soil depth",                
+"Parameter_GHG"="Green house gas",
+"Parameter_Peat_depth"="Peat depth", 
+"Parameter_Soil_color"="Soil color", 
+"Parameter_Soil_type"= "Soil type",
+"Parameter_Subsidence"="Subsidence",
+"Parameter_CaCO3"="CaCO3",            
+"Parameter_Electrical_conductivity"="Electrical conductivity",           
+"Parameter_Water_holding_capacity"="Water holding capacity",
+"Parameter_Infiltration_rate"="Infiltration rate",
+
+# Monitoring methodology
+"Data_Land_Management"="Land management",
+"Data_Spatial_images"="Spatial images",                         
+"Data_Soil_samples"="Soil samples",
+"Data_Modelling"="Modelling",
+"Data_on_site_images"="On-site images"))+
+  
+scale_fill_manual(
+  values = c(
+    "Yes" = "coral4",
+    "No" = "lightcoral", 
+    "Missing_information" = "light grey"),
+  labels= c(
+  "Yes" = "Presence",
+  "No" = "Absence",
+  "Missing_information" = "Missing information")) 
+g_Clusters_Monitoring
+
+ggsave(
+  filename = "Figure_6b_typology_monitoring.png", 
+  plot = g_Clusters_Monitoring, 
+  width = 18,
+  height = 20,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+b.  Monitoring characteristics
+
+```{r Figure Clusters - Reporting - Verification, echo=FALSE, include=TRUE, dpi=300, fig.width=20, fig.height=10, out.width="100%", warning=FALSE}
+df_long_count_Stakeholders<-subset(df_long_count,Characteristics== "Reporting_format"|Characteristics== "Verification_scheme")
+
+# Figure
+g_Clusters_RV<-ggplot(df_long_count_Stakeholders,
+       aes(x = Variable, y = Percentage, fill = Value, colour=Particularity, linewidth = Particularity)) +
+  scale_color_manual(values = c("Particularity" = "blue")) +
+  scale_linewidth_manual(values = c("Particularity" = 2))+
+  
+  geom_col(width = 0.2) +
+  
+  ggh4x::facet_nested(
+    rows = vars(Characteristics),
+    cols = vars(Cluster),
+    scales = "free_y",
+    strip = strip_themed(
+    background_x = elem_list_rect(fill = "#f0ebe2"),
+    text_x = elem_list_text(face = "bold")),
+    switch = "y",
+    space = "free_y",
+    
+     labeller = labeller(
+    Characteristics = c(
+      "Actions" = "Actions",
+      "Land_use" = "Land use",
+      "Monitoring_data"="Data",
+      "Occupation"="Occupation",
+      "Parameters"="Parameters",
+      "Purposes"="Purposes",
+      "Reporting_format"="Reporting format",
+      "Scale"="Scale",
+      "Verification_scheme"="Verification scheme"),
+    Cluster = c(
+      "1" = "Group 1 (N=2)",
+      "2" = "Group 2 (N=10)",
+      "3" = "Group 3 (N=3)",
+      "4" = "Group 4 (N=56)",
+      "5" = "Group 5 (N=6)",
+      "6" = "Group 6 (N=19)")))+
+  
+  theme(strip.placement = "outside", 
+        strip.switch.pad.grid = unit(0.1, "cm"),
+        legend.position = "bottom",
+        axis.text.x  = element_text(size = 14),  # x labels
+        axis.text.y  = element_text(size = 14),  # y labels
+        axis.title.x = element_text(size = 14),  # x-axis title
+        axis.title.y = element_text(size = 14),# y-axis title
+        strip.text = element_text(size = 14), # facets
+        legend.text = element_text(size = 14),   # legend labels
+        legend.title = element_text(size = 14))+  # legend title 
+  
+  coord_flip()+
+  
+  geom_text(aes(label = n), hjust = 0.6, vjust = 0.25,position = position_stack(vjust = 0.5), color = "black", size = 5,fontface="bold") +
+ scale_x_discrete(
+  labels = c(
+# Reporting format
+"Format_Document"="Classical report",
+"Format_Online"="Online plateform",
+
+# Verification scheme
+"Action_based" ="Action based",                
+"Result_based" = "Result based"))+
+  
+scale_fill_manual(
+  values = c(
+    "Yes" = "#017371",
+    "No" = "aquamarine3",
+    "Missing_information" = "light grey"),
+  labels= c(
+  "Yes" = "Presence",
+  "No" = "Absence",
+  "Missing_information" = "Missing information")) 
+g_Clusters_RV
+
+ggsave(
+  filename = "Figure_6c_typology_reporting_verification.png", 
+  plot = g_Clusters_RV, 
+  width = 18,
+  height = 10,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+c.  Reporting and Verification characteristics
+
+**Figure 6. Number of MRV procedures per category in each group and of
+MRV procedures per category in each group and groups' particularities**
+
+## 3.4. Decision tool
+
+To encourage knowledge transfer between scientists and non-scientists,
+we developed a decision tool to help users in the choice of an adapted
+MRV procedure for soil health. It is available online:
+<https://mrv-procedures-soil-health.streamlit.app/>. We used the playing
+card format to summarize the collected information. The welcome page
+explains the purpose of the tool and the information presented on each
+MRV card. Then, the user selects its context\`s characteristics and the
+tool provide the MRV procedures with a level of similarity higher than
+80%. The MRV procedures are presented with the format of cards.
+
+The first page of the decision tool corresponds to the user (i.e. the
+stakeholder)'s characteristics : 1) On which land use do you want to
+apply the MRV procedure?, 2) At which geographical scale do you want to
+apply the MRV procedure?, 3) What is the purpose of the MRV procedure?,
+4) Which type of actions do you want to implement? and 5)What is your
+occupation? After answering the previous questions, the MRV cards
+corresponding to these criteria are suggested. The tool will present all
+the MRV cards with a percentage of similarity as the number of items
+fitted with user' wishes divided by the total number of items.
+
+# 4. Discussion
+
+With only nine scientific articles included in our literature review,
+the term MRV seems to be rarely used by soil scientists. A large part of
+scientific articles when mentioning MRV only focus on the monitoring
+part. The term MRV is more common in the private sector as shown by the
+higher number of MRV procedures coming from company websites, collected
+with web scraping. Our study illustrates the difference in terminology
+between academia and the private sector. These differences can lead to
+communication difficulties (Weninger et al., 2024). However, scientists
+implement MRV procedures without calling them like this: they monitor
+soils, verify their data and report the results in the form of
+scientific articles. National soil monitoring networks are good examples
+of these "hidden" MRV procedures (Imbert et al., 2024).
+
+Major characteristics of MRV procedures were discarded from the analysis
+due to lack of information. We are missing knowledge on: sampling
+designs (plot area, sampling frequency), costs, uncertainty reporting,
+verification provider and data sharing or availability. A recent study
+in Wallonia, Belgium tried to develop a cost model for three MRV systems
+namely decision support tools, process-based models, and direct soil
+measurements. They suggest that their generic cost model development can
+be extrapolated across various context to estimate MRV costs of carbon
+farming (Vanderheyden et al. 2026). Again, we encourage the providers of
+MRV procedures to clearly communicate about those later points to avoid
+suspicion of green washing.
+
+In our study, very few MRV procedures took place in Africa or in Asia.
+This result was surprising because compensation using carbon credits by
+reforestation mainly takes place in the countries of the Global South
+i.e. Africa, Asia, Oceania (Australia and New Zealand excluded) and
+Latin America (Cheong, 2025). Possible explanations would be that the
+term MRV is not used by all the actors of the private sector or that
+these MRV procedures do not include soil parameters. Thus, this might be
+a limitation of our study.
+
+The majority of the MRV procedures involved farmers willing to get
+involved in the voluntary carbon market, by changing their agricultural
+practices. In this way, our study illustrates the dominance of the
+voluntary carbon market in the MRV context. In parallel to carbon
+markets, certain MRV procedures were designed to help stakeholders in
+decision making (MRV WE019 and MRV WE040). The aim of these MRV
+procedures is to give indications to farmers to improve farm management.
+The farmer chooses to spend money on soil monitoring and compensate this
+investment with better management (more efficient use of intrants
+mainly).
+
+Organic matter and carbon was the soil parameter the most frequently
+monitored. The next step is to understand how to pass from a (mainly)
+carbon-focused MRV procedure to a broader one, assessing soil health.
+Several strategies are used to assess soil health but they can give
+contradictory results (Zwaan et al., 2026). A recent study, based on
+expert knowledge, advised the monitoring of around thirty parameters,
+related to soil, topography and climate to accurately assess soil health
+(Vazquez, et al., 2025). Thus, with a maximum of nine parameters
+assessed, existing MRV procedures do not currently cover soil health.
+
+Regarding monitoring methodology, there is a trade-off between costs and
+accuracy (Ihasusta et al., 2026). In general, soil sampling is more
+accurate than modelling (Batjes et al., 2024). However, modelling is
+more frequently used because it is faster and cheaper to implement.
+Empirical or process-based modelling is associated with soil sampling
+that is called a "measure-remeasure model" approach to calibrate and
+validate the model. Soil sampling could also be used alone in a "measure
+and re-measure" approach, and based on values from other locations and
+specific sampling design.
+
+Surprisingly, verification was more often result-based than
+action-based. We could think that action-based would be the most
+frequent, as it requires only a simple, rapid field visit to check
+management changes, far more cheaper than result based, requiring a new
+soil assessment including sampling and measurement. As requiring a
+second monitoring session, result-based verification is more accurate
+than action-based.
+
+To synthesize our results, we built a typology of soil MRV procedures
+(Fig. 7).
+
+```{r Figure Cards - Typology MRV procedures, echo=FALSE, fig.width=12, fig.height=10, fig.align="center"}
+knitr::include_graphics("Figure_7_typology_cards.png")
+```
+
+**Figure 7. Typology of soil MRV procedures**
+
+We classified them into six groups including from two to 56 MRV
+procedures. Group 1 was only characterized by the lack of information
+and thus reflected the main limitation of our study. The five other
+groups addressed different stakeholders. Four of them targeted
+stakeholders of the agricultural sector: farmers (group 4) specifically
+breeders (with changes in grazing rate for the group 3), consultants
+(group 6) or rarer and more diversified stakeholders (i.e. scientist,
+agroindustry, public administration and NGOs for the group 2). The last
+one (group 5) targeted project developers for peatlands and wetland
+restoration. The two largest groups (group 4 and 6) demonstrated
+different strategies: more accurate monitoring and verification
+methodologies for group 4, cheaper ones for group 6. Group 6 was
+characterized by the fact that the bulk density was not assessed even if
+it is an essential information to be able to compute soil carbon stocks
+(Martin et al., 2009). So, again, we encourage a strong partnership
+between MRV providers and scientists for developing accurate soil health
+MRV procedures. This type of co-creation of MRV procedures for soil
+health is currently on going (Imbert et al., 2024).
+
+# 5. Conclusions
+
+This study sheds light upon an overview of MRV procedures for soils. It
+bridges the scientific gap, previously completed by studies focused on
+the most common applications, i.e. carbon markets in the agricultural
+context (Batjes et al., 2024). In the soil science community, MRV is an
+emergent framework, and we strongly encourage soil scientists to employ
+the term MRV more stringently in their publications to engage in
+communication with the private sector. Aligning the scientific language
+to common market terminology will also help to improve the robustness of
+proprietary MRV procedures, as developers and users can more easily
+refer to scientific research that critically reflects such developments.
+We also encourage the providers of MRV procedures to clearly communicate
+to avoid suspicion of green washing. Indeed, major information as
+sampling design or costs were often inaccessible or scarce. Therefore,
+more visibility of these components of MRV procedures is required. In
+the present study, we succeeded in building a typology of MRV procedures
+and to develop a decision tool to make our work more easily accessible
+to as many people as possible. The next step is to understand how to
+pass from a (mainly) carbon-focused MRV procedure to a broader one,
+assessing soil health. With a maximum of nine parameters assessed,
+existing MRV procedures do not currently cover soil health. They could
+be completed with new soil parameters, but the major problem stays the
+cost.
+
+# Appendices
+
+## Appendix A. PRISMA diagrams according the data source: article database (a.), webscraping (b.) and AI browser (c.)
+
+```{r PRISMA Scopus, echo=FALSE, include=T, fig.width=6, dpi=600}
+db_unique_articles <- db_articles0[!duplicated(db_articles0$ID_Source), ]
+RI<-nrow(db_unique_articles)
+
+tscreened<-as.data.frame(table(db_unique_articles$Availability))
+RS<-tscreened$Freq[tscreened$Var1=="Yes"]
+
+tM<-as.data.frame(table(db_unique_articles$Inclusion_criteria_Monitoring))
+M<-tM$Freq[tM$Var1=="No"]
+tR<-as.data.frame(table(db_unique_articles$Inclusion_criteria_Reporting))
+R<-tR$Freq[tR$Var1=="No"]
+tV<-as.data.frame(table(db_unique_articles$Inclusion_criteria_Verification))
+V<-tV$Freq[tV$Var1=="No"]
+tS<-as.data.frame(table(db_unique_articles$Inclusion_criteria_About_Soil))
+S<-tS$Freq[tS$Var1=="No"]
+
+t_scope<-as.data.frame(table(db_unique_articles$In_Scope))
+FA<-t_scope$Freq[t_scope$Var1=="Yes"]
+RE<-t_scope$Freq[t_scope$Var1=="No"]
+
+prisma_articles <- grViz(paste0("
+digraph prisma {
+graph[
+  layout = neato,
+  rankdir = TB,
+  fontname = Arial,
+  nodesep = 0.05,
+  ranksep = 0.4,
+  splines = line
+]
+  node [
+  shape = box,
+  style = 'rounded,filled',
+  fontname = Arial,
+  fontsize = 12,
+  fixedsize = true,
+  width = 1.5,
+  height=0.7,
+  margin = '0.15,0.1']
+  edge [fontname = Helvetica, fontsize = 9, arrowsize = 0.9]
+
+  // Main flow nodes
+  A [label = 'Records identified\\n(n = ", RI, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='-2,0!', penwidth = 1.5]
+  A1 [label = 'Duplicates\\n(n = 0", ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='0,0!', penwidth = 1.5]
+  B [label = 'Records screened\\n(n = ", RS, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='2,0!', penwidth = 1.5]
+  
+
+  bigbox [
+    shape = box,
+    style = 'rounded',
+    color = '#E5E0B4',
+    penwidth = 1.5,
+    label = '',
+    pos = '4.8,0!',
+    width = 3.25,
+    height = 1.65,
+    fixedsize = true
+  ]
+
+    C [label = 'No information on\\nMonitoring\\n(n = ", M, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,0.4!', penwidth = 1.5]
+    D [label = 'No information on\\nReporting\\n(n = ", R, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,0.4!', penwidth = 1.5]
+    E [label = 'No information on\\nVerification\\n(n = ", V, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,-0.4!', penwidth = 1.5]
+    F [label = 'Not about soils\\n(n = ", S, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,-0.4!', penwidth = 1.5]
+
+  G [label = 'Records excluded\\n(n = ", RE, ")', fillcolor = '#E6CBF7', color = '#c689ed', pos='7.6,0!', penwidth = 1.5]
+  H [label = 'Websites included\\n(n = ", FA, ")', fillcolor = '#C6EED6', color = '#a0d6b4', pos='9.6,0!', penwidth = 1.5]
+  
+  A -> A1
+  A1-> B
+  B -> bigbox
+  bigbox -> G
+  G -> H
+}
+"
+))
+
+
+```
+
+```{r PRISMA Webscraping, echo=FALSE, include=T, fig.width=6, dpi=600}
+db_unique_webscraping <- db_webscraping0[!duplicated(db_webscraping0$ID_row), ]
+RI<-nrow(db_unique_webscraping)
+
+tduplicate<-as.data.frame(table(db_unique_webscraping$In_Scope))
+D<-tduplicate$Freq[tduplicate$Var1=="Duplicate"]
+
+tscreened<-as.data.frame(table(db_unique_webscraping$Accessible))
+RS<-tscreened$Freq[tscreened$Var1=="Yes"]
+
+tM<-as.data.frame(table(db_unique_webscraping$Inclusion_criteria_Monitoring))
+M<-tM$Freq[tM$Var1=="No"]
+tR<-as.data.frame(table(db_unique_webscraping$Inclusion_criteria_Reporting))
+R<-tR$Freq[tR$Var1=="No"]
+tV<-as.data.frame(table(db_unique_webscraping$Inclusion_criteria_Verification))
+V<-tV$Freq[tV$Var1=="No"]
+tS<-as.data.frame(table(db_unique_webscraping$Inclusion_criteria_About_Soil))
+S<-tS$Freq[tS$Var1=="No"]
+
+t_scope<-as.data.frame(table(db_unique_webscraping$In_Scope))
+FA<-t_scope$Freq[t_scope$Var1=="Yes"]
+RE<-t_scope$Freq[t_scope$Var1=="No"]
+
+prisma_webscraping <- grViz(paste0("
+digraph prisma {
+graph[
+  layout = neato,
+  rankdir = TB,
+  fontname = Arial,
+  nodesep = 0.05,
+  ranksep = 0.4,
+  splines = line
+]
+  node [
+  shape = box,
+  style = 'rounded,filled',
+  fontname = Helvetica,
+  fontsize = 12,
+  fixedsize = true,
+  width = 1.5,
+  height=0.7,
+  margin = '0.15,0.1']
+  edge [fontname = Helvetica, fontsize = 9, arrowsize = 0.9]
+
+  // Main flow nodes
+  A [label = 'Records identified\\n(n = ", RI, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='-2,0!', penwidth = 1.5]
+  A1 [label = 'Duplicates\\n(n = ", D, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='0,0!', penwidth = 1.5]
+  B [label = 'Records screened\\n(n = ", RS, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='2,0!', penwidth = 1.5]
+  
+  bigbox [
+    shape = box,
+    style = 'rounded',
+    color = '#E5E0B4',
+    penwidth = 1.5,
+    label = '',
+    pos = '4.8,0!',
+    width = 3.25,
+    height = 1.65,
+    fixedsize = true
+  ]
+
+    C [label = 'No information on\\nMonitoring\\n(n = ", M, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,0.4!', penwidth = 1.5]
+    D [label = 'No information on\\nReporting\\n(n = ", R, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,0.4!', penwidth = 1.5]
+    E [label = 'No information on\\nVerification\\n(n = ", V, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,-0.4!', penwidth = 1.5]
+    F [label = 'Not about soils\\n(n = ", S, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,-0.4!', penwidth = 1.5]
+
+  G [label = 'Records excluded\\n(n = ", RE, ")', fillcolor = '#E6CBF7', color = '#c689ed', pos='7.6,0!', penwidth = 1.5]
+  H [label = 'Websites included\\n(n = ", FA, ")', fillcolor = '#C6EED6', color = '#a0d6b4', pos='9.6,0!', penwidth = 1.5]
+  
+  A -> A1
+  A1-> B
+  B -> bigbox
+  bigbox -> G
+  G -> H
+}
+"
+))
+```
+
+```{r PRISMA AI, echo=FALSE, include=T, fig.width=6, dpi=600}
+RI<-nrow(db_AI0)
+
+tduplicate<-as.data.frame(table(db_AI0$In_Scope))
+D<-tduplicate$Freq[tduplicate$Var1=="Duplicate"]
+
+tscreened<-as.data.frame(table(db_AI0$Accessible))
+RS<-tscreened$Freq[tscreened$Var1=="Yes"]
+
+tM<-as.data.frame(table(db_AI0$Inclusion_criteria_Monitoring))
+M<-tM$Freq[tM$Var1=="No"]
+tR<-as.data.frame(table(db_AI0$Inclusion_criteria_Reporting))
+R<-tR$Freq[tR$Var1=="No"]
+tV<-as.data.frame(table(db_AI0$Inclusion_criteria_Verification))
+V<-tV$Freq[tV$Var1=="No"]
+tS<-as.data.frame(table(db_AI0$Inclusion_criteria_About_Soil))
+S<-tS$Freq[tS$Var1=="No"]
+
+t_scope<-as.data.frame(table(db_AI0$In_Scope))
+FA<-t_scope$Freq[t_scope$Var1=="Yes"]
+RE<-t_scope$Freq[t_scope$Var1=="No"]
+
+prisma_ai <- grViz(paste0("
+digraph prisma {
+graph[
+  layout = neato,
+  rankdir = TB,
+  fontname = Helvetica,
+  nodesep = 0.05,
+  ranksep = 0.4,
+  splines = line
+]
+  node [
+  shape = box,
+  style = 'rounded,filled',
+  fontname = Helvetica,
+  fontsize = 12,
+  fixedsize = true,
+  width = 1.5,
+  height=0.7,
+  margin = '0.15,0.1']
+  edge [fontname = Helvetica, fontsize = 9, arrowsize = 0.9]
+
+  // Main flow nodes
+  A [label = 'Records identified\\n(n = ", RI, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='-2,0!', penwidth = 1.5]
+  A1 [label = 'Duplicates\\n(n = ", D, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='0,0!', penwidth = 1.5]
+  B [label = 'Records screened\\n(n = ", RS, ")', fillcolor = '#B3E1F8', color = '#6dc5f2', pos='2,0!', penwidth = 1.5]
+  
+
+  bigbox [
+    shape = box,
+    style = 'rounded',
+    color = '#E5E0B4',
+    penwidth = 1.5,
+    label = '',
+    pos = '4.8,0!',
+    width = 3.25,
+    height = 1.65,
+    fixedsize = true
+  ]
+
+    C [label = 'No information on\\nMonitoring\\n(n = ", M, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,0.4!', penwidth = 1.5]
+    D [label = 'No information on\\nReporting\\n(n = ", R, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,0.4!', penwidth = 1.5]
+    E [label = 'No information on\\nVerification\\n(n = ", V, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='4,-0.4!', penwidth = 1.5]
+    F [label = 'Not about soils\\n(n = ", S, ")', fillcolor = '#FFF9C8', color = '#E5E0B4', pos='5.6,-0.4!', penwidth = 1.5]
+  G [label = 'Records excluded\\n(n = ", RE, ")', fillcolor = '#E6CBF7', color = '#c689ed', pos='7.6,0!', penwidth = 1.5]
+  H [label = 'Websites included\\n(n = ", FA, ")', fillcolor = '#C6EED6', color = '#a0d6b4', pos='9.6,0!', penwidth = 1.5]
+  
+  A -> A1
+  A1-> B
+  B -> bigbox
+  bigbox -> G
+  G -> H
+
+}
+"
+))
+```
+
+```{r PRISMA - Figures, echo=FALSE, include=T, fig.width=6, dpi=600}
+
+prisma_list <- list(prisma_articles, prisma_webscraping, prisma_ai) 
+names(prisma_list) <- c("prisma_articles", "prisma_webscraping", "prisma_ai")
+
+for (i in seq_along(prisma_list)) {
+  grVizToImageFile(
+    prisma_list[[i]],
+    format = "png",
+    filename = paste0(names(prisma_list)[i], ".png")
+  )
+}
+
+mytags <- c("a", "b", "c")
+mytitles <- c("Database of scientific articles", "Web scraping", "AI browser")
+
+imgs <- lapply(names(prisma_list), function(nm) image_read(paste0(nm, ".png")))
+
+add_label_above <- function(img, mytags, mytitles) {
+  mylabels <- paste0(mytags, ". ", mytitles)
+  w <- image_info(img)$width
+  label_img <- image_blank(width = w, height = 70, color = "white") |>
+    image_annotate(mylabels, size = 16, gravity = "west", location = "+20+0",
+                    color = "black", weight = 700)
+  image_append(image_join(list(label_img, img)), stack = TRUE)
+}
+
+imgs_labeled <- Map(add_label_above, imgs, mytags, mytitles)
+PRISMA_combined <- image_append(image_join(imgs_labeled), stack = TRUE)
+
+image_write(PRISMA_combined, path = "Appendix_1_PRISMA.png")
+knitr::include_graphics("prisma_combined.png")
+```
+
+## Appendix B. Missing information for each MRV procedure
+
+```{r Missing information, echo=FALSE, include=T, fig.width=15, fig.height=18, out.width="100%", dpi=300, warning=FALSE}
+db_publications_MI<-db_publications
+rownames(db_publications_MI)<-db_publications_MI$ID_MRV
+db_publications_MI$Landuse<-db_publications_MI$Land_use_Agriculture                        
+db_publications_MI$Scale<-db_publications_MI$Scale_Local  
+
+# Purpose
+db_publications_MI$Driver<-db_publications_MI$Driver_Agricultural_practices
+db_publications_MI$Occupation<-db_publications_MI$Occupation_Farmers    
+
+#Cost_MRV
+db_publications_MI$Parameter<-db_publications_MI$Parameter_Soil_Microorganisms                           
+db_publications_MI$Data<-db_publications_MI$Data_Land_Management
+#"Plot_Area"
+                           
+#"Monitoring_frequency"
+db_publications_MI$Type_methodology <- db_publications_MI$Methodology_Standard
+db_publications_MI$Format<-db_publications_MI$Format_Document                            
+#"Uncertainty"
+
+#"Threshold"                                   
+db_publications_MI$Verification_type<-db_publications_MI$Action_based
+db_publications_MI$Verification_methodology<-db_publications_MI$Verification_Methodology_satellite_data
+#"Verification_Automatization"                 
+#"Auditor"                                     
+#"Data_Sharing"    
+
+db_publications_MI2<-db_publications_MI[, c(
+"ID_MRV",
+"Data_Sharing",
+"Auditor",
+"Verification_Automatization",  
+"Verification_methodology",
+"Verification_type",
+"Threshold", 
+"Uncertainty", 
+"Format",
+"Type_methodology",
+"Monitoring_frequency",
+"Plot_Area",
+"Data",
+"Parameter",
+"Cost_MRV",
+"Driver",
+"Purpose", 
+"Occupation",
+"Landuse",                         
+"Scale")]
+
+df_long <-db_publications_MI2 %>%
+  pivot_longer(
+    cols = -ID_MRV,
+    names_to = "Variable",
+    values_to = "Value"
+  ) %>%
+  mutate(
+    Missing = Value == "Missing_information"
+  )
+
+df_long$ID_MRV <- factor(
+  df_long$ID_MRV,
+levels = c("MRV_AI001", 
+
+"MRV_WE068","MRV_WE067","MRV_WE066","MRV_WE065","MRV_WE064","MRV_WE063", "MRV_WE062","MRV_WE061","MRV_WE060","MRV_WE059","MRV_WE058", "MRV_WE057", "MRV_WE056","MRV_WE055", "MRV_WE054",  "MRV_WE053","MRV_WE052","MRV_WE051","MRV_WE050","MRV_WE049", "MRV_WE048", "MRV_WE047", "MRV_WE046","MRV_WE045","MRV_WE044","MRV_WE043","MRV_WE042", "MRV_WE041","MRV_WE040","MRV_WE039", "MRV_WE038","MRV_WE037","MRV_WE036","MRV_WE035","MRV_WE034", "MRV_WE033", "MRV_WE032","MRV_WE031", "MRV_WE069","MRV_WE030","MRV_WE029","MRV_WE028","MRV_WE027",  "MRV_WE026","MRV_WE025","MRV_WE024","MRV_WE023", "MRV_WE022","MRV_WE021","MRV_WE020",  "MRV_WE019","MRV_WE018","MRV_WE017","MRV_WE016", "MRV_WE015","MRV_WE014","MRV_WE013","MRV_WE012", "MRV_WE011", "MRV_WE010","MRV_WE009","MRV_WE008","MRV_WE007", "MRV_WE006","MRV_WE005","MRV_WE004","MRV_WE003","MRV_WE002","MRV_WE001",
+
+"MRV_AR026", "MRV_AR025","MRV_AR024", "MRV_AR023","MRV_AR022","MRV_AR021","MRV_AR020","MRV_AR019","MRV_AR018","MRV_AR017","MRV_AR016", "MRV_AR015","MRV_AR014","MRV_AR013","MRV_AR012","MRV_AR011","MRV_AR010","MRV_AR009","MRV_AR008","MRV_AR007","MRV_AR006","MRV_AR005", "MRV_AR004","MRV_AR003", "MRV_AR002","MRV_AR001")
+)
+
+df_long$Variable<- factor(
+  df_long$Variable,
+levels = c(
+"Data_Sharing", 
+"Auditor",
+"Verification_Automatization",  
+"Verification_methodology",
+"Verification_type",
+"Threshold", 
+"Uncertainty", 
+"Format",
+"Type_methodology",
+"Monitoring_frequency",
+"Plot_Area",
+"Data",
+"Parameter",
+"Cost_MRV",
+"Driver",
+"Purpose", 
+"Occupation",
+"Landuse",                         
+"Scale"))
+
+df_long$Characteristic<-NA
+
+df_long$Characteristics[df_long$Variable=="Data_Sharing" |df_long$Variable== "Auditor" |df_long$Variable== "Verification_Automatization"|df_long$Variable== "Verification_methodology"|df_long$Variable== "Verification_type"]<-"Verification"
+
+df_long$Characteristics[df_long$Variable=="Threshold"|df_long$Variable=="Uncertainty"|df_long$Variable=="Format"]<-"Reporting"
+                          
+df_long$Characteristics[df_long$Variable=="Type_methodology"|df_long$Variable=="Monitoring_frequency"|df_long$Variable=="Plot_Area"|df_long$Variable=="Data"|df_long$Variable=="Parameter"]<-"Monitoring"                         
+                         
+df_long$Characteristics[df_long$Variable=="Cost_MRV"|df_long$Variable=="Driver"|df_long$Variable=="Purpose"|df_long$Variable=="Occupation"|df_long$Variable=="Landuse"|df_long$Variable=="Scale"]<-"Stakeholders"    
+
+df_long$Characteristics<- factor(
+df_long$Characteristics,
+levels = c("Stakeholders", "Monitoring", "Reporting", "Verification"))
+
+g_missing_information<-ggplot(df_long, aes(x = ID_MRV, y = Variable, fill = Missing)) +
+geom_tile(color = "white") +
+scale_fill_manual(
+values = c("TRUE" = "firebrick3" , "FALSE" =  "aquamarine3"),
+labels = c("Present", "Missing")) +
+labs(x = "MRV procedures", y = "Variables", fill = "Data Status") +
+theme(axis.text.x = element_text(size = 10, angle = 90, h=1),
+axis.text.y = element_text(size = 10),
+legend.text = element_text(size = 14),
+  legend.title = element_text(size = 16))+
+scale_y_discrete(labels = c(
+"Data_Sharing"="Data sharing", "Auditor"="Auditor status", "Verification_Automatization"="Verification automatization", "Verification_methodology"="Verification methodology", "Verification_type"="Verification scheme",
+"Threshold" ="Threshold determination", "Uncertainty" ="Result uncertainty", "Format"="Reporting format", "Type_methodology"="Use of standards",
+"Monitoring_frequency"="Monitoring frequency", "Plot_Area" ="Plot area", "Data"="Monitoring methodology", "Parameter"="Parameter", "Cost_MRV"="Cost",
+"Driver"="Actions", "Purpose"="Purpose", "Occupation"="Occupation", "Landuse"="Landuse","Scale"="Scale"))+
+scale_x_discrete(labels = c(  
+"MRV_AI001"="MRV AI001",
+
+"MRV_AR001" ="MRV AR001", "MRV_AR002"="MRV AR002","MRV_AR003" ="MRV AR003", "MRV_AR004"="MRV AR004", "MRV_AR005"="MRV AR005", "MRV_AR006"="MRV AR006",
+"MRV_AR007" ="MRV AR007", "MRV_AR008" ="MRV AR008", "MRV_AR009" ="MRV AR009", "MRV_AR010"="MRV AR010", "MRV_AR011" ="MRV AR011", "MRV_AR012"="MRV AR012", 
+"MRV_AR013"="MRV AR013", "MRV_AR014"="MRV AR014", "MRV_AR015"="MRV AR015", "MRV_AR016"="MRV AR016", "MRV_AR017"="MRV AR017", "MRV_AR018"="MRV AR018", 
+"MRV_AR019"="MRV AR019", "MRV_AR020"="MRV AR020", "MRV_AR021"="MRV AR021", "MRV_AR022"="MRV AR022", "MRV_AR023"="MRV AR023", "MRV_AR024"="MRV AR024", 
+"MRV_AR025"="MRV AR025", "MRV_AR026"="MRV AR026", 
+
+"MRV_WE001"="MRV WE001", "MRV_WE002"="MRV WE002", "MRV_WE003"="MRV WE003", "MRV_WE004"="MRV WE004", "MRV_WE005"="MRV WE005", "MRV_WE006"="MRV WE006", 
+"MRV_WE007"="MRV WE007", "MRV_WE008"="MRV WE008", "MRV_WE009"="MRV WE009", "MRV_WE010"="MRV WE010", "MRV_WE011"="MRV WE011", "MRV_WE012"="MRV WE012", 
+"MRV_WE013"="MRV WE013", "MRV_WE014"="MRV WE014", "MRV_WE015"="MRV WE015", "MRV_WE016"="MRV WE016", "MRV_WE017"="MRV WE017", "MRV_WE018"="MRV WE018", 
+"MRV_WE019"="MRV WE019", "MRV_WE020"="MRV WE020", "MRV_WE021"="MRV WE021", "MRV_WE022"="MRV WE022", "MRV_WE023"="MRV WE023", "MRV_WE024"="MRV WE024", 
+"MRV_WE025"="MRV WE025", "MRV_WE026"="MRV WE026", "MRV_WE027"="MRV WE027", "MRV_WE028"="MRV WE028", "MRV_WE029"="MRV WE029", "MRV_WE030"="MRV WE030", 
+"MRV_WE031"="MRV WE031", "MRV_WE032"="MRV WE032", "MRV_WE033"="MRV WE033", "MRV_WE034"="MRV WE034", "MRV_WE035"="MRV WE035", "MRV_WE036"="MRV WE036",
+"MRV_WE037"="MRV WE037", "MRV_WE038"="MRV WE038", "MRV_WE039"="MRV WE039", "MRV_WE040"="MRV WE040", "MRV_WE041"="MRV WE041", "MRV_WE042"="MRV WE042", 
+"MRV_WE043"="MRV WE043", "MRV_WE044"="MRV WE044", "MRV_WE045"="MRV WE045", "MRV_WE046"="MRV WE046", "MRV_WE047"="MRV WE047", "MRV_WE048"="MRV WE048", 
+"MRV_WE049"="MRV WE049", "MRV_WE050"="MRV WE050", "MRV_WE051"="MRV WE051", "MRV_WE052"="MRV WE052", "MRV_WE053"="MRV WE053", "MRV_WE054"="MRV WE054", 
+"MRV_WE055"="MRV WE055", "MRV_WE056"="MRV WE056", "MRV_WE057"="MRV WE057", "MRV_WE058"="MRV WE058", "MRV_WE059"="MRV WE059", "MRV_WE060"="MRV WE060", 
+"MRV_WE061"="MRV WE061", "MRV_WE062"="MRV WE062", "MRV_WE063"="MRV WE063", "MRV_WE064"="MRV WE064", "MRV_WE065"="MRV WE065", "MRV_WE066"="MRV WE066", 
+"MRV_WE067"="MRV WE067", "MRV_WE068"="MRV WE068", "MRV_WE069"="MRV WE069"))+
+#facet_wrap(~ Characteristics, scales = "free_x", space = "free_x", strip.position= "bottom") +
+  facet_grid(
+  ~ Characteristics,
+  scales = "free_x",
+  space = "free_x",
+  switch = "x") +
+theme(
+  strip.placement = "outside"
+) +
+coord_flip()
+
+g_missing_information
+
+ggsave(
+  filename = "Appendix_2_missing_information.png", 
+  plot = g_missing_information, 
+  width = 15,
+  height = 18,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+
+
+## Appendix C. Number (percentage) of MRV procedures according the implementation level
+
+```{r, Implementation All, echo=FALSE, include=TRUE, fig.width=6, fig.height=4, dpi=300}
+
+db_Implementation<-table(db_publications$Implementation)
+
+db_Implementation2<-as.data.frame(db_Implementation)
+names(db_Implementation2)<-c("Implementation", "Number")
+
+db_Implementation2$Percent <- db_Implementation2$Number / sum(db_Implementation2$Number) * 100
+db_Implementation2$Label <- paste0(db_Implementation2$Number, " (", round(db_Implementation2$Percent, 1), "%)")
+
+g_Implementation<-ggplot(db_Implementation2, aes(x = "", y = Number, fill = Implementation)) +
+geom_bar(stat = "identity", width = 1, col="black") +
+coord_polar(theta = "y") +
+geom_text(aes(label = Label), position = position_stack(vjust = 0.5)) +  # place labels in the middle of each slice
+scale_fill_manual(
+values = c("Implemented" = "aquamarine3", "Project"="orange", "Missing_information"="lightgrey"),
+labels = c( "Implemented", "Missing information", "Project"))+
+theme_void()
+
+g_Implementation
+
+ggsave(
+  filename = "Appendix_3_description_implementation.png", 
+  plot = g_Implementation, 
+  width = 8,
+  height = 4,
+  dpi = 300,
+  units = "in",
+  bg="white"
+)
+```
+
+## Appendix D. Contribution of variable modalities computed with MCA and HCPC
+
+```{r, Table MCA HCPC Clusters, echo=FALSE}
+Results_HCPC
+```
+
+
+# Code and data availability
+
+The scripts used for data analysis, web scraping and the decision tool
+are available here : <https://github.com/LucileRb/MRV-procedures> . Data
+are in open-access here : DOI to add
+
+# Author contributions
+
+CI : Conception, Data collection, Data analysis, Tool conception, Paper
+writing, Paper revision\\
+AB : Paper revision\\
+SG : Data collection, Paper revision\\
+PH : Data collection, Paper revision\\
+TS : Data collection, Paper revision\\
+SS : Data collection, Paper revision\\
+LR : Tool conception, Paper revision\\
+KW : Data collection, Paper revision
+
+# Competing interests
+
+The authors declare that they have no conflict of interest.
+
+# Disclaimer
+
+Copernicus Publications remains neutral with regard to jurisdictional
+claims made in the text, published maps, institutional affiliations, or
+any other geographical representation in this paper. While Copernicus
+Publications makes every effort to include appropriate place names, the
+final responsibility lies with the authors. Views expressed in the text
+are those of the authors and do not necessarily reflect the views of the
+publisher.
+
+# Acknowledgments
+
+We thank Laura Zara for helping in developing the web scraping script
+and improving the figures. We thank Emily Araujo, Martina Lori and
+Johanne Vad for running the web scraping script. The AI bot OpenAI
+ChatGPT-6 was used for coding in R.
+
+# Financial support
+
+This research was funded by the European Union's Horizon Europe research
+and innovation program, under Grant Agreement: 101091010, Project
+BENCHMARKS.
+
+# References
+
+Altieri, M.A., Nicholls, C.I., Henao, A., Lana, M.A., 2015. Agroecology
+and the design of climate change-resilient farming systems. Agron.
+Sustain. Dev. 35, 869--890. <https://doi.org/10.1007/s13593-015-0285-2>
+
+Andries, A., Morse, S., Murphy, R.J., Lynch, J., Mota, B., Woolliams,
+E.R., 2021. Can Current Earth Observation Technologies Provide Useful
+Information on Soil Organic Carbon Stocks for Environmental Land
+Management Policy? Sustainability 13, 12074.
+<https://doi.org/10.3390/su132112074>
+
+Bárcena, T.G., Kiær, L.P., Vesterdal, L., Stefánsdóttir, H.M.,
+Gundersen, P., Sigurdsson, B.D., 2014. Soil carbon stock change
+following afforestation in Northern Europe: a meta‐analysis. Global
+Change Biology 20, 2393--2405. <https://doi.org/10.1111/gcb.12576>
+
+Batjes, N.H., Ceschia, E., Heuvelink, G.B.M., Demenois, J., Le Maire,
+G., Cardinael, R., Arias-Navarro, C., Van Egmond, F., 2024. Towards a
+modular, multi-ecosystem monitoring, reporting and verification (MRV)
+framework for soil organic carbon stock change assessment. Carbon
+Management 15, 2410812. <https://doi.org/10.1080/17583004.2024.2410812>
+
+Ceschia, E., Ihasusta, A., Al Bitar, A., Batjes, N., van Egmond, F.,
+Heuvelink, G., Paul-Victor, C., Nogues, M., Pontes, L., Reynders, S.,
+Wijmer, T., Karunaratne, S., Macdonald, B., Lanckriet, E., Ruau, C.,
+Juber, R., Vira, J., Kulmala, L., 2025. Monitoring, reporting and
+verification of soil organic carbon stock changes at arable land:
+Cookbook for assessment in different MRV contexts and proposition of a
+harmonised approach - ORCASA Deliverable 4.2.
+
+Cheong, B.C., 2025. The Paradox and Fallacy of Global Carbon Credits: A
+Theoretical Framework for Strengthening Climate Change Mitigation
+Strategies. Anthr. Sci. 4, 72--83.
+<https://doi.org/10.1007/s44177-025-00084-0>
+
+Chowdhury, S., Kain, J.-H., Adelfio, M., Volchko, Y., Norrman, J., 2023.
+Transforming brownfields into urban greenspaces: A working process for
+stakeholder analysis. PLoS ONE 18, e0278747.
+<https://doi.org/10.1371/journal.pone.0278747>
+
+Directorate-General for Environment, 2025. Directive (EU) 2025/2360 of
+the European Parliament and of the  Council of 12 November 2025 on soil
+monitoring and resilience (Soil Monitoring Law).
+
+Eggers, J., Räty, M., Öhman, K., Snäll, T., 2020. How Well Do
+Stakeholder-Defined Forest Management Scenarios Balance Economic and
+Ecological Forest Values? Forests 11, 86.
+<https://doi.org/10.3390/f11010086>
+
+Husson, F., Lê, S., Pagès, J., 2017. Exploratory multivariate analysis
+by example using R, Second edition. ed. CRC Press, Boca Raton.
+
+Ihasusta, A., Al Bitar, A., Batjes, N.H., Van Egmond, F., Cardinael, R.,
+Karunaratne, S., Barré, P., Arnaud, L., Heuvelink, G., Macdonald, B.,
+Wijmer, T., Demenois, J., Paul-Victor, C., Reynders, S., Ceschia, E.,
+2026. Choosing the appropriate methodology to monitor soil organic
+carbon (SOC) in croplands: aligning methods with evolving monitoring
+reporting verification (MRV) frameworks. Carbon Management 17, 2638317.
+<https://doi.org/10.1080/17583004.2026.2638317>
+
+Imbert, C., Berlin, A., Brown, C., Critchley, M., Kapos, V., Pulleman,
+M., Rusch, G., Tokpah, K., Volkmann, F., Paul, C., 2024. Designing
+Monitoring Reporting Verification for promoting healthy soils.
+
+Lê, S., Josse, J., Husson, F., 2008. **FactoMineR** : An *R* Package for
+Multivariate Analysis. J. Stat. Soft. 25.
+<https://doi.org/10.18637/jss.v025.i01>
+
+Martin, M.P., Lo Seen, D., Boulonne, L., Jolivet, C., Nair, K.M.,
+Bourgeon, G., Arrouays, D., 2009. Optimizing Pedotransfer Functions for
+Estimating Soil Bulk Density Using Boosted Regression Trees. Soil
+Science Soc of Amer J 73, 485--493.
+<https://doi.org/10.2136/sssaj2007.0241>
+
+Matson, A., Fantappiè, M., Campbell, G.A., Miranda-Vélez, J.F., Faber,
+J.H., Gomes, L.C., Hessel, R., Lana, M., Mocali, S., Smith, P.,
+Robinson, D.A., Bispo, A., Van Egmond, F., Keesstra, S., Saby, N.P.A.,
+Smreczak, B., Froger, C., Suleymanov, A., Chenu, C., 2024. Four
+approaches to setting soil health targets and thresholds in agricultural
+soils. Journal of Environmental Management 371, 123141.
+<https://doi.org/10.1016/j.jenvman.2024.123141>
+
+Pachón Maldonado, J.C., Leonard, E.C., Field, D.J., McRobert, K., Heath,
+R., McBratney, A.B., 2024. Quantifying the connectivity dimension of the
+soil security assessment framework. Soil Security 17, 100175.
+<https://doi.org/10.1016/j.soisec.2024.100175>
+
+Probst, B.S., Toetzke, M., Kontoleon, A., Díaz Anadón, L., Minx, J.C.,
+Haya, B.K., Schneider, L., Trotter, P.A., West, T.A.P., Gill-Wiehl, A.,
+Hoffmann, V.H., 2024. Systematic assessment of the achieved emission
+reductions of carbon crediting projects. Nat Commun 15, 9562.
+<https://doi.org/10.1038/s41467-024-53645-z>
+
+Regulation (EU) 2024/3012, 2024. Union certification framework for
+permanent carbon removals, carbon farming and carbon storage in products
+(No. PE/92/2024/REV/1  OJ L, 2024/3012).
+
+Sayles, J.S., Furey, R.P., Ten Brink, M.R., 2022. How deep to dig:
+effects of web-scraping search depth on hyperlink network analysis of
+environmental stewardship organizations. Appl Netw Sci 7, 36.
+<https://doi.org/10.1007/s41109-022-00472-0>
+
+Schreefel, L., Creamer, R.E., Van Zanten, H.H.E., De Olde, E.M., Pas
+Schrijver, A., De Boer, I., Schulte, R.P.O., 2023. How to Monitor the
+'Success' of (Regenerative) Agriculture: A Perspective (preprint). SSRN.
+<https://doi.org/10.2139/ssrn.4525658>
+
+Smith, P., Soussana, J., Angers, D., Schipper, L., Chenu, C., Rasse,
+D.P., Batjes, N.H., Egmond, F., McNeill, S., Kuhnert, M., Arias‐Navarro,
+C., Olesen, J.E., Chirinda, N., Fornara, D., Wollenberg, E.,
+Álvaro‐Fuentes, J., Sanz‐Cobena, A., Klumpp, K., 2020. How to measure,
+report and verify soil carbon change to realize the potential of soil
+carbon sequestration for atmospheric greenhouse gas removal. Global
+Change Biology 26, 219--241. <https://doi.org/10.1111/gcb.14815>
+
+Strauss, V., Paul, C., Dönmez, C., Löbmann, M., Helming, K., 2023.
+Sustainable soil management measures: a synthesis of stakeholder
+recommendations. Agronomy for Sustainable Development 43.
+<https://doi.org/10.1007/s13593-022-00864-7>
+
+Trencher, G., Nick, S., Carlson, J., Johnson, M., 2024. Demand for
+low-quality offsets by major companies undermines climate integrity of
+the voluntary carbon market. Nat Commun 15, 6863.
+<https://doi.org/10.1038/s41467-024-51151-w>
+
+Trouwloon, D., Streck, C., Chagas, T., Martinus, G., 2023. Understanding
+the Use of Carbon Credits by Companies: A Review of the Defining
+Elements of Corporate Climate Claims. Global Challenges 7, 2200158.
+<https://doi.org/10.1002/gch2.202200158>
+
+Vanderheyden, L., Gayot, N., Van Den Broeck, G., 2026. What monitoring,
+reporting & verification (MRV) systems can reduce costs and enhance
+scalability of carbon farming? Journal of Environmental Management 401,
+128885. <https://doi.org/10.1016/j.jenvman.2026.128885>
+
+Vanino, S., Pirelli, T., Di Bene, C., Bøe, F., Castanheira, N., Chenu,
+C., Cornu, S., Feiza, V., Fornara, D., Heller, O., Kasparinskis, R.,
+Keesstra, S., Lasorella, M.V., Madenoğlu, S., Meurer, K.H.E.,
+O'Sullivan, L., Peter, N., Piccini, C., Siebielec, G., Smreczak, B.,
+Thorsøe, M.H., Farina, R., 2023. Barriers and opportunities of soil
+knowledge to address soil challenges: Stakeholders' perspectives across
+Europe. Journal of Environmental Management 325.
+<https://doi.org/10.1016/j.jenvman.2022.116581>
+
+Vazquez, C., Mulder, T., Chavez Rodriguez, L., Lonardo, F.D.D.P.,
+Garsia, A., Creamer, R.E., Bünemann, E.K., Soinne, H., Cheval, P.,
+Basile, A., Bacq-labreuil, A., Nordén, J., Cunha, L., Imbert, C.,
+Boix-Fayos, C., 2025. Soil biology, soil health and ecosystem services:
+an overview, in: Burleigh Dodds Series in Agricultural Science. Burleigh
+Dodds Science Publishing Limited.
+<https://doi.org/10.19103/AS.2025.0159.01>
+
+Vieillard, C., Vidal-Beaudet, L., Dagois, R., Lothode, M., Vadepied, F.,
+Gontier, M., Schwartz, C., Ouvrard, S., 2024. Impacts of soil de-sealing
+practices on urban land-uses, soil functions and ecosystem services in
+French cities. Geoderma Regional 38, e00854.
+<https://doi.org/10.1016/j.geodrs.2024.e00854>
+
+Weninger, T., Ramler, D., Bondi, G., Asins, S., O'Sullivan, L.,
+Assennato, F., Astover, A., Bispo, A., Borůvka, L., Buttafuoco, G.,
+Calzolari, C., Castanheira, N., Cousin, I., Van Den Elsen, E., Foldal,
+C., Hessel, R., Kadžiulienė, Ž., Kukk, L., Molina, M.J., Montagne, D.,
+Oorts, K., Pindral, S., Ungaro, F., Klimkowicz‐Pawlas, A., 2024. Do we
+speak one language on the way to sustainable soil management in Europe?
+A terminology check via an [EU]{.smallcaps} ‐wide survey. European J
+Soil Science 75, e13476. <https://doi.org/10.1111/ejss.13476>
+
+Wickham, H., 2016. ggplot2: Elegant Graphics for Data Analysis.
+Springer-Verlag New York. ISBN 978-3-319-24277-4.
+[https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/).
+
+Zwaan, R.E., Verwijmeren, M., Rutgers, M., Swart, E., Schoffelen, N.,
+Moinet, G.Y.K., Vazquez, C., Creamer, R.E., 2026. Soil health indices in
+disagreement: A systematic review and comparison of soil health
+assessment methods. Soil Biology and Biochemistry 220, 110184.
+<https://doi.org/10.1016/j.soilbio.2026.110184>
+
+
+
